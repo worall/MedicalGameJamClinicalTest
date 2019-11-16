@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour
     private bool m_isPatientNumberNeeded = false;
     private bool m_isScienceQualityNeeded = false;
 
+    private int m_currentTurn = 1;
+
+    [SerializeField] public GameObject cardPrefab;
+
     private void Awake()
     {
         if (_instance)
@@ -33,6 +37,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         UIManager.Instance.OnStartGame += UIManager_OnStartGame;
+        GoToNextTurn();
     }
 
     private void UIManager_OnStartGame()
@@ -44,6 +49,7 @@ public class GameManager : MonoBehaviour
     {
         UIManager.Instance.gamePanel.UpdateStats(m_scienceQuality, m_patientImplication, m_patientNumber, m_money);
         CheckStatisticStatue();
+        GoToNextTurn();
     }
 
     private void OnContractSelected()
@@ -75,8 +81,19 @@ public class GameManager : MonoBehaviour
 
     private void GenerateNewCard()
     {
-        //CardStruct cardStruct = DeckManager.Instance.GetNewCard();
-        //CardBehabiour card = Instantiate(cardPrefab);
-        //card.Init(cardStruct);
+        CardContent cardContent= DeckManager.Instance.draw(m_currentTurn);
+        m_currentTurn++;
+
+        GameObject card = Instantiate(cardPrefab);
+        CardBehaviour cardBehaviour = card.GetComponent<CardBehaviour>();
+        cardBehaviour.cardTitle = cardContent.name;
+        cardBehaviour.cardFlavorText = cardContent.situation;
+
+        cardBehaviour.onSwipeYes = delegate(CardBehaviour.CardEffects effects) {
+            this.GoToNextTurn();
+        };
+        cardBehaviour.onSwipeNo = delegate(CardBehaviour.CardEffects effects) {
+            this.GoToNextTurn();
+        };
     }
 }

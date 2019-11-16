@@ -10,19 +10,34 @@ public class DeckManager : MonoBehaviour
     private char lineSeperater = '\n'; // It defines line seperate character
     private char fieldSeperator = ';'; // It defines field seperate chracter
 
+    private static DeckManager _instance;
+    public static DeckManager Instance { get { return _instance; } }
+
+    private void Awake()
+    {
+        if (_instance)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        _instance = this;
+
+        this.parseResource();
+        this.initPools();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        this.parseResource();
-        this.initPools();
-
-        // DEBUG
-        CardContent next = this.draw(1);
-        Debug.Log(next.name);
     }
 
-    CardContent draw(int turn)
+    public CardContent draw(int turn)
     {
+        if(turn >= this.pools.Count) {
+            Debug.Log("out of card!");
+            return null;
+        }
         int nbCards = this.pools[turn].Count;
         int selected = Random.Range(0, nbCards);
         CardContent nextCard = this.pools[turn][selected];
