@@ -5,21 +5,13 @@ using UnityEngine.UI;
 
 public class CardBehaviour : MonoBehaviour
 {
-    [System.Serializable]
-    public struct CardEffects
-    {
-        public float qualityModifier;
-        public float quantityModifier;
-        public string popupText;
-    }
-
     public string cardTitle;
     public string cardFlavorText;
     public string cardIllustration;
-    public CardEffects cardEffectsYes;
-    public CardEffects cardEffectsNo;
+    public CardEffect cardEffectsYes;
+    public CardEffect cardEffectsNo;
 
-    public delegate void OnSwipeDelegate(CardEffects effects);
+    public delegate void OnSwipeDelegate(CardEffect effects);
     public OnSwipeDelegate onSwipeYes;
     public OnSwipeDelegate onSwipeNo;
 
@@ -29,13 +21,9 @@ public class CardBehaviour : MonoBehaviour
     [SerializeField] public Image vanishOverlay;
 
     private Vector3? prevMousePos = null;
-    private float width;
-    private float height;
 
     void Awake()
     {
-        width = (float)Screen.width / 2.0f;
-        height = (float)Screen.height / 2.0f;
     }
 
     // Start is called before the first frame update

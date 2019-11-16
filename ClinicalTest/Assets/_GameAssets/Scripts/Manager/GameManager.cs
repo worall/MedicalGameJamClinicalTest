@@ -86,14 +86,20 @@ public class GameManager : MonoBehaviour
 
         GameObject card = Instantiate(cardPrefab);
         CardBehaviour cardBehaviour = card.GetComponent<CardBehaviour>();
+        cardBehaviour.cardIllustration = cardContent.image;
         cardBehaviour.cardTitle = cardContent.name;
         cardBehaviour.cardFlavorText = cardContent.situation;
+        cardBehaviour.cardEffectsYes = cardContent.yes;
+        cardBehaviour.cardEffectsNo = cardContent.no;
 
-        cardBehaviour.onSwipeYes = delegate(CardBehaviour.CardEffects effects) {
-            this.GoToNextTurn();
-        };
-        cardBehaviour.onSwipeNo = delegate(CardBehaviour.CardEffects effects) {
-            this.GoToNextTurn();
-        };
+        cardBehaviour.onSwipeYes = ApplyCardEffects;
+        cardBehaviour.onSwipeNo = ApplyCardEffects;
+    }
+    void ApplyCardEffects(CardEffect effects) {
+        m_money += effects.argent;
+        m_patientImplication += effects.implication;
+        m_patientNumber += effects.patients;
+        m_scienceQuality += effects.rigueur;
+        this.GoToNextTurn();
     }
 }
