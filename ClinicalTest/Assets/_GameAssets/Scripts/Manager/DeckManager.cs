@@ -67,6 +67,12 @@ public class DeckManager : MonoBehaviour
         foreach (string record in records)
         {
             string[] row = record.Split(fieldSeperator);
+
+            // end line?
+            if (row.Length == 1) {
+                continue;
+            }
+
             CardContent card = this.mapDataToCard(row);
             cards.Add(card);
         }
