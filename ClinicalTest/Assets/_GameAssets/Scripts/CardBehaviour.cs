@@ -25,7 +25,7 @@ public class CardBehaviour : MonoBehaviour
 
     public bool swiped = false;
     public float vanishRatio = 0;
-    const float VANISH_TIME = 0.6f;
+    const float VANISH_TIME = 0.28f;
     [SerializeField] public Image vanishOverlay;
 
     private Vector3? prevMousePos = null;
@@ -57,15 +57,16 @@ public class CardBehaviour : MonoBehaviour
             vanishRatio = Mathf.Min(1, vanishRatio + Time.deltaTime / VANISH_TIME);
         }
         if (vanishRatio > 0) {
+            float alpha = Mathf.Min(1, 2 - vanishRatio * 2);
             Image[] images = GetComponentsInChildren<Image>();
             for (int i = 0; i < images.Length; i++) {
-                images[i].color = new Color(1, 1, 1, images[i].color.a * (1 - vanishRatio));
+                images[i].color = new Color(1, 1, 1, images[i].color.a * alpha);
             }
             Text[] texts = GetComponentsInChildren<Text>();
-            for (int i = 0; i < images.Length; i++) {
-                texts[i].color = new Color(1, 1, 1, texts[i].color.a * (1 - vanishRatio));
+            for (int i = 0; i < texts.Length; i++) {
+                texts[i].color = new Color(1, 1, 1, texts[i].color.a * alpha);
             }
-            vanishOverlay.color = new Color(1, 1, 1, vanishRatio < 0.5 ? vanishRatio * 2 : 4 - vanishRatio * 2);
+            vanishOverlay.color = new Color(1, 1, 1, Mathf.Min(1, vanishRatio * 1.5f) * alpha);
         }
     }
 
