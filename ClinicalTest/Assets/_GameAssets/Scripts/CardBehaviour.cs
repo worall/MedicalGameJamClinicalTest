@@ -17,7 +17,7 @@ public class CardBehaviour : MonoBehaviour
 
     public bool swiped = false;
     public float vanishRatio = 0;
-    const float VANISH_TIME = 0.28f;
+    protected float VANISH_TIME = 0.28f;
     [SerializeField] public Image vanishOverlay;
 
     private Vector3? prevMousePos = null;

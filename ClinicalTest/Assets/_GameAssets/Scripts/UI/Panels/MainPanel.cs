@@ -6,14 +6,11 @@ using UnityEngine.UI;
 
 public class MainPanel : Panel
 {
-    [SerializeField] private Button m_startButton;
-
     public event Action OnButtonStartGame;
 
     // Start is called before the first frame update
     void Start()
     {
-        m_startButton.onClick.AddListener(OnButtonStartClick);
     }
 
     private void OnButtonStartClick()

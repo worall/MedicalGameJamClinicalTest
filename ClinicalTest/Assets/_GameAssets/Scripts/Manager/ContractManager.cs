@@ -47,5 +47,9 @@ public struct Contract
 
     public int maxPatientNumber;
     public int timeToConclude;
-    public int baseValue;
+
+    public int implactionBaseValue;
+    public int numberPatientBaseValue;
+    public int scienceQualityBaseValue;
+    public int moneyBaseValue;
 }

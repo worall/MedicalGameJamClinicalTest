@@ -8,13 +8,23 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
 
+    [SerializeField] CardBegin beginCard;
+ 
     private int m_patientImplication = 0;
     private int m_patientNumber = 0;
     private int m_scienceQuality = 0;
     private int m_money = 0;
     private int m_time = 0;
 
+    private bool implicationComplete = false;
+    private bool numberComplete = false;
+    private bool scienceComplete = false;
+
+    private int objectifCompleted = 0;
+
     private int m_currentTurn = 4;
+
+    private int completion = 0;
 
     [SerializeField] public GameObject cardPrefab;
 
@@ -32,18 +42,13 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UIManager.Instance.OnStartGame += UIManager_OnStartGame;
-        GoToNextTurn();
+        beginCard.onSwipeYes = StartGame;
+        beginCard.onSwipeNo = StartGame;
     }
 
-    private void UIManager_OnStartGame()
+    private void StartGame(CardEffect effect)
     {
-        StartGame();
-    }
-
-    private void StartGame()
-    {
-        UIManager.Instance.gamePanel.UpdateStats(m_scienceQuality, m_patientImplication, m_patientNumber, m_money);
+        UIManager.Instance.gamePanel.UpdateStats(m_scienceQuality, m_patientImplication, m_patientNumber, m_money, m_time);
         CheckStatisticStatue();
         GoToNextTurn();
     }
@@ -58,13 +63,20 @@ public class GameManager : MonoBehaviour
         Contract contract = ContractManager.Instance.actualContract;
 
         if (m_patientImplication >= contract.implicationRequirement)
-            Debug.Log("science quality is well");
+            implicationComplete = true;
+        else
+            implicationComplete = false;
 
         if (m_patientNumber >= contract.patientNumberRequiremenent)
-            Debug.Log("patient number is well");
+            numberComplete = true;
+        else
+            numberComplete = false;
 
         if (m_scienceQuality >= contract.scienceQualityRequirement)
-            Debug.Log("scienceQuality is well");
+            scienceComplete = true;
+        else
+            scienceComplete = false;
+
     }
 
     private void GoToNextTurn()
@@ -72,8 +84,19 @@ public class GameManager : MonoBehaviour
         GenerateNewCard();
 
         if (m_time <= 0)
-            Debug.Log("fin du jeu");
+            EndGame();
+    }
 
+    private void EndGame()
+    {
+        if (implicationComplete)
+            objectifCompleted++;
+
+        if (numberComplete)
+            objectifCompleted++;
+
+        if (scienceComplete)
+            objectifCompleted++;
     }
 
     private void GenerateNewCard()
@@ -103,12 +126,7 @@ public class GameManager : MonoBehaviour
         m_money += effects.argent;
         this.GoToNextTurn();
 
-        Debug.Log(m_patientImplication + "  implication");
-        Debug.Log(m_patientNumber + "  number");
-        Debug.Log(m_scienceQuality + "  rigueur");
-        Debug.Log(m_money + "  money");
-
         CheckStatisticStatue();
-        UIManager.Instance.gamePanel.UpdateStats(m_scienceQuality, m_patientImplication, m_patientNumber, m_money);
+        UIManager.Instance.gamePanel.UpdateStats(m_scienceQuality, m_patientImplication, m_patientNumber, m_money, m_time);
     }
 }
