@@ -15,7 +15,7 @@ public class CardBehaviour : MonoBehaviour
 
     public bool swiped = false;
     public float vanishRatio = 0;
-    protected float VANISH_TIME = 0.18f;
+    protected float VANISH_TIME = 0.34f;
 
     [SerializeField] public CanvasGroup cardMainCanvas;
     [SerializeField] public CanvasGroup cardEffectCanvas;
@@ -71,7 +71,7 @@ public class CardBehaviour : MonoBehaviour
             float alpha = 1 - vanishRatio;
             Vector3 offset = new Vector3(relativePos.localPosition.x, relativePos.localPosition.y, relativePos.localPosition.z);
             offset.Normalize();
-            relativePos.localPosition += offset * 20f * (1 - 0.3f * vanishRatio);
+            relativePos.localPosition += offset * 120f * (1 - 0.3f * vanishRatio);
 
             //float s = 1 + 0.03f * vanishRatio;
             //transform.localScale = new Vector3(s, s, s);
