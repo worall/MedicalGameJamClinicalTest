@@ -120,7 +120,6 @@ public class DeckManager : MonoBehaviour
         // Effect yes
         card.yes.choice = data[2];
         card.yes.debrief = data[4];
-
         card.yes.implication = (data[6] == "") ? 0 : int.Parse(data[6]);
         card.yes.rigueur = (data[7] == "") ? 0 : int.Parse(data[7]);
         card.yes.patients = (data[8] == "") ? 0 : int.Parse(data[8]);
@@ -128,13 +127,13 @@ public class DeckManager : MonoBehaviour
         card.yes.cost = (data[14] == "") ? 0 : int.Parse(data[14]);
 
         // Effect no
-        card.yes.choice = data[3];
-        card.yes.debrief = data[5];
-        card.yes.implication = (data[10] == "") ? 0 : int.Parse(data[10]);
-        card.yes.rigueur = (data[11] == "") ? 0 : int.Parse(data[11]);
-        card.yes.patients = (data[12] == "") ? 0 : int.Parse(data[12]);
-        card.yes.argent = (data[13] == "") ? 0 : int.Parse(data[13]);
-        card.yes.cost = (data[15] == "") ? 0 : int.Parse(data[15]);
+        card.no.choice = data[3];
+        card.no.debrief = data[5];
+        card.no.implication = (data[10] == "") ? 0 : int.Parse(data[10]);
+        card.no.rigueur = (data[11] == "") ? 0 : int.Parse(data[11]);
+        card.no.patients = (data[12] == "") ? 0 : int.Parse(data[12]);
+        card.no.argent = (data[13] == "") ? 0 : int.Parse(data[13]);
+        card.no.cost = (data[15] == "") ? 0 : int.Parse(data[15]);
 
         // Costs
         card.image = data[16];

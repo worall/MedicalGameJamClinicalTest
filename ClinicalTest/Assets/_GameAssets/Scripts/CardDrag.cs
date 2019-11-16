@@ -7,16 +7,18 @@ public class CardDrag : MonoBehaviour
 {
     private Transform root;
     private CardBehaviour card;
-    private Image cardBack;
     private bool flipped = true;
     private bool ready = false;
     private Vector3? prevMousePos = null;
+
+    [SerializeField] public Image cardBack;
+
+    [SerializeField] public CanvasGroup cardEffectCanvas;
 
     void Awake()
     {
         root = GetComponentsInParent<Transform>()[1];
         card = GetComponentInParent<CardBehaviour>();
-        cardBack = card.GetComponentsInChildren<Image>()[2];
     }
 
     const float SWIPE_AMPLITUDE = 20;
@@ -40,11 +42,13 @@ public class CardDrag : MonoBehaviour
         //angle = Mathf.Clamp(angle, -80, 80);
 
         float currentAngle = (this.root.localRotation.eulerAngles.y - 90) % 360;
-        this.cardBack.color = new Color(1, 0, 0, currentAngle > 0 && currentAngle < 180 ? 1 : 0);
+        this.cardBack.color = new Color(1, 1, 1, currentAngle > 0 && currentAngle < 180 ? 1 : 0);
         if (prevMousePos == null && !card.swiped)
         {
             this.root.localPosition = new Vector3(root.localPosition.x * 0.5f, root.localPosition.y * 0.5f, root.localPosition.z * 0.5f);
         }
+
+        cardEffectCanvas.alpha = Mathf.Abs(root.localPosition.x) / SWIPE_AMPLITUDE * 0.4f;
     }
 
     void OnMouseDrag()
