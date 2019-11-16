@@ -7,7 +7,7 @@ public class DeckManager : MonoBehaviour
     List<CardContent> cards = new List<CardContent>();
     List<List<CardContent>> pools = new List<List<CardContent>>();
 
-    private int nbAvailablePools = 20;
+    private int nbAvailablePools = 25;
 
     private char lineSeperater = '\n'; // It defines line seperate character
     private char fieldSeperator = ';'; // It defines field seperate chracter
@@ -32,6 +32,7 @@ public class DeckManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+      Debug.Log(this.draw(1));
     }
 
     // Pick a card in the specified turn
@@ -67,17 +68,7 @@ public class DeckManager : MonoBehaviour
         foreach (string record in records)
         {
             string[] row = record.Split(fieldSeperator);
-
-            CardContent card = new CardContent();
-            card.name = row[0];
-            card.situation = row[1];
-            card.choiceLeft = row[2];
-            card.choiceRight = row[3];
-            card.resLeft = row[4];
-            card.resRight = row[5];
-            card.time = row[14];
-            card.turns = row[15];
-
+            CardContent card = this.mapDataToCard(row);
             cards.Add(card);
         }
     }
@@ -119,8 +110,38 @@ public class DeckManager : MonoBehaviour
         }
     }
 
-    private void updatePools()
+    private CardContent mapDataToCard(string[] data)
     {
-        // Modify pools if need be
+        CardContent card = new CardContent();
+
+        // Desc'
+        card.name = data[0];
+        card.situation = data[1];
+
+        // Effect yes
+        card.yes.choice = data[2];
+        card.yes.debrief = data[4];
+
+        card.yes.implication = (data[6] == "") ? 0 : int.Parse(data[6]);
+        card.yes.rigueur = (data[7] == "") ? 0 : int.Parse(data[7]);
+        card.yes.patients = (data[8] == "") ? 0 : int.Parse(data[8]);
+        card.yes.argent = (data[9] == "") ? 0 : int.Parse(data[9]);
+        card.yes.cost = (data[14] == "") ? 0 : int.Parse(data[14]);
+
+        // Effect no
+        card.yes.choice = data[3];
+        card.yes.debrief = data[5];
+        card.yes.implication = (data[10] == "") ? 0 : int.Parse(data[10]);
+        card.yes.rigueur = (data[11] == "") ? 0 : int.Parse(data[11]);
+        card.yes.patients = (data[12] == "") ? 0 : int.Parse(data[12]);
+        card.yes.argent = (data[13] == "") ? 0 : int.Parse(data[13]);
+        card.yes.cost = (data[15] == "") ? 0 : int.Parse(data[15]);
+
+        // Costs
+        card.image = data[16];
+        card.turns = data[17];
+        card.popout = (data[18] == "1") ? true : false;
+
+        return card;
     }
 }

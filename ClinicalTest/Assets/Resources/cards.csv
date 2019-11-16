@@ -1,3 +1,23 @@
-Repos;Tous les Catipats ont fait la sieste et sont maintenant en pleine forme !;Super !;Super !;;;1;0;0;0;1;0;0;0;0;1
-Thon à la cantine;Il y a du thon a la cantine pour le repas d'aujourd'hui !;Super !;Super !;;;2;0;0;0;2;0;0;0;0;2
-Café;Pause cafe pour les Catipats !;Super !;Super !;;;3;0;0;0;3;0;0;0;0;3
+Repos;Tous les Catipats ont fait la sieste et sont maintenant en pleine forme !;Super !;Super !;;;1;0;0;0;1;0;0;0;0;0;;4:8:12:16:20;1
+Thon à la cantine;Il y a du thon à la cantine pour le repas d'aujourd'hui !;Super !;Super !;;;1;0;0;0;1;0;0;0;0;0;;4:8:12:16:20;1
+Café;Pause café pour les Catipats !;Super !;Super !;;;1;0;0;0;1;0;0;0;0;0;;4:8:12:16:20;1
+Séance de jeu;Les Catipats ont joué ensemble à Bario Kart et se sont beaucoup amusés !;Super !;Super !;;;1;0;0;0;1;0;0;0;0;0;;4:8:12:16:20;1
+Sport;Les Catipats ont fait du sport et sont en pleine forme !;Super !;Super !;;;1;0;0;0;1;0;0;0;0;0;;4:8:12:16:20;1
+Visite amicale du docteur;Un docteur vient prendre des nouvelles des Catipats !;Super !;Super !;;;1;0;0;0;1;0;0;0;0;0;;4:8:12:16:20;1
+Brocante;Les Catipats ont participé à une brocante afin de gagner un peu d'argent !;Super !;Super !;;;0;0;0;100;0;0;0;100;0;0;;4:8:12:16:20;1
+Evenement caritatif;Un evenement caritatif a aidé au financement de notre recherche !;Super !;Super !;;;1;0;0;100;1;0;0;100;0;0;;4:8:12:16:20;1
+Rencontre avec une célébrité;Un chercheur célèbre est venu visiter notre hôpital !;Super !;Super !;;;0;1;10;0;0;1;10;0;0;0;;4:8:12:16:20;1
+Definir les critères d'inclusion;Je souhaite que les participants inclus dans mon essai ressemblent à population réelle des catipat malades qui beneficeront de la magic pillule;Je décide d'inclure dans mon étude uniquement des catipat roses malades et jeunes;J'inclus tous les catipats malades quels que soient leur âge et leur pelage ;;;0;-1;-10;0;0;1;10;100;;;;;
+Définition du traitement;Il faut réflechir aux modalités du traitement par exemple la fréquence de prise de médicaments, sa forme : pillule, sirop, injection, etc.;J'implique uniquement mes collègues chercheurs lors d'une réunion d'une heure;J'organise une rencontre sur un week end avec des patients et des chercheurs;;;1;0;-10;0;1;1;10;-100;;;;;
+Critère de jugement;Nous devons choisir un critère pour évaluer si le traitement marche;Je décide de mesurer le nombre de decibels d'un miaulement un mois après le traitement;Je décide d'évaluer le bien être du catipat 1 an après le traitement;On choisit la facilité mais ce n'est pas pertinenet;Critère important pour le patient qui coute de l'argent et du temps;1;1;10;0;1;1;10;100;;;;;
+Placebo;Dr Z peut utiliser un placebo;Oui;Non;"Utiliser un placebo permet de garantir que les patients soient suivis de la même manière tout au long de l'essai ;  recevoir un placebo n'a pas d'effet pour chaque catipat indivuellement, mais permet de faire grandement avancer la recherche de façon collective.";;0;1;0;-100;0;-1;0;100;;;;;
+Double aveugle;Je souhaite que les patients et les medecins ne savent pas qui a reçu le traitement;Oui;Non;Le double aveugle: garantir que les patients soient suivis de la même manière tout au long de l'essai;;0;1;0;-100;0;-1;0;100;;;;;
+Randomisation;Je peut tirer au sort l'attribution du traitement;Oui;Non;La randomisation permet de garantir que les deux groupes sont comparables au début de l'essai;;0;1;0;0;0;-1;0;0;;;;;
+Définir le nombre de patient necessaire;Nous devons définir le nombre de participants necessaires pour montrer que notre traitement est efficace chez les catipat malades;Je prends un petit échantillon de 100 catipats;Je prends un grand échantillon de 1000 catipats;;;0;-1;0;0;0;1;10;-100;;;;;
+Mode de recrutement;Je dois décider de la façon dont je recrute mes patients; Le directeur du Club de Golf de Luxury-ville, propose d'aider son ami le Dr Z à recruter des patients pour son essai;Grande campagne médiatique dans la presse nationale;Il est préférable de diversifier les origines sociales des participants;;0;-1;0;0;0;1;10;-1000;;;;;
+Perdu de vue;Des catipats risquent de quitter l'etude, je demande à  un chef de projet d'envoyer un SMS quotidien aux participants ;Oui;Non;;;-1;1;0;-100;0;-1;0;0;0;0;;;
+Augmenter mon financement;L'entreprise Gafam vous propose de racheter les données de l'étude pour une grosse somme d'argent;Oui;Non;;;-1;0;0;100;0;0;0;0;0;0;;;
+Recruter des patients;Dr Z constate une baisse de recrutement des catipats, un patient ambassadeur est chargé de parrainer l'essai;Oui;Non;;;1;1;1;-1;0;0;0;0;0;0;;;1
+Recruter des patients;Un catipat influenceur vous propose de relayer l'étude sur son compte instacat;Oui;Non;;;1;0;1;0;0;0;0;0;0;0;;;1
+Fin d'etude;l'essai prend fin, vous envoyez les résultats aux catipats de l'étude;Oui;Non;Certaines actions sont couteuses mais indispensable bravo vous avez fait le bon choix ;;0;0;0;-1;0;0;0;0;0;0;;;1
+effet secondaire;Certains catipats développent des effets indésirables inattendus et perdent leurs moustaches: je mets en place une cellule pour enregistrer ces évènements;Oui;Non;;;0;1;0;0;0;-1;0;-1;0;0;;;1
