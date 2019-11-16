@@ -40,7 +40,7 @@ public class CardDrag : MonoBehaviour
         //angle = Mathf.Clamp(angle, -80, 80);
 
         float currentAngle = (this.root.localRotation.eulerAngles.y - 90) % 360;
-        this.cardBack.color = new Color(1, 0, 0, currentAngle > 0 && currentAngle < 180 ? 1 : 0);
+        this.cardBack.color = new Color(1, 1, 1, currentAngle > 0 && currentAngle < 180 ? 1 : 0);
         if (prevMousePos == null && !card.swiped)
         {
             this.root.localPosition = new Vector3(root.localPosition.x * 0.5f, root.localPosition.y * 0.5f, root.localPosition.z * 0.5f);
