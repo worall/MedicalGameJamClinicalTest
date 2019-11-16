@@ -89,9 +89,7 @@ public class GameManager : MonoBehaviour
         if (cardContent == null) {
             return;
         }
-        cardBehaviour.cardIllustration = cardContent.image;
-        cardBehaviour.cardTitle = cardContent.name;
-        cardBehaviour.cardFlavorText = cardContent.situation;
+        cardBehaviour.cardContent = cardContent;
         cardBehaviour.cardEffectsYes = cardContent.yes;
         cardBehaviour.cardEffectsNo = cardContent.no;
 
