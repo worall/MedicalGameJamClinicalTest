@@ -44,11 +44,11 @@ public class GameManager : MonoBehaviour
     {
         GameObject beginCardInst = Instantiate(beginCard);
         CardBehaviour behaviour = beginCardInst.GetComponent<CardBehaviour>();
-        behaviour.onSwipeYes = StartGame;
-        behaviour.onSwipeNo = StartGame;
+        behaviour.onSwipeYes = FirstEffectSwipe;
+        behaviour.onSwipeNo = FirstEffectSwipe;
     }
 
-    private void StartGame(CardEffect effect)
+    private void StartGame()
     {
         UIManager.Instance.LauncheGamePanel();
         UIManager.Instance.gamePanel.UpdateStats(m_scienceQuality, m_patientImplication, m_patientNumber, m_money, m_time);
@@ -130,6 +130,15 @@ public class GameManager : MonoBehaviour
         m_money += effects.argent;
 
         StartCoroutine(DelayedCardPick());
+    }
+
+    void FirstEffectSwipe(CardEffect effect) {
+        StartCoroutine(DelayedStartGame());
+    }
+
+    IEnumerator DelayedStartGame() {
+        yield return new WaitForSeconds(0.4f);
+        this.StartGame();
     }
 
     IEnumerator DelayedCardPick() {
