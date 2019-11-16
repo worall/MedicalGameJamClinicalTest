@@ -5,11 +5,10 @@ using UnityEngine.UI;
 
 public class GamePanel : Panel
 {
-    [SerializeField] private Image m_scienceQualityImage;
     [SerializeField] private Image m_patientImplicationImage;
     [SerializeField] private Image m_patientNumberImage;
+    [SerializeField] private Image m_scienceQualityImage;
     [SerializeField] private Image m_moneyImage;
-    [SerializeField] private Image m_imageTest;
 
     public void Init(float baseAmount)
     {
