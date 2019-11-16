@@ -6,8 +6,6 @@ public class ContractManager : MonoBehaviour
 {
     private static ContractManager _instance;
     public static ContractManager Instance { get { return _instance; } }
-
-    [SerializeField] private List<Contract> contractsList;
     private void Awake()
     {
         if (_instance)
@@ -19,11 +17,25 @@ public class ContractManager : MonoBehaviour
         _instance = this;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private List<Contract> contractsList;
+
+    public Contract actualContrat;
+    private int index = 0;
+
+    public void SelectNextContrat()
     {
-        
+        actualContrat = contractsList[index];
     }
+
+    private void OnContractEnded()
+    {
+        if (index < contractsList.Count)
+            index++;
+
+        else
+            Debug.Log("fin des contrats");
+    }
+
 }
 
 [System.Serializable]

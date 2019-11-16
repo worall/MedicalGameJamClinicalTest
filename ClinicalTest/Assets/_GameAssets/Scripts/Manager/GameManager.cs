@@ -28,12 +28,16 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         UIManager.Instance.OnStartGame += UIManager_OnStartGame;
-        
     }
 
     private void UIManager_OnStartGame()
     {
         StartGame();
+    }
+
+    private void CheckStatisticStatue()
+    {
+
     }
 
     private void StartGame()
