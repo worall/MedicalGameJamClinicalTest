@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
 
-    [SerializeField] CardBegin beginCard;
+    [SerializeField] GameObject beginCard;
 
     private int m_patientImplication = 0;
     private int m_patientNumber = 0;
@@ -42,8 +42,10 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        beginCard.onSwipeYes = StartGame;
-        beginCard.onSwipeNo = StartGame;
+        GameObject beginCardInst = Instantiate(beginCard);
+        CardBehaviour behaviour = beginCardInst.GetComponent<CardBehaviour>();
+        behaviour.onSwipeYes = StartGame;
+        behaviour.onSwipeNo = StartGame;
     }
 
     private void StartGame(CardEffect effect)
@@ -61,6 +63,7 @@ public class GameManager : MonoBehaviour
 
     private void CheckStatisticStatue()
     {
+        return;
         Contract contract = ContractManager.Instance.actualContract;
 
         if (m_patientImplication >= contract.implicationRequirement)

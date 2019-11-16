@@ -49,7 +49,7 @@ public class CardDrag : MonoBehaviour
         }
 
         if (!card.swiped) {
-            cardEffectCanvas.alpha = Mathf.Abs(root.localPosition.x) / SWIPE_AMPLITUDE * 0.4f;
+            cardEffectCanvas.alpha = Mathf.Abs(root.localPosition.x) / SWIPE_AMPLITUDE * 0.8f;
         }
     }
 

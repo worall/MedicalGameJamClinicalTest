@@ -16,7 +16,6 @@ public class CardBehaviour : MonoBehaviour
     public bool swiped = false;
     public float vanishRatio = 0;
     protected float VANISH_TIME = 0.18f;
-    [SerializeField] public Image vanishOverlay;
 
     [SerializeField] public CanvasGroup cardMainCanvas;
     [SerializeField] public CanvasGroup cardEffectCanvas;
@@ -39,23 +38,27 @@ public class CardBehaviour : MonoBehaviour
         Text title = this.GetComponentsInChildren<Text>()[1];
         Image illustration = this.GetComponentsInChildren<Image>()[1];
 
-        flavor.text = cardContent.situation;
-        title.text = cardContent.name;
-        Sprite sprite = Resources.Load<Sprite>("illustrations/" + this.cardContent.image);
-        if (sprite != null) {
-            illustration.sprite = sprite;
+        if (cardContent != null) {
+            flavor.text = cardContent.situation;
+            title.text = cardContent.name;
+            Sprite sprite = Resources.Load<Sprite>("illustrations/" + this.cardContent.image);
+            if (sprite != null) {
+                illustration.sprite = sprite;
+            }
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (relativePos.localPosition.x > 0) {
-            choiceText.text = cardContent.yes.choice;
-            weekCostText.text = cardContent.yes.cost.ToString();
-        } else {
-            choiceText.text = cardContent.no.choice;
-            weekCostText.text = cardContent.no.cost.ToString();
+        if (cardContent != null) {
+            if (relativePos.localPosition.x > 0) {
+                choiceText.text = cardContent.yes.choice;
+                weekCostText.text = cardContent.yes.cost.ToString();
+            } else {
+                choiceText.text = cardContent.no.choice;
+                weekCostText.text = cardContent.no.cost.ToString();
+            }
         }
 
         if (swiped) {
@@ -66,17 +69,6 @@ public class CardBehaviour : MonoBehaviour
                 initialEffectAlpha = cardEffectCanvas.alpha;
             }
             float alpha = 1 - vanishRatio;
-            // Image[] images = GetComponentsInChildren<Image>();
-            // for (int i = 0; i < images.Length; i++) {
-            //     images[i].color = new Color(1, 1, 1, images[i].color.a * alpha);
-            // }
-            // Text[] texts = GetComponentsInChildren<Text>();
-            // for (int i = 0; i < texts.Length; i++) {
-            //     texts[i].color = new Color(1, 1, 1, texts[i].color.a * alpha);
-            // }
-            // cardMainCanvas.alpha = alpha;
-            // cardEffectCanvas.alpha = initialEffectAlpha * alpha;
-            //vanishOverlay.color = new Color(1, 1, 1, Mathf.Min(1, vanishRatio) * alpha);
             Vector3 offset = new Vector3(relativePos.localPosition.x, relativePos.localPosition.y, relativePos.localPosition.z);
             offset.Normalize();
             relativePos.localPosition += offset * 20f * (1 - 0.3f * vanishRatio);

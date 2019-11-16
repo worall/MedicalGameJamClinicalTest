@@ -29,7 +29,6 @@ public class CardBegin : CardBehaviour
             //     texts[i].color = new Color(1, 1, 1, texts[i].color.a * alpha);
             // }
             cardMainCanvas.alpha = alpha;
-            vanishOverlay.color = new Color(1, 1, 1, Mathf.Min(1, vanishRatio) * alpha);
 
             float s = 1 + 0.03f * vanishRatio;
             transform.localScale = new Vector3(s, s, s);
