@@ -765,10 +765,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f338b9fa260664cb7eba74d789942a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_patientImplicationImage: {fileID: 1075751826}
-  m_patientNumberImage: {fileID: 0}
-  m_scienceQualityImage: {fileID: 0}
-  m_moneyImage: {fileID: 0}
+  m_patientImplicationImage: {fileID: 76906058}
+  m_patientNumberImage: {fileID: 793592258}
+  m_scienceQualityImage: {fileID: 1363112898}
+  m_moneyImage: {fileID: 280733262}
 --- !u!1 &714125640
 GameObject:
   m_ObjectHideFlags: 0

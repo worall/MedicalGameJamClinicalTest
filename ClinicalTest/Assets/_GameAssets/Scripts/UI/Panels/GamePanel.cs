@@ -13,7 +13,6 @@ public class GamePanel : Panel
     public void Init(float baseAmount)
     {
         float amount = baseAmount / 100;
-        Debug.Log(amount);
 
         m_scienceQualityImage.fillAmount = amount;
         m_patientImplicationImage.fillAmount = amount;
@@ -24,9 +23,9 @@ public class GamePanel : Panel
 
     public void UpdateStats(int scienceQuality, float patientImplication, float patientNumber, float money)
     {
-        m_scienceQualityImage.fillAmount += scienceQuality;
-        m_patientImplicationImage.fillAmount += patientImplication;
-        m_patientNumberImage.fillAmount += patientNumber;
-        m_moneyImage.fillAmount += money;
+        m_scienceQualityImage.fillAmount += scienceQuality / 100;
+        m_patientImplicationImage.fillAmount += patientImplication / 100;
+        m_patientNumberImage.fillAmount += patientNumber / 100;
+        m_moneyImage.fillAmount += money / 100;
     }
 }

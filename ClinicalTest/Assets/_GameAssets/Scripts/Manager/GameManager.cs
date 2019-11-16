@@ -14,11 +14,7 @@ public class GameManager : MonoBehaviour
     private int m_money = 0;
     private int m_time = 0;
 
-    private bool m_isImplicationNeeded = false;
-    private bool m_isPatientNumberNeeded = false;
-    private bool m_isScienceQualityNeeded = false;
-
-    private int m_currentTurn = 1;
+    private int m_currentTurn = 4;
 
     [SerializeField] public GameObject cardPrefab;
 
@@ -61,19 +57,20 @@ public class GameManager : MonoBehaviour
     {
         Contract contract = ContractManager.Instance.actualContract;
 
-        if (m_isImplicationNeeded && m_patientImplication >= contract.implicationRequirement)
+        if (m_patientImplication >= contract.implicationRequirement)
             Debug.Log("science quality is well");
 
-        if (m_isPatientNumberNeeded && m_patientNumber >= contract.patientNumberRequiremenent)
+        if (m_patientNumber >= contract.patientNumberRequiremenent)
             Debug.Log("patient number is well");
 
-        if (m_isScienceQualityNeeded && m_scienceQuality >= contract.scienceQualityRequirement)
+        if (m_scienceQuality >= contract.scienceQualityRequirement)
             Debug.Log("scienceQuality is well");
     }
 
     private void GoToNextTurn()
     {
         GenerateNewCard();
+
         if (m_time <= 0)
             Debug.Log("fin du jeu");
 
@@ -98,11 +95,20 @@ public class GameManager : MonoBehaviour
         cardBehaviour.onSwipeYes = ApplyCardEffects;
         cardBehaviour.onSwipeNo = ApplyCardEffects;
     }
+
     void ApplyCardEffects(CardEffect effects) {
-        m_money += effects.argent;
         m_patientImplication += effects.implication;
         m_patientNumber += effects.patients;
         m_scienceQuality += effects.rigueur;
+        m_money += effects.argent;
         this.GoToNextTurn();
+
+        Debug.Log(m_patientImplication + "  implication");
+        Debug.Log(m_patientNumber + "  number");
+        Debug.Log(m_scienceQuality + "  rigueur");
+        Debug.Log(m_money + "  money");
+
+        CheckStatisticStatue();
+        UIManager.Instance.gamePanel.UpdateStats(m_scienceQuality, m_patientImplication, m_patientNumber, m_money);
     }
 }
