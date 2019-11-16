@@ -23,7 +23,10 @@ public class CardBehaviour : MonoBehaviour
     public OnSwipeDelegate onSwipeYes;
     public OnSwipeDelegate onSwipeNo;
 
-    private bool swiped = false;
+    public bool swiped = false;
+    public float vanishRatio = 0;
+    const float VANISH_TIME = 0.6f;
+    [SerializeField] public Image vanishOverlay;
 
     private Vector3? prevMousePos = null;
     private float width;
@@ -50,7 +53,20 @@ public class CardBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (swiped) {
+            vanishRatio = Mathf.Min(1, vanishRatio + Time.deltaTime / VANISH_TIME);
+        }
+        if (vanishRatio > 0) {
+            Image[] images = GetComponentsInChildren<Image>();
+            for (int i = 0; i < images.Length; i++) {
+                images[i].color = new Color(1, 1, 1, images[i].color.a * (1 - vanishRatio));
+            }
+            Text[] texts = GetComponentsInChildren<Text>();
+            for (int i = 0; i < images.Length; i++) {
+                texts[i].color = new Color(1, 1, 1, texts[i].color.a * (1 - vanishRatio));
+            }
+            vanishOverlay.color = new Color(1, 1, 1, vanishRatio < 0.5 ? vanishRatio * 2 : 4 - vanishRatio * 2);
+        }
     }
 
     public void SwipeYes()
@@ -76,7 +92,8 @@ public class CardBehaviour : MonoBehaviour
 
     IEnumerator FinishSwipe()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(VANISH_TIME);
         GameObject.Destroy(gameObject);
     }
+
 }

@@ -40,7 +40,7 @@ public class CardDrag : MonoBehaviour
 
     float currentAngle = (this.root.localRotation.eulerAngles.y - 90) % 360;
     this.cardBack.color = new Color(1, 0, 0, currentAngle > 0 && currentAngle < 180 ? 1 : 0);
-    if (prevMousePos == null)
+    if (prevMousePos == null && !card.swiped)
     {
       this.root.localPosition = new Vector3(root.localPosition.x * 0.5f, root.localPosition.y * 0.5f, root.localPosition.z * 0.5f);
     }
@@ -60,6 +60,11 @@ public class CardDrag : MonoBehaviour
     Vector3 prevWorldPoint = cam.ScreenToWorldPoint(new Vector3(((Vector3)prevMousePos).x, ((Vector3)prevMousePos).y, camDistance));
     this.root.localPosition += newWorldPoint - prevWorldPoint;
     prevMousePos = mousePos;
+  }
+
+  void OnMouseUp()
+  {
+    prevMousePos = null;
 
     float amplitude = this.root.localPosition.magnitude;
     if (amplitude > SWIPE_AMPLITUDE && ready)
@@ -73,10 +78,5 @@ public class CardDrag : MonoBehaviour
         card.SwipeNo();
       }
     }
-  }
-
-  void OnMouseUp()
-  {
-    prevMousePos = null;
   }
 }
