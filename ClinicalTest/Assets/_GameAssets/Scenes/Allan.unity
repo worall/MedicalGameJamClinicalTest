@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 255134840}
   - component: {fileID: 255134839}
   m_Layer: 0
-  m_Name: Variety
+  m_Name: Money
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 314182871}
   - component: {fileID: 314182870}
   - component: {fileID: 314182869}
+  - component: {fileID: 314182872}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -250,6 +251,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &314182872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314182868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2389220251eb7c44bbfc555a3963c37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &434084537
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,9 +443,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_scienceQualityImage: {fileID: 1303870408}
-  m_lifeQualityImage: {fileID: 1075751826}
+  m_patientImplicationImage: {fileID: 1075751826}
   m_patientNumberImage: {fileID: 1509965658}
-  m_patientVarietyImage: {fileID: 255134839}
+  m_moneyImage: {fileID: 255134839}
 --- !u!1 &934009647
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,7 +648,7 @@ GameObject:
   - component: {fileID: 1075751827}
   - component: {fileID: 1075751826}
   m_Layer: 0
-  m_Name: QualityLife
+  m_Name: Implication
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

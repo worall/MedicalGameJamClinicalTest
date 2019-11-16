@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class GamePanel : Panel
 {
     [SerializeField] private Image m_scienceQualityImage;
-    [SerializeField] private Image m_lifeQualityImage;
+    [SerializeField] private Image m_patientImplicationImage;
     [SerializeField] private Image m_patientNumberImage;
-    [SerializeField] private Image m_patientVarietyImage;
+    [SerializeField] private Image m_moneyImage;
 
     public void Init(float baseAmount)
     {
@@ -16,17 +16,17 @@ public class GamePanel : Panel
         Debug.Log(amount);
 
         m_scienceQualityImage.fillAmount = amount;
-        m_lifeQualityImage.fillAmount = amount;
+        m_patientImplicationImage.fillAmount = amount;
         m_patientNumberImage.fillAmount = amount;
-        m_patientVarietyImage.fillAmount = amount;
+        m_moneyImage.fillAmount = amount;
 
     }
 
-    public void UpdateStats(int scienceQuality, float lifeQuality, float patientNumber, float patientVariety)
+    public void UpdateStats(int scienceQuality, float patientImplication, float patientNumber, float money)
     {
         m_scienceQualityImage.fillAmount += scienceQuality;
-        m_lifeQualityImage.fillAmount += lifeQuality;
+        m_patientImplicationImage.fillAmount += patientImplication;
         m_patientNumberImage.fillAmount += patientNumber;
-        m_patientVarietyImage.fillAmount += patientVariety;
+        m_moneyImage.fillAmount += money;
     }
 }
