@@ -17,4 +17,6 @@ public class CardContent
 
     public string time;
     public string turns;
+
+    public bool popout;
 }

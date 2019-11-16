@@ -26,6 +26,8 @@ public class DeckManager : MonoBehaviour
       int selected = Random.Range(0, nbCards);
       CardContent nextCard = this.pools[turn][selected];
 
+      if (nextCard.popout) this.popout(nextCard, turn);
+
       return nextCard;
     }
 
@@ -65,6 +67,13 @@ public class DeckManager : MonoBehaviour
           int.TryParse(rawTurn, out turn);
           this.pools[turn].Add(card);
         }
+      }
+    }
+
+    private void popout(CardContent card, int fromTurn) {
+      for (int i = fromTurn + 1; i < pools.Count; i++) {
+        int idx = this.pools[i].FindIndex((item) => item.name == card.name);
+        if (idx >= 0) this.pools[i].RemoveAt(idx);
       }
     }
 
