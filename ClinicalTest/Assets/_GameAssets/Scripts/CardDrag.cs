@@ -19,7 +19,7 @@ public class CardDrag : MonoBehaviour
     cardBack = card.GetComponentsInChildren<Image>()[2];
   }
 
-  const float SWIPE_AMPLITUDE = 200;
+  const float SWIPE_AMPLITUDE = 20;
 
   void Update()
   {
