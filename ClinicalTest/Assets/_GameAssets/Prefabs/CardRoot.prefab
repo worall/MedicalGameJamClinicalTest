@@ -631,17 +631,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9f51fe5ef66b1db3ba8fc61cc3988ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardTitle: Ma carte pourrie
-  cardFlavorText: Super en fait !! bravo.
+  cardTitle: Echec critique
+  cardFlavorText: Votre code vous a trahi.
   cardIllustration: doge
-  cardEffectsYes:
-    qualityModifier: 1
-    quantityModifier: -1
-    popupText: Hello !
-  cardEffectsNo:
-    qualityModifier: 2
-    quantityModifier: -2
-    popupText: oh no :(
   swiped: 0
   vanishRatio: 0
   vanishOverlay: {fileID: 1542103584113715085}
