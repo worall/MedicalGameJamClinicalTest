@@ -19,12 +19,12 @@ public class ContractManager : MonoBehaviour
 
     [SerializeField] private List<Contract> contractsList;
 
-    public Contract actualContrat;
+    public Contract actualContract;
     private int index = 0;
 
     public void SelectNextContrat()
     {
-        actualContrat = contractsList[index];
+        actualContract = contractsList[index];
     }
 
     private void OnContractEnded()
