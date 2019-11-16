@@ -86,6 +86,9 @@ public class GameManager : MonoBehaviour
 
         GameObject card = Instantiate(cardPrefab);
         CardBehaviour cardBehaviour = card.GetComponent<CardBehaviour>();
+        if (cardContent == null) {
+            return;
+        }
         cardBehaviour.cardIllustration = cardContent.image;
         cardBehaviour.cardTitle = cardContent.name;
         cardBehaviour.cardFlavorText = cardContent.situation;
