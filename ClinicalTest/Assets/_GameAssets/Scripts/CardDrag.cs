@@ -8,7 +8,7 @@ public class CardDrag : MonoBehaviour
     private Transform root;
     private CardBehaviour card;
     private Image cardBack;
-    private bool flipped = false;
+    private bool flipped = true;
     private bool ready = false;
     private Vector3? prevMousePos = null;
 

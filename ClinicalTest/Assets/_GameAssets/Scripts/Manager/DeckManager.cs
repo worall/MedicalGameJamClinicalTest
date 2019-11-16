@@ -32,7 +32,6 @@ public class DeckManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      Debug.Log(this.draw(1));
     }
 
     // Pick a card in the specified turn
