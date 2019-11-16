@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainPanel : MonoBehaviour
+public class MainPanel : Panel
 {
     [SerializeField] private Button m_startButton;
 
@@ -26,4 +26,5 @@ public class MainPanel : MonoBehaviour
     {
         
     }
+
 }

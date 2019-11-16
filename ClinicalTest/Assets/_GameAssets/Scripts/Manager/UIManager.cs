@@ -20,23 +20,29 @@ public class UIManager : MonoBehaviour
     }
 
     public MainPanel mainPanel;
+    public GamePanel gamePanel;
+    public EndPanel endPanel;
 
     public event Action OnStartGame;
+    private Panel actualPanel;
 
     // Start is called before the first frame update
     void Start()
     {
+        actualPanel = mainPanel;
         mainPanel.OnButtonStartGame += MainPanel_OnButtonStartGame;
     }
 
     private void MainPanel_OnButtonStartGame()
     {
         OnStartGame?.Invoke();
+        AddPanel(gamePanel);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void AddPanel(Panel panel)
     {
-        
+        actualPanel.gameObject.SetActive(false);
+        panel.gameObject.SetActive(true);
+        actualPanel = panel;
     }
 }
