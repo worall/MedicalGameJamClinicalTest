@@ -13,11 +13,11 @@ public class CardContent
     public CardEffect no;
 
     public string turns;
-
+    public string image;
     public bool popout;
 }
 
-struct CardEffect
+public struct CardEffect
 {
     public string choice;
     public string debrief;
