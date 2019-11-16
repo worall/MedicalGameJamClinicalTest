@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
 
     private void StartGame(CardEffect effect)
     {
+        UIManager.Instance.LauncheGamePanel();
         UIManager.Instance.gamePanel.UpdateStats(m_scienceQuality, m_patientImplication, m_patientNumber, m_money, m_time);
         CheckStatisticStatue();
         GoToNextTurn();

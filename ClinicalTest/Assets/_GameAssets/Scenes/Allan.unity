@@ -296,6 +296,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 4.7717133
       objectReference: {fileID: 0}
+    - target: {fileID: 284943561725612127, guid: 3fa749c42cad94b42a0ab7d2a4801760,
+        type: 3}
+      propertyPath: cardBack
+      value: 
+      objectReference: {fileID: 257302215}
     m_RemovedComponents:
     - {fileID: 284943562173171415, guid: 3fa749c42cad94b42a0ab7d2a4801760, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3fa749c42cad94b42a0ab7d2a4801760, type: 3}
@@ -419,6 +424,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 240493605}
   m_CullTransparentMesh: 0
+--- !u!114 &257302215 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 284943562078969633, guid: 3fa749c42cad94b42a0ab7d2a4801760,
+    type: 3}
+  m_PrefabInstance: {fileID: 123629562}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &269840279
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,20 +662,29 @@ MonoBehaviour:
     patientNumberRequiremenent: 0
     maxPatientNumber: 0
     timeToConclude: 0
-    baseValue: 0
+    implactionBaseValue: 0
+    numberPatientBaseValue: 0
+    scienceQualityBaseValue: 0
+    moneyBaseValue: 0
   - implicationRequirement: 0
     scienceQualityRequirement: 0
     patientNumberRequiremenent: 0
     maxPatientNumber: 0
     timeToConclude: 0
-    baseValue: 0
+    implactionBaseValue: 0
+    numberPatientBaseValue: 0
+    scienceQualityBaseValue: 0
+    moneyBaseValue: 0
   actualContract:
     implicationRequirement: 0
     scienceQualityRequirement: 0
     patientNumberRequiremenent: 0
     maxPatientNumber: 0
     timeToConclude: 0
-    baseValue: 0
+    implactionBaseValue: 0
+    numberPatientBaseValue: 0
+    scienceQualityBaseValue: 0
+    moneyBaseValue: 0
 --- !u!1 &358740640
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,12 +1042,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 063f60d9b671f2048a71573f801eca39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardTitle: 
-  cardFlavorText: 
-  cardIllustration: 
   swiped: 0
   vanishRatio: 0
   vanishOverlay: {fileID: 0}
+  cardMainCanvas: {fileID: 0}
+  choiceText: {fileID: 0}
+  weekCostText: {fileID: 0}
 --- !u!1 &714125640
 GameObject:
   m_ObjectHideFlags: 0
@@ -1916,7 +1942,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bb9274372e683c42b7c2704161acb3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_startButton: {fileID: 0}
 --- !u!114 &1143543150
 MonoBehaviour:
   m_ObjectHideFlags: 0

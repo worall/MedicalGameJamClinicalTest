@@ -33,6 +33,11 @@ public class UIManager : MonoBehaviour
         mainPanel.OnButtonStartGame += MainPanel_OnButtonStartGame;
     }
 
+    public void LauncheGamePanel()
+    {
+        AddPanel(gamePanel);
+    }
+
     private void MainPanel_OnButtonStartGame()
     {
         OnStartGame?.Invoke();
