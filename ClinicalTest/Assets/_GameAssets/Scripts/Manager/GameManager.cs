@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         UIManager.Instance.OnStartGame += UIManager_OnStartGame;
+        GoToNextTurn();
     }
 
     private void UIManager_OnStartGame()
