@@ -7,23 +7,48 @@ public class DeckManager : MonoBehaviour
     List<CardContent> cards = new List<CardContent>();
     List<List<CardContent>> pools = new List<List<CardContent>>();
 
+    private int nbAvailablePools = 20;
+
     private char lineSeperater = '\n'; // It defines line seperate character
     private char fieldSeperator = ';'; // It defines field seperate chracter
+
+    private static DeckManager _instance;
+    public static DeckManager Instance { get { return _instance; } }
+
+    private void Awake()
+    {
+        if (_instance)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        _instance = this;
+
+        this.parseResource();
+        this.initPools();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        this.parseResource();
-        this.initPools();
-
-        // DEBUG
-        CardContent next = this.draw(1);
-        Debug.Log(next.name);
     }
 
-    CardContent draw(int turn)
+    // Pick a card in the specified turn
+    public CardContent draw(int turn)
     {
+        if (turn >= this.pools.Count) {
+            Debug.Log("No pool available for this turn !");
+            return null;
+        }
+
         int nbCards = this.pools[turn].Count;
+
+        if (nbCards < 1) {
+          Debug.Log("No cards available for this turn !");
+          return null;
+        }
+
         int selected = Random.Range(0, nbCards);
         CardContent nextCard = this.pools[turn][selected];
 
@@ -32,6 +57,7 @@ public class DeckManager : MonoBehaviour
         return nextCard;
     }
 
+    // Read data from external file (csv)
     private void parseResource()
     {
         TextAsset rawContent = Resources.Load<TextAsset>("cards");
@@ -56,10 +82,11 @@ public class DeckManager : MonoBehaviour
         }
     }
 
+    // Sort all available cards in their dedicated pools
     private void initPools()
     {
         // Init empty pools
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < nbAvailablePools; i++)
         {
             this.pools.Add(new List<CardContent>());
         }
@@ -72,6 +99,12 @@ public class DeckManager : MonoBehaviour
             {
                 int turn;
                 int.TryParse(rawTurn, out turn);
+
+                if (turn > nbAvailablePools - 1) {
+                  Debug.Log("Not enough pools available");
+                  continue;
+                }
+
                 this.pools[turn].Add(card);
             }
         }
@@ -79,7 +112,7 @@ public class DeckManager : MonoBehaviour
 
     private void popout(CardContent card, int fromTurn)
     {
-        for (int i = fromTurn + 1; i < pools.Count; i++)
+        for (int i = fromTurn + 1; i < nbAvailablePools; i++)
         {
             int idx = this.pools[i].FindIndex((item) => item.name == card.name);
             if (idx >= 0) this.pools[i].RemoveAt(idx);
