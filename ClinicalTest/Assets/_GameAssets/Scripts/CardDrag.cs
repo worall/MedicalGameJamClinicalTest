@@ -21,7 +21,7 @@ public class CardDrag : MonoBehaviour
         card = GetComponentInParent<CardBehaviour>();
     }
 
-    const float SWIPE_AMPLITUDE = 20;
+    const float SWIPE_AMPLITUDE = 30;
 
     void Update()
     {
@@ -37,7 +37,7 @@ public class CardDrag : MonoBehaviour
 
         float targetAngle = flipped ? 0 : 180;
         float currentY = this.root.localRotation.eulerAngles.y;
-        float angle = currentY + (targetAngle - currentY) * 0.1f;
+        float angle = currentY + (targetAngle - currentY) * 0.08f;
         this.root.localRotation = Quaternion.Euler(0, angle, 0);
         //angle = Mathf.Clamp(angle, -80, 80);
 
@@ -48,7 +48,9 @@ public class CardDrag : MonoBehaviour
             this.root.localPosition = new Vector3(root.localPosition.x * 0.5f, root.localPosition.y * 0.5f, root.localPosition.z * 0.5f);
         }
 
-        cardEffectCanvas.alpha = Mathf.Abs(root.localPosition.x) / SWIPE_AMPLITUDE * 0.4f;
+        if (!card.swiped) {
+            cardEffectCanvas.alpha = Mathf.Abs(root.localPosition.x) / SWIPE_AMPLITUDE * 0.4f;
+        }
     }
 
     void OnMouseDrag()

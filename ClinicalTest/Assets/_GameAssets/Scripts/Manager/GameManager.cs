@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return _instance; } }
 
     [SerializeField] CardBegin beginCard;
- 
+
     private int m_patientImplication = 0;
     private int m_patientNumber = 0;
     private int m_scienceQuality = 0;
@@ -106,6 +106,7 @@ public class GameManager : MonoBehaviour
         m_currentTurn++;
 
         GameObject card = Instantiate(cardPrefab);
+        card.SetActive(false);
         CardBehaviour cardBehaviour = card.GetComponent<CardBehaviour>();
         if (cardContent == null) {
             return;
@@ -116,6 +117,7 @@ public class GameManager : MonoBehaviour
 
         cardBehaviour.onSwipeYes = ApplyCardEffects;
         cardBehaviour.onSwipeNo = ApplyCardEffects;
+        card.SetActive(true);
     }
 
     void ApplyCardEffects(CardEffect effects) {
@@ -123,6 +125,12 @@ public class GameManager : MonoBehaviour
         m_patientNumber += effects.patients;
         m_scienceQuality += effects.rigueur;
         m_money += effects.argent;
+
+        StartCoroutine(DelayedCardPick());
+    }
+
+    IEnumerator DelayedCardPick() {
+        yield return new WaitForSeconds(0.4f);
         this.GoToNextTurn();
 
         CheckStatisticStatue();

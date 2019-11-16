@@ -576,8 +576,10 @@ MonoBehaviour:
   vanishRatio: 0
   vanishOverlay: {fileID: 1542103584113715085}
   cardMainCanvas: {fileID: 8592449672820160609}
+  cardEffectCanvas: {fileID: 8755769501054439781}
   choiceText: {fileID: 6237344899714269881}
   weekCostText: {fileID: 949676408356406320}
+  relativePos: {fileID: 284943561748382724}
 --- !u!1 &3044668873200857699
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,8 +951,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -41.4, y: 187.5}
-  m_SizeDelta: {x: 155.9, y: 34.1}
+  m_AnchoredPosition: {x: -26.53, y: 193}
+  m_SizeDelta: {x: 189.25, y: 44.996}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1642877883294573102
 CanvasRenderer:
@@ -987,15 +989,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'CHOIX DU JOUEUR
-
-'
+  m_Text: CHOIX DU JOUEUR
 --- !u!1 &8322144143397138959
 GameObject:
   m_ObjectHideFlags: 0

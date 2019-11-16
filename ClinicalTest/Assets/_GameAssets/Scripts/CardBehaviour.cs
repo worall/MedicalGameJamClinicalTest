@@ -15,14 +15,18 @@ public class CardBehaviour : MonoBehaviour
 
     public bool swiped = false;
     public float vanishRatio = 0;
-    protected float VANISH_TIME = 0.28f;
+    protected float VANISH_TIME = 0.18f;
     [SerializeField] public Image vanishOverlay;
 
     [SerializeField] public CanvasGroup cardMainCanvas;
+    [SerializeField] public CanvasGroup cardEffectCanvas;
     [SerializeField] public Text choiceText;
     [SerializeField] public Text weekCostText;
+    [SerializeField] public Transform relativePos;
 
     private Vector3? prevMousePos = null;
+
+    private float initialEffectAlpha;
 
     void Awake()
     {
@@ -37,13 +41,16 @@ public class CardBehaviour : MonoBehaviour
 
         flavor.text = cardContent.situation;
         title.text = cardContent.name;
-        illustration.sprite = Resources.Load<Sprite>("illustrations/" + this.cardContent.image);
+        Sprite sprite = Resources.Load<Sprite>("illustrations/" + this.cardContent.image);
+        if (sprite != null) {
+            illustration.sprite = sprite;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (transform.localPosition.x > 0) {
+        if (relativePos.localPosition.x > 0) {
             choiceText.text = cardContent.yes.choice;
             weekCostText.text = cardContent.yes.cost.ToString();
         } else {
@@ -55,7 +62,10 @@ public class CardBehaviour : MonoBehaviour
             vanishRatio = Mathf.Min(1, vanishRatio + Time.deltaTime / VANISH_TIME);
         }
         if (vanishRatio > 0) {
-            float alpha = Mathf.Min(1, 2 - vanishRatio * 2);
+            if (initialEffectAlpha == 0) {
+                initialEffectAlpha = cardEffectCanvas.alpha;
+            }
+            float alpha = 1 - vanishRatio;
             // Image[] images = GetComponentsInChildren<Image>();
             // for (int i = 0; i < images.Length; i++) {
             //     images[i].color = new Color(1, 1, 1, images[i].color.a * alpha);
@@ -64,11 +74,15 @@ public class CardBehaviour : MonoBehaviour
             // for (int i = 0; i < texts.Length; i++) {
             //     texts[i].color = new Color(1, 1, 1, texts[i].color.a * alpha);
             // }
-            cardMainCanvas.alpha = alpha;
-            vanishOverlay.color = new Color(1, 1, 1, Mathf.Min(1, vanishRatio) * alpha);
+            // cardMainCanvas.alpha = alpha;
+            // cardEffectCanvas.alpha = initialEffectAlpha * alpha;
+            //vanishOverlay.color = new Color(1, 1, 1, Mathf.Min(1, vanishRatio) * alpha);
+            Vector3 offset = new Vector3(relativePos.localPosition.x, relativePos.localPosition.y, relativePos.localPosition.z);
+            offset.Normalize();
+            relativePos.localPosition += offset * 20f * (1 - 0.3f * vanishRatio);
 
-            float s = 1 + 0.03f * vanishRatio;
-            transform.localScale = new Vector3(s, s, s);
+            //float s = 1 + 0.03f * vanishRatio;
+            //transform.localScale = new Vector3(s, s, s);
         }
     }
 
