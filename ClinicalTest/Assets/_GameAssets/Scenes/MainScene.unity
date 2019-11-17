@@ -581,6 +581,8 @@ MonoBehaviour:
     type: 3}
   compareCard: {fileID: 5360414275901931624, guid: 4a71373d910f54d87a47669caf64ba26,
     type: 3}
+  compareLinkCard: {fileID: 3247142907595236246, guid: 64ed35b3117c44b02903bf6fc281337b,
+    type: 3}
   creditCard: {fileID: 7184676190308061637, guid: c6bf4c7d1350e42718ac2358bc14e58e,
     type: 3}
   endCardPrefab: {fileID: 1112554295909304612, guid: 57b463efe9825785583d04d0d4bfc5b1,
