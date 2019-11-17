@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
         m_patientNumber = contract.numberPatientBaseValue;
         m_scienceQuality = contract.scienceQualityBaseValue;
         m_money = contract.moneyBaseValue;
+        m_currentTurn = 1;
     }
 
     private void CheckStatisticStatue()
