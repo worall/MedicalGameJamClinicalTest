@@ -9,10 +9,13 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return _instance; } }
 
     [SerializeField] GameObject beginCard;
+    [SerializeField] GameObject compareCard;
+    [SerializeField] GameObject compareLinkCard;
+    [SerializeField] GameObject creditCard;
     [SerializeField] EndCardBehaviour endCardPrefab;
 
     private EndCardBehaviour m_endCard;
-
+    
     private int m_patientImplication = 0;
     private int m_patientNumber = 0;
     private int m_scienceQuality = 0;
@@ -56,7 +59,9 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.LauncheGamePanel();
         UIManager.Instance.gamePanel.UpdateStats(m_scienceQuality, m_patientImplication, m_patientNumber, m_money, m_time);
         CheckStatisticStatue();
-        GoToNextTurn();
+        // GoToNextTurn();
+        // OpenCompareCard();
+        OpenCreditCard();
     }
 
     private void OnContractSelected()
@@ -66,6 +71,7 @@ public class GameManager : MonoBehaviour
 
     private void CheckStatisticStatue()
     {
+      return;
         Contract contract = ContractManager.Instance.actualContract;
 
         if (m_patientImplication >= contract.implicationRequirement)
@@ -152,5 +158,44 @@ public class GameManager : MonoBehaviour
 
         CheckStatisticStatue();
         UIManager.Instance.gamePanel.UpdateStats(m_scienceQuality, m_patientImplication, m_patientNumber, m_money, m_time);
+    }
+
+    // COMPARE CARD
+
+    private void OpenCompareCard() {
+        GameObject compareCardInst = Instantiate(compareCard);
+        CardBehaviour behaviour = compareCardInst.GetComponent<CardBehaviour>();
+        behaviour.onSwipeYes = OpenSecondCompareCard;
+        behaviour.onSwipeNo = OpenSecondCompareCard;
+    }
+
+    private void OpenSecondCompareCard(CardEffect effect) {
+        GameObject compareLinkCardInst = Instantiate(compareLinkCard);
+        CardBehaviour behaviour = compareLinkCardInst.GetComponent<CardBehaviour>();
+        behaviour.onSwipeYes = OpenCompareURL;
+        behaviour.onSwipeNo = OnFinishCompare;
+    }
+
+    private void OpenCompareURL(CardEffect effect) {
+      Debug.Log("Opening URL...");
+      Application.OpenURL("https://www.google.com");
+    }
+
+    private void OnFinishCompare(CardEffect effect) {
+      Debug.Log("Restarting game...");
+    }
+
+    // CREDIT CARD
+
+    private void OpenCreditCard() {
+        GameObject creditCardInst = Instantiate(creditCard);
+        CardBehaviour behaviour = creditCardInst.GetComponent<CardBehaviour>();
+        behaviour.onSwipeYes = SwipeAwayFromCredit;
+        behaviour.onSwipeNo = SwipeAwayFromCredit;
+    }
+
+    private void SwipeAwayFromCredit(CardEffect effect) {
+      Debug.Log("Opening URL...");
+      // Call whatever you like
     }
 }
