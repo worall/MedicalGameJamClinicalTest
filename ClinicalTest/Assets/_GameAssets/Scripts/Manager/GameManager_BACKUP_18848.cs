@@ -15,12 +15,21 @@ public class GameManager : MonoBehaviour
     [SerializeField] EndCardBehaviour endCardPrefab;
 
     private EndCardBehaviour m_endCard;
+<<<<<<< HEAD
+
+    private int m_patientImplication = 50;
+    private int m_patientNumber = 50;
+    private int m_scienceQuality = 50;
+    private int m_money = 50;
+    private int m_time = 50;
+=======
     
     private int m_patientImplication = 0;
     private int m_patientNumber = 0;
     private int m_scienceQuality = 0;
     private int m_money = 0;
     private int m_time = 0;
+>>>>>>> e717635f2ce67e5db331371658d2133f2ee7c02f
 
     private bool implicationComplete = false;
     private bool numberComplete = false;
@@ -57,6 +66,7 @@ public class GameManager : MonoBehaviour
     private void StartGame()
     {
         UIManager.Instance.LauncheGamePanel();
+        UIManager.Instance.gamePanel.Init(50);
         UIManager.Instance.gamePanel.UpdateStats(m_scienceQuality, m_patientImplication, m_patientNumber, m_money, m_time);
         CheckStatisticStatue();
         GoToNextTurn();
@@ -135,10 +145,13 @@ public class GameManager : MonoBehaviour
     }
 
     void ApplyCardEffects(CardEffect effects) {
-        m_patientImplication += effects.implication;
-        m_patientNumber += effects.patients;
-        m_scienceQuality += effects.rigueur;
-        m_money += effects.argent;
+
+        m_patientImplication = Mathf.Clamp(m_patientImplication + effects.implication, 0, 100);
+        m_patientNumber = Mathf.Clamp(m_patientNumber + effects.patients, 0, 100);
+        m_scienceQuality = Mathf.Clamp(m_scienceQuality + effects.rigueur, 0, 100);
+        m_money = Mathf.Clamp(m_money + effects.argent, 0, 100);
+
+        Debug.Log(m_money + "   " + effects.argent);
 
         StartCoroutine(DelayedCardPick());
     }

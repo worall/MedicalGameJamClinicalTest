@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -578,6 +578,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beginCard: {fileID: 3869162245269861385, guid: 042d94dbbf4731f1d9a5bd114ede2190,
+    type: 3}
+  compareCard: {fileID: 5360414275901931624, guid: 4a71373d910f54d87a47669caf64ba26,
+    type: 3}
+  compareLinkCard: {fileID: 3247142907595236246, guid: 64ed35b3117c44b02903bf6fc281337b,
+    type: 3}
+  creditCard: {fileID: 7184676190308061637, guid: c6bf4c7d1350e42718ac2358bc14e58e,
     type: 3}
   endCardPrefab: {fileID: 1112554295909304612, guid: 57b463efe9825785583d04d0d4bfc5b1,
     type: 3}

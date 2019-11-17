@@ -9,18 +9,15 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return _instance; } }
 
     [SerializeField] GameObject beginCard;
-    [SerializeField] GameObject compareCard;
-    [SerializeField] GameObject compareLinkCard;
-    [SerializeField] GameObject creditCard;
     [SerializeField] EndCardBehaviour endCardPrefab;
 
     private EndCardBehaviour m_endCard;
-    
-    private int m_patientImplication = 0;
-    private int m_patientNumber = 0;
-    private int m_scienceQuality = 0;
-    private int m_money = 0;
-    private int m_time = 0;
+
+    private int m_patientImplication = 50;
+    private int m_patientNumber = 50;
+    private int m_scienceQuality = 50;
+    private int m_money = 50;
+    private int m_time = 50;
 
     private bool implicationComplete = false;
     private bool numberComplete = false;
@@ -57,11 +54,10 @@ public class GameManager : MonoBehaviour
     private void StartGame()
     {
         UIManager.Instance.LauncheGamePanel();
+        UIManager.Instance.gamePanel.Init(50);
         UIManager.Instance.gamePanel.UpdateStats(m_scienceQuality, m_patientImplication, m_patientNumber, m_money, m_time);
         CheckStatisticStatue();
         GoToNextTurn();
-        // OpenCompareCard();
-        // OpenCreditCard();
     }
 
     private void OnContractSelected()
@@ -71,7 +67,6 @@ public class GameManager : MonoBehaviour
 
     private void CheckStatisticStatue()
     {
-      return;
         Contract contract = ContractManager.Instance.actualContract;
 
         if (m_patientImplication >= contract.implicationRequirement)
@@ -135,10 +130,13 @@ public class GameManager : MonoBehaviour
     }
 
     void ApplyCardEffects(CardEffect effects) {
-        m_patientImplication += effects.implication;
-        m_patientNumber += effects.patients;
-        m_scienceQuality += effects.rigueur;
-        m_money += effects.argent;
+
+        m_patientImplication = Mathf.Clamp(m_patientImplication + effects.implication, 0, 100);
+        m_patientNumber = Mathf.Clamp(m_patientNumber + effects.patients, 0, 100);
+        m_scienceQuality = Mathf.Clamp(m_scienceQuality + effects.rigueur, 0, 100);
+        m_money = Mathf.Clamp(m_money + effects.argent, 0, 100);
+
+        Debug.Log(m_money + "   " + effects.argent);
 
         StartCoroutine(DelayedCardPick());
     }
@@ -158,44 +156,5 @@ public class GameManager : MonoBehaviour
 
         CheckStatisticStatue();
         UIManager.Instance.gamePanel.UpdateStats(m_scienceQuality, m_patientImplication, m_patientNumber, m_money, m_time);
-    }
-
-    // COMPARE CARD
-
-    private void OpenCompareCard() {
-        GameObject compareCardInst = Instantiate(compareCard);
-        CardBehaviour behaviour = compareCardInst.GetComponent<CardBehaviour>();
-        behaviour.onSwipeYes = OpenSecondCompareCard;
-        behaviour.onSwipeNo = OpenSecondCompareCard;
-    }
-
-    private void OpenSecondCompareCard(CardEffect effect) {
-        GameObject compareLinkCardInst = Instantiate(compareLinkCard);
-        CardBehaviour behaviour = compareLinkCardInst.GetComponent<CardBehaviour>();
-        behaviour.onSwipeYes = OpenCompareURL;
-        behaviour.onSwipeNo = OnFinishCompare;
-    }
-
-    private void OpenCompareURL(CardEffect effect) {
-      Debug.Log("Opening URL...");
-      Application.OpenURL("https://www.google.com");
-    }
-
-    private void OnFinishCompare(CardEffect effect) {
-      Debug.Log("Restarting game...");
-    }
-
-    // CREDIT CARD
-
-    private void OpenCreditCard() {
-        GameObject creditCardInst = Instantiate(creditCard);
-        CardBehaviour behaviour = creditCardInst.GetComponent<CardBehaviour>();
-        behaviour.onSwipeYes = SwipeAwayFromCredit;
-        behaviour.onSwipeNo = SwipeAwayFromCredit;
-    }
-
-    private void SwipeAwayFromCredit(CardEffect effect) {
-      Debug.Log("Opening URL...");
-      // Call whatever you like
     }
 }
