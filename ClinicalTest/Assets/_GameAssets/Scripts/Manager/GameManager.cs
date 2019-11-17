@@ -68,7 +68,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DeckManager.Instance.initPools();
         GameObject beginCardInst = Instantiate(beginCard);
         CardBehaviour behaviour = beginCardInst.GetComponent<CardBehaviour>();
         behaviour.onSwipeYes = HandleCardSwipe;
@@ -77,6 +76,7 @@ public class GameManager : MonoBehaviour
 
     private void StartGame()
     {
+        DeckManager.Instance.initPools();
         UIManager.Instance.LauncheGamePanel();
         UIManager.Instance.gamePanel.UpdateStats(m_scienceQuality, m_patientImplication, m_patientNumber, m_money, m_time);
         CheckStatisticStatue();
