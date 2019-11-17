@@ -16,11 +16,11 @@ public class GameManager : MonoBehaviour
 
     private EndCardBehaviour m_endCard;
     
-    private int m_patientImplication = 0;
-    private int m_patientNumber = 0;
-    private int m_scienceQuality = 0;
-    private int m_money = 0;
-    private int m_time = 0;
+    private int m_patientImplication = 50;
+    private int m_patientNumber = 50;
+    private int m_scienceQuality = 50;
+    private int m_money = 50;
+    private int m_time = 50;
 
     private bool implicationComplete = false;
     private bool numberComplete = false;
@@ -135,10 +135,11 @@ public class GameManager : MonoBehaviour
     }
 
     void ApplyCardEffects(CardEffect effects) {
-        m_patientImplication += effects.implication;
-        m_patientNumber += effects.patients;
-        m_scienceQuality += effects.rigueur;
-        m_money += effects.argent;
+        m_patientImplication = Mathf.Clamp(m_patientImplication + effects.implication, 0, 100);
+        m_patientNumber = Mathf.Clamp(m_patientNumber + effects.patients, 0, 100);
+        m_scienceQuality = Mathf.Clamp(m_scienceQuality + effects.rigueur, 0, 100);
+        m_money = Mathf.Clamp(m_money + effects.argent, 0, 100);
+        m_time = Mathf.Clamp(m_time - effects.cost, 0, 100);
 
         StartCoroutine(DelayedCardPick());
     }
