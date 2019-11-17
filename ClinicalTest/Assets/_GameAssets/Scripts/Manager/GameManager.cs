@@ -86,7 +86,12 @@ public class GameManager : MonoBehaviour
 
     private void OnContractSelected()
     {
-        m_time = ContractManager.Instance.actualContract.timeToConclude;
+        Contract contract = ContractManager.Instance.actualContract;
+        m_time = contract.timeToConclude;
+        m_patientImplication = contract.implactionBaseValue;
+        m_patientNumber = contract.numberPatientBaseValue;
+        m_scienceQuality = contract.scienceQualityBaseValue;
+        m_money = contract.moneyBaseValue;
     }
 
     private void CheckStatisticStatue()
@@ -216,7 +221,7 @@ public class GameManager : MonoBehaviour
             m_scienceQuality = Mathf.Clamp(m_scienceQuality + effect.rigueur, 0, 100);
             m_money = Mathf.Clamp(m_money + effect.argent, 0, 100);
             m_time = Mathf.Clamp(m_time - effect.cost, 0, 100);
-
+            UIManager.Instance.gamePanel.UpdateStats(m_scienceQuality, m_patientImplication, m_patientNumber, m_money, m_time);
             if (m_time <= 0) {
                 currentStep = STEPS.GAME_ENDED;
             }
@@ -249,7 +254,6 @@ public class GameManager : MonoBehaviour
             case STEPS.GAME_FEEDBACK:
                 this.GenerateNewGameCard();
                 CheckStatisticStatue();
-                UIManager.Instance.gamePanel.UpdateStats(m_scienceQuality, m_patientImplication, m_patientNumber, m_money, m_time);
                 currentStep = STEPS.GAME;
                 break;
             case STEPS.GAME_ENDED:
