@@ -279,7 +279,7 @@ public class GameManager : MonoBehaviour
                 ContractManager.Instance.OnContractEnded();
                 if (swipedRight) {
                     Debug.Log("Opening URL...");
-                    Application.OpenURL("https://www.google.com");
+                    Application.OpenURL("https://compare.aphp.fr/");
                 }
                 if (currentContract > 2) {
                     currentStep = STEPS.CREDITS;
