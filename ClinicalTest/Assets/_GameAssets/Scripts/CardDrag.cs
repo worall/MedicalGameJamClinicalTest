@@ -53,7 +53,7 @@ public class CardDrag : MonoBehaviour
         // rotation
         this.root.localRotation = Quaternion.Euler(0, angle, Mathf.Clamp(this.root.localPosition.x * -0.012f, -8, 8));
 
-        if (!card.swiped) {
+        if (!card.swiped && cardEffectCanvas != null) {
             cardEffectCanvas.alpha = Mathf.Abs(root.localPosition.x) / SWIPE_AMPLITUDE * 0.65f;
         }
     }
