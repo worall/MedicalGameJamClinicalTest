@@ -232,6 +232,12 @@ public class GameManager : MonoBehaviour
 
     IEnumerator CardSwipeCoroutine(CardEffect effects, bool swipedRight) {
         yield return new WaitForSeconds(0.4f);
+
+        // no worry this will all end well
+        if (currentStep == STEPS.GAME && effects.debrief == "") {
+            currentStep = STEPS.GAME_FEEDBACK;
+        }
+
         switch(currentStep) {
             case STEPS.INTRO:
                 currentStep = STEPS.TUTO;
