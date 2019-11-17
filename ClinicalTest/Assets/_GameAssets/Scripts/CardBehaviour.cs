@@ -40,7 +40,7 @@ public class CardBehaviour : MonoBehaviour
 
         if (cardContent != null) {
             flavor.text = cardContent.situation;
-            title.text = cardContent.name;
+            title.text = cardContent.name.ToUpper();
             Sprite sprite = Resources.Load<Sprite>("illustrations/" + this.cardContent.image);
             if (sprite != null) {
                 illustration.sprite = sprite;
@@ -53,10 +53,10 @@ public class CardBehaviour : MonoBehaviour
     {
         if (cardContent != null) {
             if (relativePos.localPosition.x > 0) {
-                choiceText.text = cardContent.yes.choice;
+                choiceText.text = cardContent.yes.choice.ToUpper();
                 weekCostText.text = cardContent.yes.cost.ToString();
             } else {
-                choiceText.text = cardContent.no.choice;
+                choiceText.text = cardContent.no.choice.ToUpper();
                 weekCostText.text = cardContent.no.cost.ToString();
             }
         }
