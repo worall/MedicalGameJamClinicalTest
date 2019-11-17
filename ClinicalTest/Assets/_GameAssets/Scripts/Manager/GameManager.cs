@@ -89,8 +89,8 @@ public class GameManager : MonoBehaviour
     {
         GenerateNewCard();
 
-        if (m_time <= 0)
-            EndGame();
+        //if (m_time <= 0)
+        //    EndGame();
     }
 
     private void EndGame()
