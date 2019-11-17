@@ -22,15 +22,15 @@ public class GamePanel : Panel
         m_patientImplicationImage.fillAmount = amount;
         m_patientNumberImage.fillAmount = amount;
         m_moneyImage.fillAmount = amount;
-
     }
 
-    public void UpdateStats(int scienceQuality, float patientImplication, float patientNumber, float money, int time)
+    public void UpdateStats(float scienceQuality, float patientImplication, float patientNumber, float money, int time)
     {
-        m_scienceQualityImage.fillAmount += scienceQuality / 100;
-        m_patientImplicationImage.fillAmount += patientImplication / 100;
-        m_patientNumberImage.fillAmount += patientNumber / 100;
-        m_moneyImage.fillAmount += money / 100;
+
+        m_scienceQualityImage.fillAmount = scienceQuality / 100;
+        m_patientImplicationImage.fillAmount = patientImplication / 100;
+        m_patientNumberImage.fillAmount = patientNumber / 100;
+        m_moneyImage.fillAmount = money / 100;
         m_timerText.text = time.ToString();
 
         if (m_scienceQualityImage.fillAmount >= 1)
