@@ -3,6 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+enum STEPS {
+    INTRO,
+    TUTO,
+    CONTRAT,
+    GAME,
+    STARS,
+    COMPARE,
+    COMPARE_LINK,
+    CREDITS
+}
+
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
@@ -13,9 +24,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject compareLinkCard;
     [SerializeField] GameObject creditCard;
     [SerializeField] EndCardBehaviour endCardPrefab;
+    [SerializeField] GameObject tutoCard;
+    [SerializeField] GameObject creditsCard;
+    [SerializeField] GameObject[] contratCards;
 
     private EndCardBehaviour m_endCard;
-    
+
     private int m_patientImplication = 0;
     private int m_patientNumber = 0;
     private int m_scienceQuality = 0;
@@ -34,6 +48,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public GameObject cardPrefab;
 
+    private STEPS currentStep;
+    private int currentContract;
+
     private void Awake()
     {
         if (_instance)
@@ -50,8 +67,8 @@ public class GameManager : MonoBehaviour
     {
         GameObject beginCardInst = Instantiate(beginCard);
         CardBehaviour behaviour = beginCardInst.GetComponent<CardBehaviour>();
-        behaviour.onSwipeYes = FirstEffectSwipe;
-        behaviour.onSwipeNo = FirstEffectSwipe;
+        behaviour.onSwipeYes = HandleCardSwipe;
+        behaviour.onSwipeNo = HandleCardSwipe;
     }
 
     private void StartGame()
@@ -59,9 +76,8 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.LauncheGamePanel();
         UIManager.Instance.gamePanel.UpdateStats(m_scienceQuality, m_patientImplication, m_patientNumber, m_money, m_time);
         CheckStatisticStatue();
-        GoToNextTurn();
-        // OpenCompareCard();
-        // OpenCreditCard();
+
+        GenerateNewGameCard();
     }
 
     private void OnContractSelected()
@@ -71,7 +87,6 @@ public class GameManager : MonoBehaviour
 
     private void CheckStatisticStatue()
     {
-      return;
         Contract contract = ContractManager.Instance.actualContract;
 
         if (m_patientImplication >= contract.implicationRequirement)
@@ -91,14 +106,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void GoToNextTurn()
-    {
-        GenerateNewCard();
-
-        //if (m_time <= 0)
-        //    EndGame();
-    }
-
     private void EndGame()
     {
         if (implicationComplete)
@@ -114,7 +121,55 @@ public class GameManager : MonoBehaviour
         m_endCard.validStars = objectifCompleted;
     }
 
-    private void GenerateNewCard()
+    private void GenerateNewUniqueCard()
+    {
+        GameObject cardInst;
+        CardBehaviour behaviour;
+
+        switch(currentStep) {
+            case STEPS.INTRO:
+                // should not happen
+                break;
+            case STEPS.TUTO:
+                cardInst = Instantiate(tutoCard);
+                behaviour = cardInst.GetComponent<CardBehaviour>();
+                behaviour.onSwipeYes = HandleCardSwipe;
+                behaviour.onSwipeNo = HandleCardSwipe;
+                break;
+            case STEPS.CONTRAT:
+                cardInst = Instantiate(contratCards[currentContract]);
+                behaviour = cardInst.GetComponent<CardBehaviour>();
+                behaviour.onSwipeYes = HandleCardSwipe;
+                behaviour.onSwipeNo = HandleCardSwipe;
+                break;
+            case STEPS.GAME:
+                // should not happen
+                break;
+            case STEPS.STARS:
+                EndGame();
+                break;
+            case STEPS.COMPARE:
+                cardInst = Instantiate(compareCard);
+                behaviour = cardInst.GetComponent<CardBehaviour>();
+                behaviour.onSwipeYes = HandleCardSwipe;
+                behaviour.onSwipeNo = HandleCardSwipe;
+                break;
+            case STEPS.COMPARE_LINK:
+                cardInst = Instantiate(compareLinkCard);
+                behaviour = cardInst.GetComponent<CardBehaviour>();
+                behaviour.onSwipeYes = HandleCardSwipe;
+                behaviour.onSwipeNo = HandleCardSwipe;
+                break;
+            case STEPS.CREDITS:
+                cardInst = Instantiate(creditsCard);
+                behaviour = cardInst.GetComponent<CardBehaviour>();
+                behaviour.onSwipeYes = HandleCardSwipe;
+                behaviour.onSwipeNo = HandleCardSwipe;
+                break;
+        }
+    }
+
+    private void GenerateNewGameCard()
     {
         CardContent cardContent= DeckManager.Instance.draw(m_currentTurn);
         m_currentTurn++;
@@ -129,73 +184,78 @@ public class GameManager : MonoBehaviour
         cardBehaviour.cardEffectsYes = cardContent.yes;
         cardBehaviour.cardEffectsNo = cardContent.no;
 
-        cardBehaviour.onSwipeYes = ApplyCardEffects;
-        cardBehaviour.onSwipeNo = ApplyCardEffects;
+        cardBehaviour.onSwipeYes = HandleCardSwipe;
+        cardBehaviour.onSwipeNo = HandleCardSwipe;
         card.SetActive(true);
     }
 
-    void ApplyCardEffects(CardEffect effects) {
-        m_patientImplication += effects.implication;
-        m_patientNumber += effects.patients;
-        m_scienceQuality += effects.rigueur;
-        m_money += effects.argent;
 
-        StartCoroutine(DelayedCardPick());
+    void HandleCardSwipe(CardEffect effect, bool swipedRight) {
+        if (currentStep == STEPS.GAME) {
+            m_patientImplication += effect.implication;
+            m_patientNumber += effect.patients;
+            m_scienceQuality += effect.rigueur;
+            m_money += effect.argent;
+            m_time -= effect.cost;
+
+            if (m_time <= 0) {
+                currentStep = STEPS.STARS;
+            }
+        }
+
+        StartCoroutine(CardSwipeCoroutine(swipedRight));
     }
 
-    void FirstEffectSwipe(CardEffect effect) {
-        StartCoroutine(DelayedStartGame());
-    }
-
-    IEnumerator DelayedStartGame() {
+    IEnumerator CardSwipeCoroutine(bool swipedRight) {
         yield return new WaitForSeconds(0.4f);
-        this.StartGame();
+        switch(currentStep) {
+            case STEPS.INTRO:
+                currentStep = STEPS.TUTO;
+                GenerateNewUniqueCard();
+                break;
+            case STEPS.TUTO:
+                currentStep = STEPS.CONTRAT;
+                GenerateNewUniqueCard();
+                break;
+            case STEPS.CONTRAT:
+                currentStep = STEPS.GAME;
+                ContractManager.Instance.SelectNextContrat();
+                OnContractSelected();
+                this.StartGame();
+                break;
+            case STEPS.GAME:
+                this.GenerateNewGameCard();
+                CheckStatisticStatue();
+                UIManager.Instance.gamePanel.UpdateStats(m_scienceQuality, m_patientImplication, m_patientNumber, m_money, m_time);
+                break;
+            case STEPS.STARS:
+                currentStep = STEPS.COMPARE;
+                GenerateNewUniqueCard();
+                break;
+            case STEPS.COMPARE:
+                currentStep = STEPS.COMPARE_LINK;
+                GenerateNewUniqueCard();
+                break;
+            case STEPS.COMPARE_LINK:
+                currentContract++;
+                ContractManager.Instance.OnContractEnded();
+                if (currentContract > 2) {
+                    if (swipedRight) {
+                        Debug.Log("Opening URL...");
+                        Application.OpenURL("https://www.google.com");
+                    }
+                    currentStep = STEPS.CREDITS;
+                    GenerateNewUniqueCard();
+                } else {
+                    Debug.Log("Restarting game...");
+                    currentStep = STEPS.CONTRAT;
+                    GenerateNewUniqueCard();
+                }
+                break;
+            case STEPS.CREDITS:
+                // Call whatever you like
+                break;
+        }
     }
 
-    IEnumerator DelayedCardPick() {
-        yield return new WaitForSeconds(0.4f);
-        this.GoToNextTurn();
-
-        CheckStatisticStatue();
-        UIManager.Instance.gamePanel.UpdateStats(m_scienceQuality, m_patientImplication, m_patientNumber, m_money, m_time);
-    }
-
-    // COMPARE CARD
-
-    private void OpenCompareCard() {
-        GameObject compareCardInst = Instantiate(compareCard);
-        CardBehaviour behaviour = compareCardInst.GetComponent<CardBehaviour>();
-        behaviour.onSwipeYes = OpenSecondCompareCard;
-        behaviour.onSwipeNo = OpenSecondCompareCard;
-    }
-
-    private void OpenSecondCompareCard(CardEffect effect) {
-        GameObject compareLinkCardInst = Instantiate(compareLinkCard);
-        CardBehaviour behaviour = compareLinkCardInst.GetComponent<CardBehaviour>();
-        behaviour.onSwipeYes = OpenCompareURL;
-        behaviour.onSwipeNo = OnFinishCompare;
-    }
-
-    private void OpenCompareURL(CardEffect effect) {
-      Debug.Log("Opening URL...");
-      Application.OpenURL("https://www.google.com");
-    }
-
-    private void OnFinishCompare(CardEffect effect) {
-      Debug.Log("Restarting game...");
-    }
-
-    // CREDIT CARD
-
-    private void OpenCreditCard() {
-        GameObject creditCardInst = Instantiate(creditCard);
-        CardBehaviour behaviour = creditCardInst.GetComponent<CardBehaviour>();
-        behaviour.onSwipeYes = SwipeAwayFromCredit;
-        behaviour.onSwipeNo = SwipeAwayFromCredit;
-    }
-
-    private void SwipeAwayFromCredit(CardEffect effect) {
-      Debug.Log("Opening URL...");
-      // Call whatever you like
-    }
 }

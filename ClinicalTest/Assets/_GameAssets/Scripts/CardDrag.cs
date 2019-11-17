@@ -20,7 +20,7 @@ public class CardDrag : MonoBehaviour
         card = GetComponentInParent<CardBehaviour>();
     }
 
-    const float SWIPE_AMPLITUDE = 30;
+    const float SWIPE_AMPLITUDE = 60;
 
     void Update()
     {

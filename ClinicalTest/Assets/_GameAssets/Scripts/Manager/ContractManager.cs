@@ -28,7 +28,7 @@ public class ContractManager : MonoBehaviour
         actualContract = contractsList[index];
     }
 
-    private void OnContractEnded()
+    public void OnContractEnded()
     {
         if (index < contractsList.Count)
             index++;

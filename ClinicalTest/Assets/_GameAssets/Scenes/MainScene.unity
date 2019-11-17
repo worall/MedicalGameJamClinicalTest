@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641252, b: 0.574817, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -587,6 +587,14 @@ MonoBehaviour:
     type: 3}
   endCardPrefab: {fileID: 1112554295909304612, guid: 57b463efe9825785583d04d0d4bfc5b1,
     type: 3}
+  tutoCard: {fileID: 8833119406063426762, guid: cbf0bf88b7361941ebdd697c527103a1,
+    type: 3}
+  creditsCard: {fileID: 7184676190308061637, guid: c6bf4c7d1350e42718ac2358bc14e58e,
+    type: 3}
+  contratCards:
+  - {fileID: 3943500577831296170, guid: d11d8fbe8a68a6d4696ddbeca9cefd13, type: 3}
+  - {fileID: 3943500577831296170, guid: 71084478e28a6254db8404eebca2ea03, type: 3}
+  - {fileID: 3943500577831296170, guid: 0df63115009e9c44b94012555e391c6d, type: 3}
   cardPrefab: {fileID: 284943562173171413, guid: 7160a6fbbf32f0c6b93c9892292fdd20,
     type: 3}
 --- !u!4 &474532073

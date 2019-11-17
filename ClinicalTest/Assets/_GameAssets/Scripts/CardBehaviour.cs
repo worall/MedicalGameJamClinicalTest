@@ -11,7 +11,7 @@ public class CardBehaviour : MonoBehaviour
     public CardEffect cardEffectsYes;
     public CardEffect cardEffectsNo;
 
-    public delegate void OnSwipeDelegate(CardEffect effects);
+    public delegate void OnSwipeDelegate(CardEffect effects, bool swipedRight);
     public OnSwipeDelegate onSwipeYes;
     public OnSwipeDelegate onSwipeNo;
 
@@ -85,7 +85,7 @@ public class CardBehaviour : MonoBehaviour
         if (swiped) { return; }
         if (onSwipeYes != null)
         {
-            this.onSwipeYes(cardEffectsYes);
+            this.onSwipeYes(cardEffectsYes, true);
             swiped = true;
             StartCoroutine(FinishSwipe());
         }
@@ -95,7 +95,7 @@ public class CardBehaviour : MonoBehaviour
         if (swiped) { return; }
         if (onSwipeNo != null)
         {
-            this.onSwipeNo(cardEffectsNo);
+            this.onSwipeNo(cardEffectsNo, false);
             swiped = true;
             StartCoroutine(FinishSwipe());
         }
