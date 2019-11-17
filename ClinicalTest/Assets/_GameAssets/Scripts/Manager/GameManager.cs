@@ -8,6 +8,7 @@ enum STEPS {
     TUTO,
     CONTRAT,
     GAME,
+    GAME_FEEDBACK,
     GAME_ENDED,
     STARS,
     COMPARE,
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] EndCardBehaviour endCardPrefab;
     [SerializeField] GameObject tutoCard;
     [SerializeField] GameObject creditsCard;
+    [SerializeField] GameObject feedbackCard;
     [SerializeField] GameObject[] contratCards;
 
     private EndCardBehaviour m_endCard;
@@ -66,6 +68,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DeckManager.Instance.initPools();
         GameObject beginCardInst = Instantiate(beginCard);
         CardBehaviour behaviour = beginCardInst.GetComponent<CardBehaviour>();
         behaviour.onSwipeYes = HandleCardSwipe;
@@ -195,6 +198,16 @@ public class GameManager : MonoBehaviour
         cardBehaviour.onSwipeNo = HandleCardSwipe;
         card.SetActive(true);
     }
+    private void GenerateNewFeedbackCard(CardEffect effect)
+    {
+        GameObject card = Instantiate(feedbackCard);
+        FeedbackBehaviour feedbackBehaviour = card.GetComponent<FeedbackBehaviour>();
+        feedbackBehaviour.feedback = effect.debrief;
+
+        CardBehaviour cardBehaviour = card.GetComponent<CardBehaviour>();
+        cardBehaviour.onSwipeYes = HandleCardSwipe;
+        cardBehaviour.onSwipeNo = HandleCardSwipe;
+    }
 
     void HandleCardSwipe(CardEffect effect, bool swipedRight) {
         if (currentStep == STEPS.GAME) {
@@ -209,10 +222,10 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        StartCoroutine(CardSwipeCoroutine(swipedRight));
+        StartCoroutine(CardSwipeCoroutine(effect, swipedRight));
     }
 
-    IEnumerator CardSwipeCoroutine(bool swipedRight) {
+    IEnumerator CardSwipeCoroutine(CardEffect effects, bool swipedRight) {
         yield return new WaitForSeconds(0.4f);
         switch(currentStep) {
             case STEPS.INTRO:
@@ -230,9 +243,14 @@ public class GameManager : MonoBehaviour
                 this.StartGame();
                 break;
             case STEPS.GAME:
+                this.GenerateNewFeedbackCard(effects);
+                currentStep = STEPS.GAME_FEEDBACK;
+                break;
+            case STEPS.GAME_FEEDBACK:
                 this.GenerateNewGameCard();
                 CheckStatisticStatue();
                 UIManager.Instance.gamePanel.UpdateStats(m_scienceQuality, m_patientImplication, m_patientNumber, m_money, m_time);
+                currentStep = STEPS.GAME;
                 break;
             case STEPS.GAME_ENDED:
                 currentStep = STEPS.STARS;

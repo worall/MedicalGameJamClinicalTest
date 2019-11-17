@@ -17,11 +17,11 @@ public class EndCardBehaviour : MonoBehaviour
     }
 
     void Start() {
-        if (validStars < 1) {
+        if (validStars <= 1) {
             text.text = "Malheureusement votre essai n'est pas aussi concluant que prévu, essayez de faire mieux la prochaine fois !";
-        } else if (validStars < 2) {
+        } else if (validStars <= 2) {
             text.text = "Votre essai est assez satisfaisant mais il reste certaines incertitudes suite à ce test, vous êtes capable de faire bien mieux !";
-        } else if (validStars < 3) {
+        } else if (validStars <= 3) {
             text.text = "Félicitations votre essai est une totale réussite ! Peu de chercheurs arrivent à de tels résultats, continuez comme ça !";
         }
     }
