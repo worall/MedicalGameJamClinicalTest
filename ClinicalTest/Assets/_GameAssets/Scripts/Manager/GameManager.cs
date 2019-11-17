@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get { return _instance; } }
 
     [SerializeField] GameObject beginCard;
+    [SerializeField] EndCardBehaviour endCardPrefab;
+
+    private EndCardBehaviour m_endCard;
 
     private int m_patientImplication = 0;
     private int m_patientNumber = 0;
@@ -22,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     private int objectifCompleted = 0;
 
-    private int m_currentTurn = 4;
+    private int m_currentTurn = 1;
 
     private int completion = 0;
 
@@ -63,7 +66,6 @@ public class GameManager : MonoBehaviour
 
     private void CheckStatisticStatue()
     {
-        return;
         Contract contract = ContractManager.Instance.actualContract;
 
         if (m_patientImplication >= contract.implicationRequirement)
@@ -101,6 +103,9 @@ public class GameManager : MonoBehaviour
 
         if (scienceComplete)
             objectifCompleted++;
+
+        m_endCard = Instantiate(endCardPrefab);
+        m_endCard.validStars = objectifCompleted;
     }
 
     private void GenerateNewCard()
