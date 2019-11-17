@@ -507,7 +507,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   beginCard: {fileID: 3869162245269861385, guid: 042d94dbbf4731f1d9a5bd114ede2190,
     type: 3}
-  endCardPrefab: {fileID: 0}
+  endCardPrefab: {fileID: 1112554295909304612, guid: 57b463efe9825785583d04d0d4bfc5b1,
+    type: 3}
   cardPrefab: {fileID: 284943562173171413, guid: 7160a6fbbf32f0c6b93c9892292fdd20,
     type: 3}
 --- !u!4 &314182871
@@ -545,7 +546,7 @@ MonoBehaviour:
     implactionBaseValue: 30
     numberPatientBaseValue: 10
     scienceQualityBaseValue: 30
-    moneyBaseValue: 1000
+    moneyBaseValue: 100
   - implicationRequirement: 85
     scienceQualityRequirement: 40
     patientNumberRequiremenent: 85
@@ -554,7 +555,7 @@ MonoBehaviour:
     implactionBaseValue: 30
     numberPatientBaseValue: 10
     scienceQualityBaseValue: 30
-    moneyBaseValue: 1000
+    moneyBaseValue: 100
   - implicationRequirement: 80
     scienceQualityRequirement: 65
     patientNumberRequiremenent: 65
@@ -563,7 +564,11 @@ MonoBehaviour:
     implactionBaseValue: 30
     numberPatientBaseValue: 10
     scienceQualityBaseValue: 30
-    moneyBaseValue: 1000
+    moneyBaseValue: 100
+  contractsCardList:
+  - {fileID: 3943500577831296168, guid: d11d8fbe8a68a6d4696ddbeca9cefd13, type: 3}
+  - {fileID: 3943500577831296168, guid: 71084478e28a6254db8404eebca2ea03, type: 3}
+  - {fileID: 3943500577831296168, guid: 0df63115009e9c44b94012555e391c6d, type: 3}
   actualContract:
     implicationRequirement: 0
     scienceQualityRequirement: 0

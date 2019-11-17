@@ -18,6 +18,7 @@ public class ContractManager : MonoBehaviour
     }
 
     [SerializeField] private List<Contract> contractsList;
+    [SerializeField] private List<CardBehaviour> contractsCardList;
 
     public Contract actualContract;
     private int index = 0;

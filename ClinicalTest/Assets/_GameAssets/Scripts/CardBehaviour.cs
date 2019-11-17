@@ -67,7 +67,7 @@ public class CardBehaviour : MonoBehaviour
             vanishRatio = Mathf.Min(1, vanishRatio + Time.deltaTime / VANISH_TIME);
         }
         if (vanishRatio > 0) {
-            if (initialEffectAlpha == 0) {
+            if (initialEffectAlpha == 0 && cardEffectCanvas) {
                 initialEffectAlpha = cardEffectCanvas.alpha;
             }
             float alpha = 1 - vanishRatio;
