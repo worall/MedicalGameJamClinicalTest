@@ -440,7 +440,7 @@ MonoBehaviour:
     implactionBaseValue: 30
     numberPatientBaseValue: 10
     scienceQualityBaseValue: 30
-    moneyBaseValue: 1000
+    moneyBaseValue: 100
   - implicationRequirement: 85
     scienceQualityRequirement: 40
     patientNumberRequiremenent: 85
@@ -449,7 +449,7 @@ MonoBehaviour:
     implactionBaseValue: 30
     numberPatientBaseValue: 10
     scienceQualityBaseValue: 30
-    moneyBaseValue: 1000
+    moneyBaseValue: 100
   - implicationRequirement: 80
     scienceQualityRequirement: 65
     patientNumberRequiremenent: 65
@@ -458,7 +458,7 @@ MonoBehaviour:
     implactionBaseValue: 30
     numberPatientBaseValue: 10
     scienceQualityBaseValue: 30
-    moneyBaseValue: 1000
+    moneyBaseValue: 100
   actualContract:
     implicationRequirement: 0
     scienceQualityRequirement: 0
