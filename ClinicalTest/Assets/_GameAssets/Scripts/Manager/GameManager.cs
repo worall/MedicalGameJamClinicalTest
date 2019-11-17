@@ -277,11 +277,11 @@ public class GameManager : MonoBehaviour
             case STEPS.COMPARE_LINK:
                 currentContract++;
                 ContractManager.Instance.OnContractEnded();
+                if (swipedRight) {
+                    Debug.Log("Opening URL...");
+                    Application.OpenURL("https://www.google.com");
+                }
                 if (currentContract > 2) {
-                    if (swipedRight) {
-                        Debug.Log("Opening URL...");
-                        Application.OpenURL("https://www.google.com");
-                    }
                     currentStep = STEPS.CREDITS;
                     GenerateNewUniqueCard();
                 } else {
