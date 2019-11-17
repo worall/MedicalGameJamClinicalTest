@@ -559,7 +559,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+  m_Text: '(fin)
+
+'
 --- !u!1 &3943500577301074588
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,6 +827,7 @@ MonoBehaviour:
   - {fileID: 8198378919259867043}
   - {fileID: 7492060935437040624}
   - {fileID: 5006434416535276670}
+  text: {fileID: 3943500576621074620}
 --- !u!1 &3943500578009119414
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,12 +7,23 @@ public class EndCardBehaviour : MonoBehaviour
 {
     public int validStars = 0;
     [SerializeField] public Image[] stars;
+    [SerializeField] public Text text;
 
     private float startTime;
 
     void Awake()
     {
         startTime = Time.time;
+    }
+
+    void Start() {
+        if (validStars < 1) {
+            text.text = "Malheureusement votre essai n'est pas aussi concluant que prévu, essayez de faire mieux la prochaine fois !";
+        } else if (validStars < 2) {
+            text.text = "Votre essai est assez satisfaisant mais il reste certaines incertitudes suite à ce test, vous êtes capable de faire bien mieux !";
+        } else if (validStars < 3) {
+            text.text = "Félicitations votre essai est une totale réussite ! Peu de chercheurs arrivent à de tels résultats, continuez comme ça !";
+        }
     }
 
     // Update is called once per frame

@@ -8,6 +8,7 @@ enum STEPS {
     TUTO,
     CONTRAT,
     GAME,
+    GAME_ENDED,
     STARS,
     COMPARE,
     COMPARE_LINK,
@@ -119,6 +120,9 @@ public class GameManager : MonoBehaviour
 
         m_endCard = Instantiate(endCardPrefab);
         m_endCard.validStars = objectifCompleted;
+        CardBehaviour card = m_endCard.GetComponent<CardBehaviour>();
+        card.onSwipeYes = HandleCardSwipe;
+        card.onSwipeNo = HandleCardSwipe;
     }
 
     private void GenerateNewUniqueCard()
@@ -143,6 +147,9 @@ public class GameManager : MonoBehaviour
                 behaviour.onSwipeNo = HandleCardSwipe;
                 break;
             case STEPS.GAME:
+                // should not happen
+                break;
+            case STEPS.GAME_ENDED:
                 // should not happen
                 break;
             case STEPS.STARS:
@@ -198,7 +205,7 @@ public class GameManager : MonoBehaviour
             m_time = Mathf.Clamp(m_time - effect.cost, 0, 100);
 
             if (m_time <= 0) {
-                currentStep = STEPS.STARS;
+                currentStep = STEPS.GAME_ENDED;
             }
         }
 
@@ -226,6 +233,10 @@ public class GameManager : MonoBehaviour
                 this.GenerateNewGameCard();
                 CheckStatisticStatue();
                 UIManager.Instance.gamePanel.UpdateStats(m_scienceQuality, m_patientImplication, m_patientNumber, m_money, m_time);
+                break;
+            case STEPS.GAME_ENDED:
+                currentStep = STEPS.STARS;
+                GenerateNewUniqueCard();
                 break;
             case STEPS.STARS:
                 currentStep = STEPS.COMPARE;
