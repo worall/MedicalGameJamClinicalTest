@@ -93,6 +93,7 @@ public class GameManager : MonoBehaviour
         m_scienceQuality = contract.scienceQualityBaseValue;
         m_money = contract.moneyBaseValue;
         m_currentTurn = 1;
+        objectifCompleted = 0;
     }
 
     private void CheckStatisticStatue()

@@ -778,7 +778,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "F\xC9LICITATION"
+  m_Text: "F\xC9LICITATIONS"
 --- !u!1 &5360414275769019621
 GameObject:
   m_ObjectHideFlags: 0
