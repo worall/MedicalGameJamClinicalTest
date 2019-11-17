@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class CardBehaviour : MonoBehaviour
 {
+    public bool floating = false;
+
     public CardContent cardContent;
     public CardEffect cardEffectsYes;
     public CardEffect cardEffectsNo;

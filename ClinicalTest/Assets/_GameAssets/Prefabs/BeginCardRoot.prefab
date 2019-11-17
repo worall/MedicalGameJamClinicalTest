@@ -599,6 +599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47cf31619130aa11eaa724aca3a1e113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  root: {fileID: 3869162245023364824}
   cardBack: {fileID: 1462664286627768425}
   cardEffectCanvas: {fileID: 5747976170943079353}
 --- !u!1 &3869162245095215637
@@ -724,6 +725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9f51fe5ef66b1db3ba8fc61cc3988ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floating: 1
   swiped: 0
   vanishRatio: 0
   cardMainCanvas: {fileID: 4717757369359633085}

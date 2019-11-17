@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CardDrag : MonoBehaviour
 {
-    private Transform root;
+    [SerializeField] public Transform root;
     private CardBehaviour card;
     private bool flipped = true;
     private bool ready = false;
@@ -17,7 +17,6 @@ public class CardDrag : MonoBehaviour
 
     void Awake()
     {
-        root = GetComponentsInParent<Transform>()[1];
         card = GetComponentInParent<CardBehaviour>();
     }
 
@@ -38,18 +37,24 @@ public class CardDrag : MonoBehaviour
         float targetAngle = flipped ? 0 : 180;
         float currentY = this.root.localRotation.eulerAngles.y;
         float angle = currentY + (targetAngle - currentY) * 0.08f;
-        this.root.localRotation = Quaternion.Euler(0, angle, 0);
+        // this.root.localRotation = Quaternion.Euler(0, angle, 0);
         //angle = Mathf.Clamp(angle, -80, 80);
 
         float currentAngle = (this.root.localRotation.eulerAngles.y - 90) % 360;
         this.cardBack.color = new Color(1, 1, 1, currentAngle > 0 && currentAngle < 180 ? 1 : 0);
         if (prevMousePos == null && !card.swiped)
         {
-            this.root.localPosition = new Vector3(root.localPosition.x * 0.5f, root.localPosition.y * 0.5f, root.localPosition.z * 0.5f);
+            float restPos = card.floating ? Mathf.Sin(Time.time) * 60 : 0;
+            Vector3 restPosition = new Vector3(restPos, -Mathf.Abs(restPos * 0.3f), 0);
+            //this.root.localPosition = new Vector3(root.localPosition.x * 0.5f, root.localPosition.y * 0.5f, root.localPosition.z * 0.5f);
+            this.root.localPosition += (restPosition - this.root.localPosition) * 0.3f;
         }
 
+        // rotation
+        this.root.localRotation = Quaternion.Euler(0, angle, Mathf.Clamp(this.root.localPosition.x * -0.012f, -8, 8));
+
         if (!card.swiped) {
-            cardEffectCanvas.alpha = Mathf.Abs(root.localPosition.x) / SWIPE_AMPLITUDE * 0.8f;
+            cardEffectCanvas.alpha = Mathf.Abs(root.localPosition.x) / SWIPE_AMPLITUDE * 0.65f;
         }
     }
 
