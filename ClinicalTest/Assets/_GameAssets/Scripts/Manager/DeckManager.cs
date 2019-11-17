@@ -5,7 +5,7 @@ using UnityEngine;
 public class DeckManager : MonoBehaviour
 {
     List<CardContent> cards = new List<CardContent>();
-    List<List<CardContent>> pools = new List<List<CardContent>>();
+    List<List<CardContent>> pools;
 
     private int nbAvailablePools = 25;
 
@@ -79,8 +79,10 @@ public class DeckManager : MonoBehaviour
     }
 
     // Sort all available cards in their dedicated pools
-    private void initPools()
+    public void initPools()
     {
+      this.pools = new List<List<CardContent>>();
+
         // Init empty pools
         for (int i = 0; i < nbAvailablePools; i++)
         {
