@@ -194,116 +194,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 76906056}
   m_CullTransparentMesh: 0
---- !u!1001 &123629562
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 284943562173171413, guid: 3fa749c42cad94b42a0ab7d2a4801760,
-        type: 3}
-      propertyPath: m_Name
-      value: BeginPlayCard
-      objectReference: {fileID: 0}
-    - target: {fileID: 284943562173171414, guid: 3fa749c42cad94b42a0ab7d2a4801760,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 284943562173171414, guid: 3fa749c42cad94b42a0ab7d2a4801760,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 284943562173171414, guid: 3fa749c42cad94b42a0ab7d2a4801760,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 284943562173171414, guid: 3fa749c42cad94b42a0ab7d2a4801760,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 284943562173171414, guid: 3fa749c42cad94b42a0ab7d2a4801760,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 284943562173171414, guid: 3fa749c42cad94b42a0ab7d2a4801760,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 284943562173171414, guid: 3fa749c42cad94b42a0ab7d2a4801760,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 284943562173171414, guid: 3fa749c42cad94b42a0ab7d2a4801760,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 284943562173171414, guid: 3fa749c42cad94b42a0ab7d2a4801760,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 284943562173171414, guid: 3fa749c42cad94b42a0ab7d2a4801760,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 284943562173171414, guid: 3fa749c42cad94b42a0ab7d2a4801760,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 284943562173171415, guid: 3fa749c42cad94b42a0ab7d2a4801760,
-        type: 3}
-      propertyPath: cardTitle
-      value: GLISSEZ POUR COMMENCER!
-      objectReference: {fileID: 0}
-    - target: {fileID: 284943562173171415, guid: 3fa749c42cad94b42a0ab7d2a4801760,
-        type: 3}
-      propertyPath: cardFlavorText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 284943561748382724, guid: 3fa749c42cad94b42a0ab7d2a4801760,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 284943561748382724, guid: 3fa749c42cad94b42a0ab7d2a4801760,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 284943561748382724, guid: 3fa749c42cad94b42a0ab7d2a4801760,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 284943561809764554, guid: 3fa749c42cad94b42a0ab7d2a4801760,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 1.555191
-      objectReference: {fileID: 0}
-    - target: {fileID: 284943561809764554, guid: 3fa749c42cad94b42a0ab7d2a4801760,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 4.7717133
-      objectReference: {fileID: 0}
-    - target: {fileID: 284943561725612127, guid: 3fa749c42cad94b42a0ab7d2a4801760,
-        type: 3}
-      propertyPath: cardBack
-      value: 
-      objectReference: {fileID: 257302215}
-    m_RemovedComponents:
-    - {fileID: 284943562173171415, guid: 3fa749c42cad94b42a0ab7d2a4801760, type: 3}
-  m_SourcePrefab: {fileID: 100100000, guid: 3fa749c42cad94b42a0ab7d2a4801760, type: 3}
 --- !u!1 &240493605
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,36 +314,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 240493605}
   m_CullTransparentMesh: 0
---- !u!114 &257302215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 284943562078969633, guid: 3fa749c42cad94b42a0ab7d2a4801760,
-    type: 3}
-  m_PrefabInstance: {fileID: 123629562}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 749196381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
 --- !u!1 &269840279
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,6 +507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   beginCard: {fileID: 3869162245269861385, guid: 042d94dbbf4731f1d9a5bd114ede2190,
     type: 3}
+  endCardPrefab: {fileID: 0}
   cardPrefab: {fileID: 284943562173171413, guid: 7160a6fbbf32f0c6b93c9892292fdd20,
     type: 3}
 --- !u!4 &314182871
@@ -1121,58 +982,6 @@ MonoBehaviour:
   m_timerText: {fileID: 1037255229}
   fullFillColor: {r: 0.909804, g: 0.43529415, b: 0.6784314, a: 1}
   fillColor: {r: 0.3019608, g: 0.63529414, b: 0.95294124, a: 1}
---- !u!1 &598773480
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 284943562173171413, guid: 3fa749c42cad94b42a0ab7d2a4801760,
-    type: 3}
-  m_PrefabInstance: {fileID: 123629562}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 598773482}
-  - component: {fileID: 598773481}
-  m_Layer: 0
-  m_Name: Missing Prefab (Dummy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &598773481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 598773480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 063f60d9b671f2048a71573f801eca39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  floating: 0
-  swiped: 0
-  vanishRatio: 0
-  cardMainCanvas: {fileID: 0}
-  cardEffectCanvas: {fileID: 0}
-  choiceText: {fileID: 0}
-  weekCostText: {fileID: 0}
-  relativePos: {fileID: 0}
---- !u!4 &598773482
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 123629562}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 598773480}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 897151965}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &714125640
 GameObject:
   m_ObjectHideFlags: 0
@@ -1254,37 +1063,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 714125640}
   m_CullTransparentMesh: 0
---- !u!1 &749196381
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 123629562}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 749196382}
-  - component: {fileID: 257302215}
-  m_Layer: 0
-  m_Name: Missing Prefab (Dummy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &749196382
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 123629562}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 749196381}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 897151965}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &749911842
 GameObject:
   m_ObjectHideFlags: 0
@@ -1436,38 +1214,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 793592256}
   m_CullTransparentMesh: 0
---- !u!1 &897151964
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 123629562}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 897151965}
-  m_Layer: 0
-  m_Name: BeginPlayCard (Missing Prefab)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &897151965
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 123629562}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 897151964}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 598773482}
-  - {fileID: 749196382}
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &934009647
 GameObject:
   m_ObjectHideFlags: 0
