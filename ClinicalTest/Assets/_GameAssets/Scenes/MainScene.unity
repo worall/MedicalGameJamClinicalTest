@@ -577,21 +577,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9508d9af835a27944a9d7d1a256c71cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beginCard: {fileID: 3869162245269861385, guid: 042d94dbbf4731f1d9a5bd114ede2190,
+  beginCard: {fileID: 4262644183074118468, guid: 307f610e14f3c06f082477adc09c696a,
     type: 3}
-  compareCard: {fileID: 5360414275901931624, guid: 4a71373d910f54d87a47669caf64ba26,
+  compareCard: {fileID: 4587649289527262225, guid: fb40e3e072cd065cba549e10d9c4a65d,
     type: 3}
-  compareLinkCard: {fileID: 3247142907595236246, guid: 64ed35b3117c44b02903bf6fc281337b,
+  compareLinkCard: {fileID: 8453151194754615967, guid: 36bd2a5950dda4698ae448d8a6cc467b,
     type: 3}
-  creditCard: {fileID: 7184676190308061637, guid: c6bf4c7d1350e42718ac2358bc14e58e,
+  creditCard: {fileID: 8368940477998926622, guid: 00118e28d73265bc79bfc9372ffec19c,
     type: 3}
-  endCardPrefab: {fileID: 1112554295909304612, guid: 57b463efe9825785583d04d0d4bfc5b1,
+  endCardPrefab: {fileID: 7660797235080247899, guid: e3a696d48eaf9edb0a47ffa59573a5e0,
     type: 3}
-  tutoCard: {fileID: 8833119406063426762, guid: cbf0bf88b7361941ebdd697c527103a1,
+  tutoCard: {fileID: 2088877022695012658, guid: 0b309447e7e78a96cb406313855c5fb3,
     type: 3}
-  creditsCard: {fileID: 7184676190308061637, guid: c6bf4c7d1350e42718ac2358bc14e58e,
+  creditsCard: {fileID: 8368940477998926622, guid: 00118e28d73265bc79bfc9372ffec19c,
     type: 3}
-  feedbackCard: {fileID: 5850085739707132330, guid: fe8cc5ca80363493dbde010b6bf0d557,
+  feedbackCard: {fileID: 4011424283288388997, guid: bc2a80f00425768288ba1eeadb444955,
     type: 3}
   contratCards:
   - {fileID: 3943500577831296170, guid: d11d8fbe8a68a6d4696ddbeca9cefd13, type: 3}

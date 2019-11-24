@@ -7,7 +7,7 @@ public class CardBehaviour : MonoBehaviour
 {
     public bool floating = false;
 
-    public CardContent cardContent;
+    [SerializeField] public CardContent cardContent;
     public CardEffect cardEffectsYes;
     public CardEffect cardEffectsNo;
 
@@ -47,6 +47,13 @@ public class CardBehaviour : MonoBehaviour
             if (sprite != null) {
                 illustration.sprite = sprite;
             }
+        }
+
+        // temp: hide effect canvas if no card content is given
+        if (cardContent == null) {
+            cardEffectCanvas.gameObject.SetActive(false);
+        } else {
+            cardEffectCanvas.gameObject.SetActive(true);
         }
     }
 
