@@ -15,8 +15,8 @@ public class CardBehaviour : MonoBehaviour
     public OnSwipeDelegate onSwipeYes;
     public OnSwipeDelegate onSwipeNo;
 
-    public bool swiped = false;
-    public float vanishRatio = 0;
+    bool swiped = false;
+    float vanishRatio = 0;
     protected float VANISH_TIME = 0.34f;
 
     [SerializeField] public CanvasGroup cardMainCanvas;
@@ -28,6 +28,8 @@ public class CardBehaviour : MonoBehaviour
     private Vector3? prevMousePos = null;
 
     private float initialEffectAlpha;
+
+    const float DISTANCE_EFFECT_SHOW = 50;
 
     void Awake()
     {
@@ -85,6 +87,10 @@ public class CardBehaviour : MonoBehaviour
             //float s = 1 + 0.03f * vanishRatio;
             //transform.localScale = new Vector3(s, s, s);
         }
+
+        if (!swiped && cardEffectCanvas != null) {
+            cardEffectCanvas.alpha = Mathf.Abs(relativePos.localPosition.x) / DISTANCE_EFFECT_SHOW;
+        }
     }
 
     public void SwipeYes()
@@ -112,6 +118,10 @@ public class CardBehaviour : MonoBehaviour
     {
         yield return new WaitForSeconds(VANISH_TIME);
         GameObject.Destroy(gameObject);
+    }
+
+    public bool isSwiped() {
+        return swiped;
     }
 
 }

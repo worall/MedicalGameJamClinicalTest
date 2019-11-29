@@ -7,9 +7,9 @@ public class CardDrag : MonoBehaviour
 {
     [SerializeField] public Transform root;
     private CardBehaviour card;
-    private bool flipped = true;
-    private bool ready = false;
     private Vector3? prevMousePos = null;
+
+    bool isSwiping = false;
 
     [SerializeField] public Image cardBack;
 
@@ -20,21 +20,12 @@ public class CardDrag : MonoBehaviour
         card = GetComponentInParent<CardBehaviour>();
     }
 
-    const float SWIPE_AMPLITUDE = 60;
+    // min speed to get a swipe
+    const float SWIPE_SPEED = 50;
 
     void Update()
     {
-        if (!flipped && Mathf.Abs(root.localPosition.x) > SWIPE_AMPLITUDE)
-        {
-            flipped = true;
-        }
-
-        if (flipped && Mathf.Abs(root.localPosition.x) < SWIPE_AMPLITUDE / 4)
-        {
-            ready = true;
-        }
-
-        float targetAngle = flipped ? 0 : 180;
+        float targetAngle = 0;
         float currentY = this.root.localRotation.eulerAngles.y;
         float angle = currentY + (targetAngle - currentY) * 0.08f;
         // this.root.localRotation = Quaternion.Euler(0, angle, 0);
@@ -42,20 +33,15 @@ public class CardDrag : MonoBehaviour
 
         float currentAngle = (this.root.localRotation.eulerAngles.y - 90) % 360;
         this.cardBack.color = new Color(1, 1, 1, currentAngle > 0 && currentAngle < 180 ? 1 : 0);
-        if (prevMousePos == null && !card.swiped)
+        if (prevMousePos == null && !card.isSwiped())
         {
             float restPos = card.floating ? Mathf.Sin(Time.time) * 60 : 0;
             Vector3 restPosition = new Vector3(restPos, -Mathf.Abs(restPos * 0.3f), 0);
-            //this.root.localPosition = new Vector3(root.localPosition.x * 0.5f, root.localPosition.y * 0.5f, root.localPosition.z * 0.5f);
             this.root.localPosition += (restPosition - this.root.localPosition) * 0.3f;
         }
 
         // rotation
         this.root.localRotation = Quaternion.Euler(0, angle, Mathf.Clamp(this.root.localPosition.x * -0.012f, -8, 8));
-
-        if (!card.swiped && cardEffectCanvas != null) {
-            cardEffectCanvas.alpha = Mathf.Abs(root.localPosition.x) / SWIPE_AMPLITUDE * 0.65f;
-        }
     }
 
     void OnMouseDrag()
@@ -65,6 +51,9 @@ public class CardDrag : MonoBehaviour
         {
             prevMousePos = mousePos;
         }
+
+        float diff = prevMousePos.HasValue ? Mathf.Abs(Input.mousePosition.x - prevMousePos.Value.x) : 0;
+        isSwiping = diff > SWIPE_SPEED;
 
         Camera cam = Camera.main;
         float camDistance = cam.WorldToScreenPoint(root.position).z;
@@ -78,8 +67,7 @@ public class CardDrag : MonoBehaviour
     {
         prevMousePos = null;
 
-        float amplitude = this.root.localPosition.magnitude;
-        if (amplitude > SWIPE_AMPLITUDE && ready)
+        if (isSwiping)
         {
             if (root.localPosition.x > 0)
             {
