@@ -9,7 +9,7 @@ public class CardDrag : MonoBehaviour
     private CardBehaviour card;
     private Vector3? prevMousePos = null;
 
-    bool isSwiping = false;
+    int isSwiping = 0; // 1 is right (yes), -1 is left (no)
 
     [SerializeField] public Image cardBack;
 
@@ -52,8 +52,8 @@ public class CardDrag : MonoBehaviour
             prevMousePos = mousePos;
         }
 
-        float diff = prevMousePos.HasValue ? Mathf.Abs(Input.mousePosition.x - prevMousePos.Value.x) : 0;
-        isSwiping = diff > SWIPE_SPEED;
+        float diff = Input.mousePosition.x - prevMousePos.Value.x;
+        isSwiping = Mathf.Abs(diff) > SWIPE_SPEED ? (int)Mathf.Sign(diff) : 0;
 
         Camera cam = Camera.main;
         float camDistance = cam.WorldToScreenPoint(root.position).z;
@@ -67,16 +67,13 @@ public class CardDrag : MonoBehaviour
     {
         prevMousePos = null;
 
-        if (isSwiping)
+        if (isSwiping == 1)
         {
-            if (root.localPosition.x > 0)
-            {
-                card.SwipeYes();
-            }
-            else if (root.localPosition.x < 0)
-            {
-                card.SwipeNo();
-            }
+            card.SwipeYes();
+        }
+        else if (isSwiping == -1)
+        {
+            card.SwipeNo();
         }
     }
 }

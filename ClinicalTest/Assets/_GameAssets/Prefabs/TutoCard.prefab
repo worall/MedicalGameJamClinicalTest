@@ -1071,6 +1071,16 @@ PrefabInstance:
       propertyPath: cardEffectsNo.choice
       value: "Cons\uBCF5ences du choix\x01\x13"
       objectReference: {fileID: 0}
+    - target: {fileID: 284943562173171415, guid: 7160a6fbbf32f0c6b93c9892292fdd20,
+        type: 3}
+      propertyPath: forceEffectShow
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6237344899714269881, guid: 7160a6fbbf32f0c6b93c9892292fdd20,
+        type: 3}
+      propertyPath: m_Text
+      value: "Glisser \xE0 droite ou \xE0 gauche pour faire apparaitre un choix"
+      objectReference: {fileID: 0}
     - target: {fileID: 284943560754358483, guid: 7160a6fbbf32f0c6b93c9892292fdd20,
         type: 3}
       propertyPath: m_IsActive

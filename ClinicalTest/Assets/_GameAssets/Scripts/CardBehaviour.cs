@@ -11,6 +11,8 @@ public class CardBehaviour : MonoBehaviour
     public CardEffect cardEffectsYes;
     public CardEffect cardEffectsNo;
 
+    public bool forceEffectShow = false;
+
     public delegate void OnSwipeDelegate(CardEffect effects, bool swipedRight);
     public OnSwipeDelegate onSwipeYes;
     public OnSwipeDelegate onSwipeNo;
@@ -52,7 +54,7 @@ public class CardBehaviour : MonoBehaviour
         }
 
         // temp: hide effect canvas if no card content is given
-        if (cardContent == null) {
+        if (cardContent == null && !forceEffectShow) {
             cardEffectCanvas.gameObject.SetActive(false);
         } else {
             cardEffectCanvas.gameObject.SetActive(true);
@@ -88,7 +90,9 @@ public class CardBehaviour : MonoBehaviour
             //transform.localScale = new Vector3(s, s, s);
         }
 
-        if (!swiped && cardEffectCanvas != null) {
+        if (forceEffectShow) {
+            cardEffectCanvas.alpha = 1;
+        } else if (!swiped && cardEffectCanvas != null) {
             cardEffectCanvas.alpha = Mathf.Abs(relativePos.localPosition.x) / DISTANCE_EFFECT_SHOW;
         }
     }
@@ -99,9 +103,9 @@ public class CardBehaviour : MonoBehaviour
         if (onSwipeYes != null)
         {
             this.onSwipeYes(cardEffectsYes, true);
-            swiped = true;
-            StartCoroutine(FinishSwipe());
         }
+        swiped = true;
+        StartCoroutine(FinishSwipe());
     }
     public void SwipeNo()
     {
@@ -109,9 +113,9 @@ public class CardBehaviour : MonoBehaviour
         if (onSwipeNo != null)
         {
             this.onSwipeNo(cardEffectsNo, false);
-            swiped = true;
-            StartCoroutine(FinishSwipe());
         }
+        swiped = true;
+        StartCoroutine(FinishSwipe());
     }
 
     IEnumerator FinishSwipe()
