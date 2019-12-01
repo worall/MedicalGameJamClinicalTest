@@ -558,6 +558,7 @@ GameObject:
   - component: {fileID: 474532072}
   - component: {fileID: 474532074}
   - component: {fileID: 474532075}
+  - component: {fileID: 474532076}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -679,6 +680,24 @@ MonoBehaviour:
     numberPatientBaseValue: 0
     scienceQualityBaseValue: 0
     moneyBaseValue: 0
+--- !u!114 &474532076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474532071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1453f8bd693c79b59073bcef7f87e00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  homeButton: {fileID: 1987206266}
+  helpButton: {fileID: 1939790838}
+  overlayCardPrefab: {fileID: 1698447144610646217, guid: 9f4cdccbc2b916627b2b3b1c60cfe5fd,
+    type: 3}
+  helpCard: {fileID: 2088877022695012656, guid: 0b309447e7e78a96cb406313855c5fb3,
+    type: 3}
 --- !u!1 &488711782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1128,7 +1147,7 @@ PrefabInstance:
     - target: {fileID: 8868636301988739138, guid: 4a40035e2b624cff6a1ee7830a9ae58d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8868636301988739138, guid: 4a40035e2b624cff6a1ee7830a9ae58d,
         type: 3}
@@ -1515,7 +1534,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &978884861
 GameObject:
