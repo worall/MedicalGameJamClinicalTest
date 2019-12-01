@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 284943560571570404}
   - component: {fileID: 284943560571570406}
   - component: {fileID: 284943560571570405}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 284943560754358484}
   - component: {fileID: 284943560754358486}
   - component: {fileID: 284943560754358485}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Illustration
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 284943560967406274}
   - component: {fileID: 284943560967406276}
   - component: {fileID: 284943560967406275}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: FlavorText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 284943561809764554}
   - component: {fileID: 284943561809764556}
   - component: {fileID: 284943561809764555}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,7 +427,7 @@ GameObject:
   - component: {fileID: 284943562039732827}
   - component: {fileID: 284943562039732826}
   - component: {fileID: 8592449672820160609}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 284943562173171414}
   - component: {fileID: 284943562173171415}
   m_Layer: 0
-  m_Name: CardRoot
+  m_Name: BaseCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -574,8 +574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floating: 0
-  swiped: 0
-  vanishRatio: 0
+  forceEffectShow: 0
   cardMainCanvas: {fileID: 8592449672820160609}
   cardEffectCanvas: {fileID: 8755769501054439781}
   choiceText: {fileID: 6237344899714269881}
@@ -594,7 +593,7 @@ GameObject:
   - component: {fileID: 8447313379510238608}
   - component: {fileID: 870825547486367965}
   - component: {fileID: 8755769501054439781}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas (effect)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -806,7 +805,7 @@ GameObject:
   - component: {fileID: 1024918693572655405}
   - component: {fileID: 1718396325527448442}
   - component: {fileID: 4749173830075873838}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: PlayerChoice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -954,7 +953,7 @@ GameObject:
   - component: {fileID: 922185410593562463}
   - component: {fileID: 9057488577125768151}
   - component: {fileID: 2452835946810137269}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1028,7 +1027,7 @@ GameObject:
   - component: {fileID: 4788143103674120299}
   - component: {fileID: 1642877883294573102}
   - component: {fileID: 6237344899714269881}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Choice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1108,7 +1107,7 @@ GameObject:
   - component: {fileID: 7948479003012052102}
   - component: {fileID: 6214709092644255558}
   - component: {fileID: 3637390181215965908}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas (back)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1206,7 +1205,7 @@ GameObject:
   - component: {fileID: 5281326564577052682}
   - component: {fileID: 5205492587011687578}
   - component: {fileID: 21668178602463308}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: WeekCost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1280,7 +1279,7 @@ GameObject:
   - component: {fileID: 3204544225581061288}
   - component: {fileID: 5850311166204585360}
   - component: {fileID: 949676408356406320}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: WeekCostText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
