@@ -216,8 +216,13 @@ public class GameManager : MonoBehaviour
         cardBehaviour.onSwipeNo = HandleCardSwipe;
     }
 
-    void HandleCardSwipe(CardEffect effect, bool swipedRight) {
+    bool HandleCardSwipe(CardEffect effect, bool swipedRight) {
         if (currentStep == STEPS.GAME) {
+            if (m_money + effect.argent < 0) {
+                Camera.main.GetComponent<CameraShakeBehaviour>().Shake();
+                return false;
+            }
+
             m_patientImplication = Mathf.Clamp(m_patientImplication + effect.implication, 0, 100);
             m_patientNumber = Mathf.Clamp(m_patientNumber + effect.patients, 0, 100);
             m_scienceQuality = Mathf.Clamp(m_scienceQuality + effect.rigueur, 0, 100);
@@ -230,6 +235,8 @@ public class GameManager : MonoBehaviour
         }
 
         StartCoroutine(CardSwipeCoroutine(effect, swipedRight));
+
+        return true;
     }
 
     IEnumerator CardSwipeCoroutine(CardEffect effects, bool swipedRight) {

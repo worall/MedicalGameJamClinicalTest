@@ -59,8 +59,9 @@ public class OverlayCardContainerBehaviour : MonoBehaviour
         }
     }
 
-    void CloseOverlay(CardEffect effect, bool swipedRight) {
+    bool CloseOverlay(CardEffect effect, bool swipedRight) {
         fadingIn = false;
         startTime = Time.time;
+        return true;
     }
 }

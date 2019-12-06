@@ -226,7 +226,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+  m_Text: "\x01Ceci est un choix propos\xE9 au joueur\x13"
 --- !u!1 &284943561725612124
 GameObject:
   m_ObjectHideFlags: 0

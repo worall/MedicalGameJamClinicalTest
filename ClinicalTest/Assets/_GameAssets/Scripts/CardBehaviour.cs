@@ -13,7 +13,8 @@ public class CardBehaviour : MonoBehaviour
 
     public bool forceEffectShow = false;
 
-    public delegate void OnSwipeDelegate(CardEffect effects, bool swipedRight);
+    // If returns false, then swipe is prevented (ie not enough money)
+    public delegate bool OnSwipeDelegate(CardEffect effects, bool swipedRight);
     public OnSwipeDelegate onSwipeYes;
     public OnSwipeDelegate onSwipeNo;
 
@@ -100,22 +101,24 @@ public class CardBehaviour : MonoBehaviour
     public void SwipeYes()
     {
         if (swiped) { return; }
-        if (onSwipeYes != null)
-        {
-            this.onSwipeYes(cardEffectsYes, true);
-        }
         swiped = true;
-        StartCoroutine(FinishSwipe());
+        if (onSwipeYes != null) {
+            swiped = this.onSwipeYes(cardEffectsYes, true);
+        }
+        if (swiped) {
+            StartCoroutine(FinishSwipe());
+        }
     }
     public void SwipeNo()
     {
         if (swiped) { return; }
-        if (onSwipeNo != null)
-        {
-            this.onSwipeNo(cardEffectsNo, false);
-        }
         swiped = true;
-        StartCoroutine(FinishSwipe());
+        if (onSwipeNo != null) {
+            swiped = this.onSwipeNo(cardEffectsYes, true);
+        }
+        if (swiped) {
+            StartCoroutine(FinishSwipe());
+        }
     }
 
     IEnumerator FinishSwipe()
