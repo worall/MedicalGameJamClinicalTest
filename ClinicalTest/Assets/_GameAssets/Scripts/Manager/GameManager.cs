@@ -229,9 +229,6 @@ public class GameManager : MonoBehaviour
             m_money = Mathf.Clamp(m_money + effect.argent, 0, 100);
             m_time = Mathf.Clamp(m_time - effect.cost, 0, 100);
             UIManager.Instance.gamePanel.UpdateStats(m_scienceQuality, m_patientImplication, m_patientNumber, m_money, m_time);
-            if (m_time <= 0) {
-                currentStep = STEPS.GAME_ENDED;
-            }
         }
 
         StartCoroutine(CardSwipeCoroutine(effect, swipedRight));
@@ -264,7 +261,11 @@ public class GameManager : MonoBehaviour
                 break;
             case STEPS.GAME:
                 this.GenerateNewFeedbackCard(effects);
-                currentStep = STEPS.GAME_FEEDBACK;
+                if (m_time <= 0) {
+                    currentStep = STEPS.GAME_ENDED;
+                } else {
+                    currentStep = STEPS.GAME_FEEDBACK;
+                }
                 break;
             case STEPS.GAME_FEEDBACK:
                 this.GenerateNewGameCard();
