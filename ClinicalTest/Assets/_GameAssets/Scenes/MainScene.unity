@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641252, b: 0.574817, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -662,6 +662,8 @@ MonoBehaviour:
   overlayCardPrefab: {fileID: 1698447144610646217, guid: 9f4cdccbc2b916627b2b3b1c60cfe5fd,
     type: 3}
   helpCard: {fileID: 2088877022695012656, guid: 0b309447e7e78a96cb406313855c5fb3,
+    type: 3}
+  popupCard: {fileID: 3923883655656443899, guid: 673e2399bcd35437fb808fa5be532f74,
     type: 3}
 --- !u!1 &488711782
 GameObject:
