@@ -255,7 +255,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: c2419eb58e06d3647a86ff2006eb8dca, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4da5ccf45828bbf1cb7932609adc9191, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -329,7 +329,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 077b48b875bc9fb459945add7e5f58ed, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0b57345c93f0234d980430a475f0c7fe, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -477,7 +477,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 47470504a59ede944874fa20cb397283, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f926d7f732a11b99c8a9d72728c8eb15, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1053,8 +1053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floating: 0
-  swiped: 0
-  vanishRatio: 0
+  forceEffectShow: 0
   cardMainCanvas: {fileID: 4787591638923780638}
   cardEffectCanvas: {fileID: 5534026404082993946}
   choiceText: {fileID: 0}
