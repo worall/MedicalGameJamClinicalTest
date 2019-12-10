@@ -15,13 +15,15 @@ public class CardDrag : MonoBehaviour
 
     [SerializeField] public CanvasGroup cardEffectCanvas;
 
+    float dampenedDiff = 0;
+
     void Awake()
     {
         card = GetComponentInParent<CardBehaviour>();
     }
 
     // min speed to get a swipe
-    const float SWIPE_SPEED = 40;
+    const float SWIPE_SPEED = 120;
 
     void Update()
     {
@@ -53,7 +55,13 @@ public class CardDrag : MonoBehaviour
         }
 
         float diff = Input.mousePosition.x - prevMousePos.Value.x;
-        isSwiping = Mathf.Abs(diff) > SWIPE_SPEED ? (int)Mathf.Sign(diff) : 0;
+
+        if (Mathf.Abs(diff) > Mathf.Abs(dampenedDiff)) {
+            dampenedDiff = diff;
+        } else {
+            dampenedDiff = Mathf.Lerp(dampenedDiff, diff, 0.3f);
+        }
+        isSwiping = Mathf.Abs(dampenedDiff) > SWIPE_SPEED ? (int)Mathf.Sign(dampenedDiff) : 0;
 
         Camera cam = Camera.main;
         float camDistance = cam.WorldToScreenPoint(root.position).z;
