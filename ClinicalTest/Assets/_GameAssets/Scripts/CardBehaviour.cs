@@ -114,7 +114,7 @@ public class CardBehaviour : MonoBehaviour
         if (swiped) { return; }
         swiped = true;
         if (onSwipeNo != null) {
-            swiped = this.onSwipeNo(cardEffectsYes, true);
+            swiped = this.onSwipeNo(cardEffectsNo, true);
         }
         if (swiped) {
             StartCoroutine(FinishSwipe());
