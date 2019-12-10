@@ -6,6 +6,7 @@ public class OverlayCardContainerBehaviour : MonoBehaviour
 {
     // change this to control the card that will be displayed in the overlay
     [SerializeField] public CardBehaviour cardPrefab;
+    [SerializeField] public PopupCardContent popupContent;
     private CardBehaviour cardInstance;
 
     [SerializeField] public GameObject cardRoot;
@@ -34,6 +35,13 @@ public class OverlayCardContainerBehaviour : MonoBehaviour
             throw new System.Exception("Card Prefab non défini");
         }
         cardInstance = Instantiate(cardPrefab);
+
+        // Inject popup content if specified
+        if (popupContent != null) {
+          PopupCardBehaviour popupBehaviour = cardInstance.GetComponent<PopupCardBehaviour>();
+          popupBehaviour.popupContent = popupContent;
+        }
+
         cardInstance.transform.SetParent(cardRoot.transform, false);
         cardInstance.relativePos.localRotation = Quaternion.Euler(0, 0, 0);
         cardInstance.relativePos.localPosition = new Vector3(400, 700, 0);
