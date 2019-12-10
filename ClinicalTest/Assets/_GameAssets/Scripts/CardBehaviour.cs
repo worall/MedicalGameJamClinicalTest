@@ -68,10 +68,10 @@ public class CardBehaviour : MonoBehaviour
         if (cardContent != null) {
             if (relativePos.localPosition.x > 0) {
                 choiceText.text = cardContent.yes.choice.ToUpper();
-                weekCostText.text = cardContent.yes.cost.ToString();
+                weekCostText.text = '-' + cardContent.yes.cost.ToString();
             } else {
                 choiceText.text = cardContent.no.choice.ToUpper();
-                weekCostText.text = cardContent.no.cost.ToString();
+                weekCostText.text = '-' + cardContent.no.cost.ToString();
             }
         }
 
