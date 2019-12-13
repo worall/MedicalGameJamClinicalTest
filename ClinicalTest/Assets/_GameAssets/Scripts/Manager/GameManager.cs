@@ -242,11 +242,6 @@ public class GameManager : MonoBehaviour
     IEnumerator CardSwipeCoroutine(CardEffect effects, bool swipedRight) {
         yield return new WaitForSeconds(0.4f);
 
-        // no worry this will all end well
-        if (currentStep == STEPS.GAME && effects.debrief == "") {
-            currentStep = STEPS.GAME_FEEDBACK;
-        }
-
         switch(currentStep) {
             case STEPS.INTRO:
                 currentStep = STEPS.TUTO;
@@ -263,11 +258,16 @@ public class GameManager : MonoBehaviour
                 this.StartGame();
                 break;
             case STEPS.GAME:
-                this.GenerateNewFeedbackCard(effects);
+                if (effects.debrief == "") {
+                    this.GenerateNewGameCard();
+                    CheckStatisticStatue();
+                    currentStep = STEPS.GAME;
+                } else {
+                    this.GenerateNewFeedbackCard(effects);
+                    currentStep = STEPS.GAME_FEEDBACK;
+                }
                 if (m_time <= 0) {
                     currentStep = STEPS.GAME_ENDED;
-                } else {
-                    currentStep = STEPS.GAME_FEEDBACK;
                 }
                 break;
             case STEPS.GAME_FEEDBACK:
