@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 enum STEPS {
     INTRO,
@@ -217,6 +218,8 @@ public class GameManager : MonoBehaviour
     }
 
     bool HandleCardSwipe(CardEffect effect, bool swipedRight) {
+        UIManager.Instance.ClearEffectPreview();
+
         if (currentStep == STEPS.GAME) {
             if (m_money + effect.argent < 0) {
                 Camera.main.GetComponent<CameraShakeBehaviour>().Shake();

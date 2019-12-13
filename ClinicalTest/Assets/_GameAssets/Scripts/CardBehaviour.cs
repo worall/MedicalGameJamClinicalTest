@@ -65,15 +65,6 @@ public class CardBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cardContent != null) {
-            if (relativePos.localPosition.x > 0) {
-                choiceText.text = cardContent.yes.choice.ToUpper();
-                weekCostText.text = '-' + cardContent.yes.cost.ToString();
-            } else {
-                choiceText.text = cardContent.no.choice.ToUpper();
-                weekCostText.text = '-' + cardContent.no.cost.ToString();
-            }
-        }
 
         if (swiped) {
             vanishRatio = Mathf.Min(1, vanishRatio + Time.deltaTime / VANISH_TIME);
@@ -93,9 +84,24 @@ public class CardBehaviour : MonoBehaviour
 
         if (forceEffectShow) {
             cardEffectCanvas.alpha = 1;
-        } else if (!swiped && cardEffectCanvas != null) {
-            cardEffectCanvas.alpha = Mathf.Abs(relativePos.localPosition.x) / DISTANCE_EFFECT_SHOW;
+        } else if (!swiped && cardEffectCanvas != null && cardContent != null) {
+            CardEffect currentEffect = new CardEffect();
+            if (cardContent != null) {
+                if (relativePos.localPosition.x > 0) {
+                    currentEffect = cardContent.yes;
+                } else {
+                    currentEffect = cardContent.no;
+                }
+            }
+            PreviewEffect(currentEffect, Mathf.Abs(relativePos.localPosition.x) / DISTANCE_EFFECT_SHOW);
         }
+    }
+
+    void PreviewEffect(CardEffect effect, float opacity) {
+        choiceText.text = effect.choice.ToUpper();
+        weekCostText.text = (-effect.cost).ToString();
+        cardEffectCanvas.alpha = opacity;
+        UIManager.Instance.PreviewEffect(effect, opacity);
     }
 
     public void SwipeYes()
@@ -130,5 +136,4 @@ public class CardBehaviour : MonoBehaviour
     public bool isSwiped() {
         return swiped;
     }
-
 }
