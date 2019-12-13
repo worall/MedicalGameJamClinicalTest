@@ -33,12 +33,21 @@ public class UIManager : MonoBehaviour
     [SerializeField] public Image patientsEffectImage;
     [SerializeField] public Image argentEffectImage;
 
+    [SerializeField] public Image argentAlertImage;
+    private float argentAlertRatio = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         actualPanel = mainPanel;
         mainPanel.OnButtonStartGame += MainPanel_OnButtonStartGame;
         ClearEffectPreview();
+    }
+
+    void Update() {
+        argentAlertRatio = Mathf.Max(argentAlertRatio - Time.deltaTime * 0.8f, 0);
+        float opacity = Mathf.Min(1, Mathf.Abs(Mathf.Sin(argentAlertRatio * Mathf.PI * 3)) * 1.5f);
+        argentAlertImage.color = new Color(1, 1, 1, opacity);
     }
 
     public void LauncheGamePanel()
@@ -70,5 +79,9 @@ public class UIManager : MonoBehaviour
         rigueurEffectImage.color = new Color(1, 1, 1, effect.rigueur != 0 ? opacity : 0);
         patientsEffectImage.color = new Color(1, 1, 1, effect.patients != 0 ? opacity : 0);
         argentEffectImage.color = new Color(1, 1, 1, effect.argent != 0 ? opacity : 0);
+    }
+
+    public void FlashMoneyIcon() {
+        argentAlertRatio = 1;
     }
 }

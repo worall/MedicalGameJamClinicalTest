@@ -223,6 +223,7 @@ public class GameManager : MonoBehaviour
         if (currentStep == STEPS.GAME) {
             if (m_money + effect.argent < 0) {
                 Camera.main.GetComponent<CameraShakeBehaviour>().Shake();
+                UIManager.Instance.FlashMoneyIcon();
                 return false;
             }
 
