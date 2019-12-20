@@ -708,10 +708,8 @@ MonoBehaviour:
     type: 3}
   feedbackCard: {fileID: 4011424283288388997, guid: bc2a80f00425768288ba1eeadb444955,
     type: 3}
-  contratCards:
-  - {fileID: 3943500577831296170, guid: d11d8fbe8a68a6d4696ddbeca9cefd13, type: 3}
-  - {fileID: 3943500577831296170, guid: 71084478e28a6254db8404eebca2ea03, type: 3}
-  - {fileID: 3943500577831296170, guid: 0df63115009e9c44b94012555e391c6d, type: 3}
+  contratCard: {fileID: 3697806301190682959, guid: e01aa9c32876e7bb488aec1741b993b6,
+    type: 3}
   cardPrefab: {fileID: 284943562173171413, guid: 7160a6fbbf32f0c6b93c9892292fdd20,
     type: 3}
 --- !u!4 &474532073
@@ -762,6 +760,9 @@ MonoBehaviour:
     numberPatientBaseValue: 10
     scienceQualityBaseValue: 30
     moneyBaseValue: 100
+    title: Miaulements excessifs
+    flavorText: "Les catipats sont touch\xE9s par des crises de miaulements excessivement
+      aigus. Tentez de trouver une solution en effectuant un essai clinique !"
   - implicationRequirement: 85
     scienceQualityRequirement: 40
     patientNumberRequiremenent: 85
@@ -771,6 +772,9 @@ MonoBehaviour:
     numberPatientBaseValue: 10
     scienceQualityBaseValue: 30
     moneyBaseValue: 100
+    title: Les moustaches m'en tombent
+    flavorText: "Les moustaches des catipats tombent pour une raison inconnue ! Effectuez
+      un essai clinique afin de comprendre d'o\xF9 peut venir le probl\xE8me !"
   - implicationRequirement: 80
     scienceQualityRequirement: 65
     patientNumberRequiremenent: 65
@@ -780,10 +784,10 @@ MonoBehaviour:
     numberPatientBaseValue: 10
     scienceQualityBaseValue: 30
     moneyBaseValue: 100
-  contractsCardList:
-  - {fileID: 3943500577831296168, guid: d11d8fbe8a68a6d4696ddbeca9cefd13, type: 3}
-  - {fileID: 3943500577831296168, guid: 71084478e28a6254db8404eebca2ea03, type: 3}
-  - {fileID: 3943500577831296168, guid: 0df63115009e9c44b94012555e391c6d, type: 3}
+    title: "Des catipats \xE0 palmes"
+    flavorText: "Catastrophe ! De nombreux catipats voient leurs pattes se transformer
+      en palmes. Pour contrer \xE7a, menez un essai clinique et trouvez un rem\xE8de
+      !"
   actualContract:
     implicationRequirement: 0
     scienceQualityRequirement: 0
@@ -794,6 +798,8 @@ MonoBehaviour:
     numberPatientBaseValue: 0
     scienceQualityBaseValue: 0
     moneyBaseValue: 0
+    title: 
+    flavorText: 
 --- !u!114 &474532076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2926,7 +2932,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 4305cc322e3e37e1793754c1d9990fa2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7460dac022ae49d69b7c03a69a2cfc4d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

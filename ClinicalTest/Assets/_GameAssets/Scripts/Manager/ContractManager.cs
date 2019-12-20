@@ -18,14 +18,12 @@ public class ContractManager : MonoBehaviour
     }
 
     [SerializeField] private List<Contract> contractsList;
-    [SerializeField] private List<CardBehaviour> contractsCardList;
 
-    public Contract actualContract;
     private int index = 0;
 
-    public void SelectNextContrat()
+    public Contract GetCurrentContract()
     {
-        actualContract = contractsList[index];
+        return contractsList[index];
     }
 
     public void OnContractEnded()
@@ -53,4 +51,7 @@ public struct Contract
     public int numberPatientBaseValue;
     public int scienceQualityBaseValue;
     public int moneyBaseValue;
+
+    public string title;
+    public string flavorText;
 }

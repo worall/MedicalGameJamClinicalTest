@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject tutoCard;
     [SerializeField] GameObject creditsCard;
     [SerializeField] GameObject feedbackCard;
-    [SerializeField] GameObject[] contratCards;
+    [SerializeField] GameObject contratCard;
 
     private EndCardBehaviour m_endCard;
 
@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
 
     private void OnContractSelected()
     {
-        Contract contract = ContractManager.Instance.actualContract;
+        Contract contract = ContractManager.Instance.GetCurrentContract();
         m_time = contract.timeToConclude;
         m_patientImplication = contract.implactionBaseValue;
         m_patientNumber = contract.numberPatientBaseValue;
@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
 
     private void CheckStatisticStatue()
     {
-        Contract contract = ContractManager.Instance.actualContract;
+        Contract contract = ContractManager.Instance.GetCurrentContract();
 
         if (m_patientImplication >= contract.implicationRequirement)
             implicationComplete = true;
@@ -152,7 +152,9 @@ public class GameManager : MonoBehaviour
                 behaviour.onSwipeNo = HandleCardSwipe;
                 break;
             case STEPS.CONTRAT:
-                cardInst = Instantiate(contratCards[currentContract]);
+                cardInst = Instantiate(contratCard);
+                cardInst.GetComponent<ContractCardBehaviour>().currentContract =
+                    ContractManager.Instance.GetCurrentContract();
                 behaviour = cardInst.GetComponent<CardBehaviour>();
                 behaviour.onSwipeYes = HandleCardSwipe;
                 behaviour.onSwipeNo = HandleCardSwipe;
@@ -254,7 +256,6 @@ public class GameManager : MonoBehaviour
                 break;
             case STEPS.CONTRAT:
                 currentStep = STEPS.GAME;
-                ContractManager.Instance.SelectNextContrat();
                 OnContractSelected();
                 this.StartGame();
                 break;
