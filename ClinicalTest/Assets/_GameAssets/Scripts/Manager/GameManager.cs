@@ -201,8 +201,6 @@ public class GameManager : MonoBehaviour
             return;
         }
         cardBehaviour.cardContent = cardContent;
-        cardBehaviour.cardEffectsYes = cardContent.yes;
-        cardBehaviour.cardEffectsNo = cardContent.no;
 
         cardBehaviour.onSwipeYes = HandleCardSwipe;
         cardBehaviour.onSwipeNo = HandleCardSwipe;
@@ -292,10 +290,6 @@ public class GameManager : MonoBehaviour
             case STEPS.COMPARE_LINK:
                 currentContract++;
                 ContractManager.Instance.OnContractEnded();
-                if (swipedRight) {
-                    Debug.Log("Opening URL...");
-                    Application.OpenURL("https://compare.aphp.fr/");
-                }
                 if (currentContract > 2) {
                     currentStep = STEPS.CREDITS;
                     GenerateNewUniqueCard();

@@ -8,8 +8,6 @@ public class CardBehaviour : MonoBehaviour
     public bool floating = false;
 
     [SerializeField] public CardContent cardContent;
-    public CardEffect cardEffectsYes;
-    public CardEffect cardEffectsNo;
 
     public bool forceEffectShow = false;
 
@@ -24,8 +22,14 @@ public class CardBehaviour : MonoBehaviour
 
     [SerializeField] public CanvasGroup cardMainCanvas;
     [SerializeField] public CanvasGroup cardEffectCanvas;
+
+    [SerializeField] public Text titleText;
+
+    [SerializeField] public Text flavorText;
     [SerializeField] public Text choiceText;
     [SerializeField] public Text weekCostText;
+    [SerializeField] public Image weekCostImage;
+    [SerializeField] public Image illustrationImage;
     [SerializeField] public Transform relativePos;
 
     private Vector3? prevMousePos = null;
@@ -41,16 +45,12 @@ public class CardBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Text flavor = this.GetComponentsInChildren<Text>()[0];
-        Text title = this.GetComponentsInChildren<Text>()[1];
-        Image illustration = this.GetComponentsInChildren<Image>()[1];
-
         if (cardContent != null) {
-            flavor.text = cardContent.situation;
-            title.text = cardContent.name.ToUpper();
+            flavorText.text = cardContent.situation;
+            titleText.text = cardContent.name.ToUpper();
             Sprite sprite = Resources.Load<Sprite>("illustrations/" + this.cardContent.image);
             if (sprite != null) {
-                illustration.sprite = sprite;
+                illustrationImage.sprite = sprite;
             }
         }
 
@@ -65,7 +65,6 @@ public class CardBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (swiped) {
             vanishRatio = Mathf.Min(1, vanishRatio + Time.deltaTime / VANISH_TIME);
         }
@@ -99,7 +98,14 @@ public class CardBehaviour : MonoBehaviour
 
     void PreviewEffect(CardEffect effect, float opacity) {
         choiceText.text = effect.choice.ToUpper();
-        weekCostText.text = (-effect.cost).ToString();
+        if (effect.cost != 0) {
+            weekCostImage.enabled = true;
+            weekCostText.enabled = true;
+            weekCostText.text = (-effect.cost).ToString();
+        } else {
+            weekCostImage.enabled = false;
+            weekCostText.enabled = false;
+        }
         cardEffectCanvas.alpha = opacity;
         UIManager.Instance.PreviewEffect(effect, opacity);
     }
@@ -109,7 +115,7 @@ public class CardBehaviour : MonoBehaviour
         if (swiped) { return; }
         swiped = true;
         if (onSwipeYes != null) {
-            swiped = this.onSwipeYes(cardEffectsYes, true);
+            swiped = this.onSwipeYes(cardContent != null ? cardContent.yes : new CardEffect(), true);
         }
         if (swiped) {
             StartCoroutine(FinishSwipe());
@@ -120,7 +126,7 @@ public class CardBehaviour : MonoBehaviour
         if (swiped) { return; }
         swiped = true;
         if (onSwipeNo != null) {
-            swiped = this.onSwipeNo(cardEffectsNo, true);
+            swiped = this.onSwipeNo(cardContent != null ? cardContent.no : new CardEffect(), false);
         }
         if (swiped) {
             StartCoroutine(FinishSwipe());

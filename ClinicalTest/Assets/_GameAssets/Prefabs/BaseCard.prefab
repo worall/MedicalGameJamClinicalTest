@@ -578,8 +578,12 @@ MonoBehaviour:
   forceEffectShow: 0
   cardMainCanvas: {fileID: 8592449672820160609}
   cardEffectCanvas: {fileID: 8755769501054439781}
+  titleText: {fileID: 284943561809764555}
+  flavorText: {fileID: 284943560967406275}
   choiceText: {fileID: 6237344899714269881}
   weekCostText: {fileID: 949676408356406320}
+  weekCostImage: {fileID: 21668178602463308}
+  illustrationImage: {fileID: 284943560754358485}
   relativePos: {fileID: 284943561748382724}
 --- !u!1 &289568111382949919
 GameObject:
@@ -856,7 +860,7 @@ GameObject:
   - component: {fileID: 8992678452537925879}
   - component: {fileID: 114184593430875351}
   m_Layer: 0
-  m_Name: Image
+  m_Name: Shine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
