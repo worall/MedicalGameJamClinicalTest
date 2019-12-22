@@ -788,18 +788,6 @@ MonoBehaviour:
     flavorText: "Catastrophe ! De nombreux catipats voient leurs pattes se transformer
       en palmes. Pour contrer \xE7a, menez un essai clinique et trouvez un rem\xE8de
       !"
-  actualContract:
-    implicationRequirement: 0
-    scienceQualityRequirement: 0
-    patientNumberRequiremenent: 0
-    maxPatientNumber: 0
-    timeToConclude: 0
-    implactionBaseValue: 0
-    numberPatientBaseValue: 0
-    scienceQualityBaseValue: 0
-    moneyBaseValue: 0
-    title: 
-    flavorText: 
 --- !u!114 &474532076
 MonoBehaviour:
   m_ObjectHideFlags: 0
