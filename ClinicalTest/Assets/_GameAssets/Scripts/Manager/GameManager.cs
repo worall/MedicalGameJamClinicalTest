@@ -210,7 +210,7 @@ public class GameManager : MonoBehaviour
     {
         GameObject card = Instantiate(feedbackCard);
         FeedbackBehaviour feedbackBehaviour = card.GetComponent<FeedbackBehaviour>();
-        feedbackBehaviour.feedback = effect.debrief;
+        feedbackBehaviour.effect = effect;
 
         CardBehaviour cardBehaviour = card.GetComponent<CardBehaviour>();
         cardBehaviour.onSwipeYes = HandleCardSwipe;
