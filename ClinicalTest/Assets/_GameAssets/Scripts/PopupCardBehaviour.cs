@@ -14,10 +14,10 @@ public class PopupCardBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Is this real life ?");
-        Debug.Log(popupContent.title);
-        Debug.Log(popupContent.description);
-        Debug.Log(popupContent.options);
+        // Debug.Log("Is this real life ?");
+        // Debug.Log(popupContent.title);
+        // Debug.Log(popupContent.description);
+        // Debug.Log(popupContent.options);
 
         Text title = this.GetComponentsInChildren<Text>()[0];
         Text desc = this.GetComponentsInChildren<Text>()[1];

@@ -305,4 +305,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void RestartGame() {
+        //TODO
+        Debug.Log("restarted");
+    }
 }

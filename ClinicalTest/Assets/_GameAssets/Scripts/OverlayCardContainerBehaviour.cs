@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class OverlayCardContainerBehaviour : MonoBehaviour
 {
@@ -44,8 +45,8 @@ public class OverlayCardContainerBehaviour : MonoBehaviour
             canvas.sortingOrder += 11;
         }
 
-        cardInstance.onSwipeNo = CloseOverlay;
-        cardInstance.onSwipeYes = CloseOverlay;
+        cardInstance.onSwipeNo = CloseOverlay(cardInstance.onSwipeNo);
+        cardInstance.onSwipeYes = CloseOverlay(cardInstance.onSwipeYes);
     }
 
     // Update is called once per frame
@@ -59,9 +60,15 @@ public class OverlayCardContainerBehaviour : MonoBehaviour
         }
     }
 
-    bool CloseOverlay(CardEffect effect, bool swipedRight) {
-        fadingIn = false;
-        startTime = Time.time;
-        return true;
+    CardBehaviour.OnSwipeDelegate CloseOverlay(CardBehaviour.OnSwipeDelegate existingHandler) {
+        return (CardEffect effect, bool swipedRight) => {
+            bool success = true;
+            if (existingHandler != null) {
+                success = existingHandler(effect, swipedRight);
+            }
+            fadingIn = false;
+            startTime = Time.time;
+            return success;
+        };
     }
 }
