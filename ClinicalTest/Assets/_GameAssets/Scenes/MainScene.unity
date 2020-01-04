@@ -848,13 +848,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   homeButton: {fileID: 1987206266}
   helpButton: {fileID: 1939790838}
-  overlayCardPrefab: {fileID: 1698447144610646217, guid: 9f4cdccbc2b916627b2b3b1c60cfe5fd,
+  overlayCardContainerPrefab: {fileID: 1698447144610646217, guid: 9f4cdccbc2b916627b2b3b1c60cfe5fd,
     type: 3}
-  helpCard: {fileID: 2088877022695012656, guid: 0b309447e7e78a96cb406313855c5fb3,
+  helpCardPrefab: {fileID: 2088877022695012656, guid: 0b309447e7e78a96cb406313855c5fb3,
     type: 3}
-  popupCard: {fileID: 3923883655656443899, guid: 673e2399bcd35437fb808fa5be532f74,
+  popupCardPrefab: {fileID: 3923883655656443899, guid: 673e2399bcd35437fb808fa5be532f74,
     type: 3}
-  jaugeInfoCardPrefab: {fileID: 8986281155374762746, guid: a12fca1bf0e413606994f3f4504aa4a6,
+  jaugeInfoCardPrefab: {fileID: 8128478731063458015, guid: a12fca1bf0e413606994f3f4504aa4a6,
     type: 3}
   implicationJaugeButton: {fileID: 289289079}
   patientsJaugeButton: {fileID: 1216281383}

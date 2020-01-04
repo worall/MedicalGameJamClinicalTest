@@ -25,6 +25,11 @@ public class JaugeInfoCardBehaviour : MonoBehaviour
     [SerializeField] Image argentImage;
 
     void Awake() {
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
         switch(jaugeType) {
             case JaugeType.ARGENT:
                 jaugeName = "FINANCEMENT";
@@ -43,11 +48,7 @@ public class JaugeInfoCardBehaviour : MonoBehaviour
                 jaugeDescription = "C'est ce qui permet de garantir la qualité des résultats finaux de l'essai.";
                 break;
         }
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
         jaugeNameText.text = jaugeName;
         jaugeDescriptionText.text = jaugeDescription;
         rigueurImage.enabled = jaugeType == JaugeType.RIGUEUR;

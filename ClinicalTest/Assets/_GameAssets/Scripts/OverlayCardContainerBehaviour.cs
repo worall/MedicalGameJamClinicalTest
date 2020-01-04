@@ -5,9 +5,8 @@ using UnityEngine;
 public class OverlayCardContainerBehaviour : MonoBehaviour
 {
     // change this to control the card that will be displayed in the overlay
-    [SerializeField] public CardBehaviour cardPrefab;
-    [SerializeField] public PopupCardContent popupContent;
-    private CardBehaviour cardInstance;
+    // note: this has to be an instantiated card, not a prefab!
+    public CardBehaviour cardInstance;
 
     [SerializeField] public GameObject cardRoot;
 
@@ -31,15 +30,8 @@ public class OverlayCardContainerBehaviour : MonoBehaviour
         backdropCanvasGroup.alpha = 0;
         startTime = Time.time;
 
-        if (cardPrefab == null) {
-            throw new System.Exception("Card Prefab non défini");
-        }
-        cardInstance = Instantiate(cardPrefab);
-
-        // Inject popup content if specified
-        if (popupContent != null) {
-          PopupCardBehaviour popupBehaviour = cardInstance.GetComponent<PopupCardBehaviour>();
-          popupBehaviour.popupContent = popupContent;
+        if (cardInstance == null) {
+            throw new System.Exception("Card Instance non défini");
         }
 
         cardInstance.transform.SetParent(cardRoot.transform, false);

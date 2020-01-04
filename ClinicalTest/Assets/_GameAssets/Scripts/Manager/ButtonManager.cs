@@ -9,13 +9,11 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] public Button homeButton;
     [SerializeField] public Button helpButton;
 
-    [SerializeField] public OverlayCardContainerBehaviour overlayCardPrefab;
-    [SerializeField] public CardBehaviour helpCard;
-    [SerializeField] public CardBehaviour popupCard;
+    [SerializeField] public OverlayCardContainerBehaviour overlayCardContainerPrefab;
+    [SerializeField] public CardBehaviour helpCardPrefab;
+    [SerializeField] public CardBehaviour popupCardPrefab;
 
-    [SerializeField] public PopupCardContent quitCardContent;
-
-    [SerializeField] public JaugeInfoCardBehaviour jaugeInfoCardPrefab;
+    [SerializeField] public CardBehaviour jaugeInfoCardPrefab;
     [SerializeField] public Button implicationJaugeButton;
     [SerializeField] public Button patientsJaugeButton;
     [SerializeField] public Button rigueurJaugeButton;
@@ -31,13 +29,6 @@ public class ButtonManager : MonoBehaviour
         patientsJaugeButton.onClick.AddListener(OnClickJauge(JaugeType.PATIENTS));
         rigueurJaugeButton.onClick.AddListener(OnClickJauge(JaugeType.RIGUEUR));
         argentJaugeButton.onClick.AddListener(OnClickJauge(JaugeType.ARGENT));
-
-        PopupCardContent content = new PopupCardContent();
-        content.title = "QUITTER LA PARTIE ?";
-        content.description = "Êtes-vous sûr de vouloir retourner à l'écran de titre ?";
-        content.options = "Glissez la carte :\n- à droite pour confirmer\n- à gauche pour reprendre";
-
-        quitCardContent = content;
     }
 
     // Update is called once per frame
@@ -47,24 +38,28 @@ public class ButtonManager : MonoBehaviour
     }
 
     void OnClickHelp() {
-        OverlayCardContainerBehaviour overlay = Instantiate(overlayCardPrefab);
-        overlay.cardPrefab = helpCard;
+        OverlayCardContainerBehaviour overlay = Instantiate(overlayCardContainerPrefab);
+        overlay.cardInstance = Instantiate(helpCardPrefab);
     }
 
     void OnClickHome() {
         Debug.Log("Home clicked");
-        OverlayCardContainerBehaviour overlay = Instantiate(overlayCardPrefab);
-        overlay.popupContent = quitCardContent;
-        overlay.cardPrefab = popupCard;
+        OverlayCardContainerBehaviour overlay = Instantiate(overlayCardContainerPrefab);
+        CardBehaviour popupCard = Instantiate(popupCardPrefab);
+        PopupCardContent content = new PopupCardContent();
+        content.title = "QUITTER LA PARTIE ?";
+        content.description = "Êtes-vous sûr de vouloir retourner à l'écran de titre ?";
+        content.options = "Glissez la carte :\n- à droite pour confirmer\n- à gauche pour reprendre";
+        popupCard.GetComponent<PopupCardBehaviour>().popupContent = content;
+        overlay.cardInstance = popupCard;
     }
 
     UnityAction OnClickJauge(JaugeType jaugeType) {
         return () => {
-            // TODO
-            OverlayCardContainerBehaviour overlay = Instantiate(overlayCardPrefab);
-            // JaugeInfoCardBehaviour jaugeCard = Instantiate(jaugeInfoCardPrefab);
-            // jaugeCard.jaugeType = jaugeType;
-            overlay.cardPrefab = jaugeInfoCardPrefab.GetComponent<CardBehaviour>();
+            OverlayCardContainerBehaviour overlay = Instantiate(overlayCardContainerPrefab);
+            CardBehaviour jaugeCard = Instantiate(jaugeInfoCardPrefab);
+            jaugeCard.GetComponent<JaugeInfoCardBehaviour>().jaugeType = jaugeType;
+            overlay.cardInstance = jaugeCard;
         };
     }
 }
