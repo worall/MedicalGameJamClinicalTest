@@ -23,7 +23,7 @@ public class CardDrag : MonoBehaviour
     }
 
     // min speed to get a swipe
-    const float SWIPE_SPEED = 80;
+    const float SWIPE_SPEED = 15;
 
     void Update()
     {
