@@ -34,19 +34,7 @@ public class OverlayCardContainerBehaviour : MonoBehaviour
         if (cardInstance == null) {
             throw new System.Exception("Card Instance non défini");
         }
-
-        cardInstance.transform.SetParent(cardRoot.transform, false);
-        cardInstance.relativePos.localRotation = Quaternion.Euler(0, 0, 0);
-        cardInstance.relativePos.localPosition = new Vector3(400, 700, 0);
-
-        // this is to make sure the card canvases are rendered on top of the backdrop
-        Canvas[] canvases = cardInstance.GetComponentsInChildren<Canvas>();
-        foreach (Canvas canvas in canvases) {
-            canvas.sortingOrder += 11;
-        }
-
-        cardInstance.onSwipeNo = CloseOverlay(cardInstance.onSwipeNo);
-        cardInstance.onSwipeYes = CloseOverlay(cardInstance.onSwipeYes);
+        BindCard(cardInstance);
     }
 
     // Update is called once per frame
@@ -60,15 +48,42 @@ public class OverlayCardContainerBehaviour : MonoBehaviour
         }
     }
 
+    void BindCard(CardBehaviour card) {
+        card.transform.SetParent(cardRoot.transform, false);
+        card.relativePos.localRotation = Quaternion.Euler(0, 0, 0);
+        card.relativePos.localPosition = new Vector3(400, 700, 0);
+
+        // this is to make sure the card canvases are rendered on top of the backdrop
+        Canvas[] canvases = card.GetComponentsInChildren<Canvas>();
+        foreach (Canvas canvas in canvases) {
+            canvas.sortingOrder += 11;
+        }
+
+        card.onSwipeNo = CloseOverlay(card.onSwipeNo);
+        card.onSwipeYes = CloseOverlay(card.onSwipeYes);
+    }
+
     CardBehaviour.OnSwipeDelegate CloseOverlay(CardBehaviour.OnSwipeDelegate existingHandler) {
         return (CardEffect effect, bool swipedRight, GameObject followupCard) => {
             bool success = true;
             if (existingHandler != null) {
                 success = existingHandler(effect, swipedRight, followupCard);
             }
-            fadingIn = false;
-            startTime = Time.time;
+            if (followupCard == null) {
+                fadingIn = false;
+                startTime = Time.time;
+            } else {
+                StartCoroutine(FollowupCardCoroutine(followupCard));
+            }
             return success;
         };
+    }
+
+    IEnumerator FollowupCardCoroutine(GameObject followupCard) {
+        yield return new WaitForSeconds(0.4f);
+
+        followupCard.SetActive(true);
+        cardInstance = followupCard.GetComponent<CardBehaviour>();
+        BindCard(cardInstance);
     }
 }
