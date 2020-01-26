@@ -12,7 +12,7 @@ public class CardBehaviour : MonoBehaviour
     public bool forceEffectShow = false;
 
     // If returns false, then swipe is prevented (ie not enough money)
-    public delegate bool OnSwipeDelegate(CardEffect effects, bool swipedRight);
+    public delegate bool OnSwipeDelegate(CardEffect effects, bool swipedRight, GameObject followupCard);
     public OnSwipeDelegate onSwipeYes;
     public OnSwipeDelegate onSwipeNo;
 
@@ -37,6 +37,8 @@ public class CardBehaviour : MonoBehaviour
     private float initialEffectAlpha;
 
     const float DISTANCE_EFFECT_SHOW = 50;
+
+    public GameObject followupCard = null;
 
     void Awake()
     {
@@ -115,7 +117,7 @@ public class CardBehaviour : MonoBehaviour
         if (swiped) { return; }
         swiped = true;
         if (onSwipeYes != null) {
-            swiped = this.onSwipeYes(cardContent != null ? cardContent.yes : new CardEffect(), true);
+            swiped = this.onSwipeYes(cardContent != null ? cardContent.yes : new CardEffect(), true, this.followupCard);
         }
         if (swiped) {
             StartCoroutine(FinishSwipe());
@@ -126,7 +128,7 @@ public class CardBehaviour : MonoBehaviour
         if (swiped) { return; }
         swiped = true;
         if (onSwipeNo != null) {
-            swiped = this.onSwipeNo(cardContent != null ? cardContent.no : new CardEffect(), false);
+            swiped = this.onSwipeNo(cardContent != null ? cardContent.no : new CardEffect(), false, this.followupCard);
         }
         if (swiped) {
             StartCoroutine(FinishSwipe());
@@ -141,5 +143,17 @@ public class CardBehaviour : MonoBehaviour
 
     public bool isSwiped() {
         return swiped;
+    }
+
+    public void setFollowupCard(GameObject cardInstance) {
+        this.followupCard = cardInstance;
+    }
+
+    public GameObject getFollowupCard() {
+        return this.followupCard;
+    }
+
+    public bool hasFollowupCard() {
+        return this.followupCard != null;
     }
 }

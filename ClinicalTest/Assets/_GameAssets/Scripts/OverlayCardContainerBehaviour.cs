@@ -61,10 +61,10 @@ public class OverlayCardContainerBehaviour : MonoBehaviour
     }
 
     CardBehaviour.OnSwipeDelegate CloseOverlay(CardBehaviour.OnSwipeDelegate existingHandler) {
-        return (CardEffect effect, bool swipedRight) => {
+        return (CardEffect effect, bool swipedRight, GameObject followupCard) => {
             bool success = true;
             if (existingHandler != null) {
-                success = existingHandler(effect, swipedRight);
+                success = existingHandler(effect, swipedRight, followupCard);
             }
             fadingIn = false;
             startTime = Time.time;

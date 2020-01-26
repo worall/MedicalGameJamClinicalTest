@@ -51,7 +51,7 @@ public class ButtonManager : MonoBehaviour
         content.description = "Êtes-vous sûr de vouloir retourner à l'écran de titre ?";
         content.options = "Glissez la carte :\n- à droite pour confirmer\n- à gauche pour reprendre";
         popupCard.GetComponent<PopupCardBehaviour>().popupContent = content;
-        popupCard.onSwipeYes = (CardEffect effects, bool swipedRight) => {
+        popupCard.onSwipeYes = (CardEffect effects, bool swipedRight, GameObject followupCard) => {
             GameManager.Instance.RestartGame();
             return true;
         };

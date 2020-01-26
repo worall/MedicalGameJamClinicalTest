@@ -55,6 +55,8 @@ public class GameManager : MonoBehaviour
     private STEPS currentStep;
     private int currentContract;
 
+    private int m_tutoStep = 0;
+
     private void Awake()
     {
         if (_instance)
@@ -217,7 +219,7 @@ public class GameManager : MonoBehaviour
         cardBehaviour.onSwipeNo = HandleCardSwipe;
     }
 
-    bool HandleCardSwipe(CardEffect effect, bool swipedRight) {
+    bool HandleCardSwipe(CardEffect effect, bool swipedRight, GameObject followupCard) {
         UIManager.Instance.ClearEffectPreview();
 
         if (currentStep == STEPS.GAME) {
@@ -235,13 +237,21 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.gamePanel.UpdateStats(m_scienceQuality, m_patientImplication, m_patientNumber, m_money, m_time);
         }
 
-        StartCoroutine(CardSwipeCoroutine(effect, swipedRight));
+        StartCoroutine(CardSwipeCoroutine(effect, swipedRight, followupCard));
 
         return true;
     }
 
-    IEnumerator CardSwipeCoroutine(CardEffect effects, bool swipedRight) {
+    IEnumerator CardSwipeCoroutine(CardEffect effects, bool swipedRight, GameObject followupCard) {
         yield return new WaitForSeconds(0.4f);
+
+        if (followupCard != null) {
+            CardBehaviour cardBehaviour = followupCard.GetComponent<CardBehaviour>();
+            cardBehaviour.onSwipeYes = HandleCardSwipe;
+            cardBehaviour.onSwipeNo = HandleCardSwipe;
+            followupCard.SetActive(true);
+            yield break;
+        }
 
         switch(currentStep) {
             case STEPS.INTRO:
