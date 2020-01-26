@@ -148,12 +148,4 @@ public class CardBehaviour : MonoBehaviour
     public void setFollowupCard(GameObject cardInstance) {
         this.followupCard = cardInstance;
     }
-
-    public GameObject getFollowupCard() {
-        return this.followupCard;
-    }
-
-    public bool hasFollowupCard() {
-        return this.followupCard != null;
-    }
 }

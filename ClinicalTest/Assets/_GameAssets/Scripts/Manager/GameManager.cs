@@ -237,6 +237,10 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.gamePanel.UpdateStats(m_scienceQuality, m_patientImplication, m_patientNumber, m_money, m_time);
         }
 
+        if (currentStep == STEPS.COMPARE_LINK && swipedRight) {
+            Application.OpenURL("https://compare.aphp.fr/");
+        }
+
         StartCoroutine(CardSwipeCoroutine(effect, swipedRight, followupCard));
 
         return true;

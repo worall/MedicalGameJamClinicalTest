@@ -12,12 +12,5 @@ public class CompareLinkCardBehaviour : MonoBehaviour
     }
 
     void Start() {
-        CardBehaviour behaviour = this.GetComponent<CardBehaviour>();
-        behaviour.onSwipeYes = HandleCardSwipe;
-    }
-
-    bool HandleCardSwipe(CardEffect effect, bool swipedRight, GameObject followupCard) {
-        Application.OpenURL("https://compare.aphp.fr/");
-        return true;
     }
 }
