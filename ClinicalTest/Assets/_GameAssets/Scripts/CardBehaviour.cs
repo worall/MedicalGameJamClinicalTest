@@ -47,7 +47,7 @@ public class CardBehaviour : MonoBehaviour
     {
         if (cardContent != null) {
             flavorText.text = cardContent.situation;
-            titleText.text = cardContent.name.ToUpper();
+            titleText.text = cardContent.name != null ? cardContent.name.ToUpper() : "";
             Sprite sprite = Resources.Load<Sprite>("illustrations/" + this.cardContent.image);
             if (sprite != null) {
                 illustrationImage.sprite = sprite;
