@@ -15,6 +15,8 @@ public class CardContent
     public string turns;
     public string image;
     public bool popout;
+
+    public bool bonus;
 }
 
 public struct CardEffect

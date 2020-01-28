@@ -148,6 +148,8 @@ public class DeckManager : MonoBehaviour
         card.turns = data[17];
         card.popout = (data[18] == "1") ? true : false;
 
+        card.bonus = card.yes.debrief == "" && card.no.debrief == "";
+
         return card;
     }
 }

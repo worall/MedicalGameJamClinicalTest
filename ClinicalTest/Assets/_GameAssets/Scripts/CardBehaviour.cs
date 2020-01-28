@@ -32,6 +32,8 @@ public class CardBehaviour : MonoBehaviour
     [SerializeField] public Image illustrationImage;
     [SerializeField] public Transform relativePos;
 
+    [SerializeField] public Image bonusIconImage;
+
     private Vector3? prevMousePos = null;
 
     private float initialEffectAlpha;
@@ -53,6 +55,10 @@ public class CardBehaviour : MonoBehaviour
             Sprite sprite = Resources.Load<Sprite>("illustrations/" + this.cardContent.image);
             if (sprite != null) {
                 illustrationImage.sprite = sprite;
+            }
+
+            if (cardContent.bonus) {
+                bonusIconImage.gameObject.SetActive(true);
             }
         }
 
