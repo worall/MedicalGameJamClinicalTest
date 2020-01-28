@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -719,6 +719,7 @@ GameObject:
   - component: {fileID: 474532074}
   - component: {fileID: 474532075}
   - component: {fileID: 474532076}
+  - component: {fileID: 474532077}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -852,14 +853,30 @@ MonoBehaviour:
     type: 3}
   helpCardPrefab: {fileID: 6575767173119568891, guid: bc2e54c83dfe11540918781da83bfc68,
     type: 3}
-  popupCardPrefab: {fileID: 3923883655656443899, guid: 673e2399bcd35437fb808fa5be532f74,
-    type: 3}
   jaugeInfoCardPrefab: {fileID: 8128478731063458015, guid: a12fca1bf0e413606994f3f4504aa4a6,
     type: 3}
   implicationJaugeButton: {fileID: 289289079}
   patientsJaugeButton: {fileID: 1216281383}
   rigueurJaugeButton: {fileID: 1306642775}
   argentJaugeButton: {fileID: 1987368161}
+--- !u!114 &474532077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474532071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a019f89b46a4a40d5b389fcad85317df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overlayCardContainerPrefab: {fileID: 1698447144610646217, guid: 9f4cdccbc2b916627b2b3b1c60cfe5fd,
+    type: 3}
+  popupCardPrefab: {fileID: 3923883655656443899, guid: 673e2399bcd35437fb808fa5be532f74,
+    type: 3}
+  tutoCard: {fileID: 6575767173119568889, guid: bc2e54c83dfe11540918781da83bfc68,
+    type: 3}
 --- !u!1 &488711782
 GameObject:
   m_ObjectHideFlags: 0

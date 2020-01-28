@@ -11,7 +11,6 @@ public class ButtonManager : MonoBehaviour
 
     [SerializeField] public OverlayCardContainerBehaviour overlayCardContainerPrefab;
     [SerializeField] public CardBehaviour helpCardPrefab;
-    [SerializeField] public CardBehaviour popupCardPrefab;
 
     [SerializeField] public CardBehaviour jaugeInfoCardPrefab;
     [SerializeField] public Button implicationJaugeButton;
@@ -38,24 +37,13 @@ public class ButtonManager : MonoBehaviour
     }
 
     void OnClickHelp() {
-        OverlayCardContainerBehaviour overlay = Instantiate(overlayCardContainerPrefab);
-        overlay.cardInstance = Instantiate(helpCardPrefab);
+        Debug.Log("Help clicked");
+        PopupManager.Instance.ShowTuto();
     }
 
     void OnClickHome() {
-        // Debug.Log("Home clicked");
-        OverlayCardContainerBehaviour overlay = Instantiate(overlayCardContainerPrefab);
-        CardBehaviour popupCard = Instantiate(popupCardPrefab);
-        PopupCardContent content = new PopupCardContent();
-        content.title = "QUITTER LA PARTIE ?";
-        content.description = "Êtes-vous sûr de vouloir retourner à l'écran de titre ?";
-        content.options = "Glissez la carte :\n- à droite pour confirmer\n- à gauche pour reprendre";
-        popupCard.GetComponent<PopupCardBehaviour>().popupContent = content;
-        popupCard.onSwipeYes = (CardEffect effects, bool swipedRight, GameObject followupCard) => {
-            GameManager.Instance.RestartGame();
-            return true;
-        };
-        overlay.cardInstance = popupCard;
+        Debug.Log("Home clicked");
+        PopupManager.Instance.ShowQuitToHome();
     }
 
     UnityAction OnClickJauge(JaugeType jaugeType) {

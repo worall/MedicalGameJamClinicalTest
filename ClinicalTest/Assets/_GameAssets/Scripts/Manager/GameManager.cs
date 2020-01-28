@@ -208,6 +208,7 @@ public class GameManager : MonoBehaviour
         cardBehaviour.onSwipeNo = HandleCardSwipe;
         card.SetActive(true);
     }
+
     private void GenerateNewFeedbackCard(CardEffect effect)
     {
         GameObject card = Instantiate(feedbackCard);
@@ -238,7 +239,13 @@ public class GameManager : MonoBehaviour
         }
 
         if (currentStep == STEPS.COMPARE_LINK && swipedRight) {
-            Application.OpenURL("https://compare.aphp.fr/");
+            PopupManager.Instance.ShowConfirmRedirect();
+            return false;
+        }
+
+        if (currentStep == STEPS.STARS && !swipedRight) {
+            PopupManager.Instance.ShowTryAgain();
+            return false;
         }
 
         StartCoroutine(CardSwipeCoroutine(effect, swipedRight, followupCard));
@@ -320,7 +327,16 @@ public class GameManager : MonoBehaviour
     }
 
     public void RestartGame() {
-        //TODO
+        //TODO: Actually restart the game
         Debug.Log("restarted");
+    }
+
+    public void RetryContract() {
+      Debug.Log("Restarting contract...");
+    
+      // TODO: Remove the card at the back...
+
+      currentStep = STEPS.CONTRAT;
+      GenerateNewUniqueCard();
     }
 }
