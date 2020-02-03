@@ -18,10 +18,10 @@ public class PopupCardBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        titleText.text = popupContent.title;
+        titleText.text = popupContent.title.ToUpper();
         descriptionText.text = popupContent.description;
-        swipeNoText.text = popupContent.swipeNoLabel;
-        swipeYesText.text = popupContent.swipeYesLabel;
+        swipeNoText.text = popupContent.swipeNoLabel.ToUpper();
+        swipeYesText.text = popupContent.swipeYesLabel.ToUpper();
     }
 
     // Update is called once per frame
