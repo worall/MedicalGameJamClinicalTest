@@ -9,5 +9,6 @@ public class PopupCardContent
 
     public string title;
     public string description;
-    public string options;
+    public string swipeNoLabel;
+    public string swipeYesLabel;
 }

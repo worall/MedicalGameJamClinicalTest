@@ -6,6 +6,10 @@ using UnityEngine.UI;
 public class PopupCardBehaviour : MonoBehaviour
 {
     [SerializeField] public PopupCardContent popupContent;
+    [SerializeField] public Text titleText;
+    [SerializeField] public Text descriptionText;
+    [SerializeField] public Text swipeNoText;
+    [SerializeField] public Text swipeYesText;
 
     void Awake()
     {
@@ -14,18 +18,10 @@ public class PopupCardBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Debug.Log("Is this real life ?");
-        // Debug.Log(popupContent.title);
-        // Debug.Log(popupContent.description);
-        // Debug.Log(popupContent.options);
-
-        Text title = this.GetComponentsInChildren<Text>()[0];
-        Text desc = this.GetComponentsInChildren<Text>()[1];
-        Text options = this.GetComponentsInChildren<Text>()[2];
-
-        title.text = popupContent.title;
-        desc.text = popupContent.description;
-        options.text = popupContent.options;
+        titleText.text = popupContent.title;
+        descriptionText.text = popupContent.description;
+        swipeNoText.text = popupContent.swipeNoLabel;
+        swipeYesText.text = popupContent.swipeYesLabel;
     }
 
     // Update is called once per frame

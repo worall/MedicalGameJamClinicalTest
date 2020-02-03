@@ -87,7 +87,7 @@ public class PopupManager : MonoBehaviour
     // UTILS
 
     OverlayCardContainerBehaviour InvokeOverlay() {
-      Debug.Log("Overlay is heeeere");
+      //Debug.Log("Overlay is heeeere");
       OverlayCardContainerBehaviour overlay = Instantiate(overlayCardContainerPrefab);
       return overlay;
     }
@@ -104,27 +104,31 @@ public class PopupManager : MonoBehaviour
 
       switch(name) {
         case "tutoriel":
-          content.title = "DEMARRER LE TUTO ?";
-          content.description = "Voulez vous rejouer le tutoriel ?";
-          content.options = "Glissez la carte :\n- à droite pour confirmer\n- à gauche pour reprendre";
+          content.title = "JOUER LE TUTORIEL ?";
+          content.description = "Êtes-vous sûr de vouloir jouer à nouveau le tutoriel ?";
+          content.swipeNoLabel = "Reprendre";
+          content.swipeYesLabel = "Jouer à nouveau";
           break;
 
         case "quit":
           content.title = "QUITTER LA PARTIE ?";
           content.description = "Êtes-vous sûr de vouloir retourner à l'écran de titre ?";
-          content.options = "Glissez la carte :\n- à droite pour confirmer\n- à gauche pour reprendre";
+          content.swipeNoLabel = "Reprendre";
+          content.swipeYesLabel = "Quitter la partie";
           break;
 
         case "try_again":
-          content.title = "VOULEZ-VOUS REESSAYER ?";
-          content.description = "Voulez vous retenter ce même contrat ?";
-          content.options = "Glissez la carte :\n- à droite pour ressayer\n- à gauche pour passer au suivant";
+          content.title = "REESSAYER ?";
+          content.description = "Êtes-vous sûr de vouloir recommencer le contrat ?";
+          content.swipeNoLabel = "Reprendre";
+          content.swipeYesLabel = "Recommencer";
           break;
         
         case "redirect":
-          content.title = "VOUS ALLEZ ETRE REDIRIGE";
-          content.description = "Vous allez quitter l'application et être redirigé vers le site de Compare. Confirmer ?";
-          content.options = "Glissez la carte :\n- à droite pour être redirigé\n- à gauche pour revenir à KoT";
+          content.title = "REDIRECTION";
+          content.description = "Vous êtes sur le point d'être redirigé vers la page internet de Compare";
+          content.swipeNoLabel = "Revenir";
+          content.swipeYesLabel = "Ouvrir";
           break;
       }
 
