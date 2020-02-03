@@ -211,11 +211,11 @@ public class GameManager : MonoBehaviour
 
     private void GenerateNewFeedbackCard(CardEffect effect)
     {
-        GameObject card = Instantiate(feedbackCard);
-        FeedbackBehaviour feedbackBehaviour = card.GetComponent<FeedbackBehaviour>();
+        currentCard = Instantiate(feedbackCard);
+        FeedbackBehaviour feedbackBehaviour = currentCard.GetComponent<FeedbackBehaviour>();
         feedbackBehaviour.effect = effect;
 
-        CardBehaviour cardBehaviour = card.GetComponent<CardBehaviour>();
+        CardBehaviour cardBehaviour = currentCard.GetComponent<CardBehaviour>();
         cardBehaviour.onSwipeYes = HandleCardSwipe;
         cardBehaviour.onSwipeNo = HandleCardSwipe;
     }
@@ -338,7 +338,7 @@ public class GameManager : MonoBehaviour
     public void RetryContract() {
       Debug.Log("Restarting contract...");
       currentStep = STEPS.CONTRAT;
-      Destroy(m_endCard.GetComponent<GameObject>());
+      Destroy(m_endCard.gameObject);
       GenerateNewUniqueCard();
     }
 }
