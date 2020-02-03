@@ -38,6 +38,7 @@ public class TutoCardBehaviour : MonoBehaviour
                 descriptionText.text = "Vous connaissez maintenant les bases du jeu ! Faites glissez la carte afin de recevoir votre premier contrat. Bonne chance !";
                 break;
         }
+        titleText.text = titleText.text.ToUpper();
 
         if (currentStep < MAX_STEP) {
             GameObject next = Instantiate(this.myPrefab);
