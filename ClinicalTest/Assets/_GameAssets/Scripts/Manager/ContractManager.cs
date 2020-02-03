@@ -35,6 +35,10 @@ public class ContractManager : MonoBehaviour
             Debug.Log("fin des contrats");
     }
 
+    public void resetContractOrder() {
+      index = 0;
+    }
+
 }
 
 [System.Serializable]
