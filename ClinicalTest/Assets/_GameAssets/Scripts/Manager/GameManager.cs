@@ -302,14 +302,14 @@ public class GameManager : MonoBehaviour
                 GenerateNewUniqueCard();
                 break;
             case STEPS.STARS:
-                currentStep = STEPS.COMPARE;
-                GenerateNewUniqueCard();
-                break;
-            case STEPS.COMPARE:
                 currentStep = STEPS.COMPARE_LINK;
                 GenerateNewUniqueCard();
                 break;
             case STEPS.COMPARE_LINK:
+                currentStep = STEPS.COMPARE;
+                GenerateNewUniqueCard();
+                break;
+            case STEPS.COMPARE:
                 currentContract++;
                 ContractManager.Instance.OnContractEnded();
                 if (currentContract > 2) {
