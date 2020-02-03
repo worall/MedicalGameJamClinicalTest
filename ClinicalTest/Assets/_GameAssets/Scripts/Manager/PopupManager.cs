@@ -75,7 +75,7 @@ public class PopupManager : MonoBehaviour
       GameObject tuto = Instantiate(this.tutoCard);
       tuto.SetActive(false);
       tuto.GetComponent<TutoCardBehaviour>().currentStep = 1;
-      card.setFollowupCard(tuto);
+      card.setFollowupCardYes(tuto);
 
       // Bind actions
       card.onSwipeYes = this.StartTutoriel;

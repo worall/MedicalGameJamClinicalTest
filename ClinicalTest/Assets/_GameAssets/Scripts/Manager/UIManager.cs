@@ -37,7 +37,7 @@ public class UIManager : MonoBehaviour
     private float argentAlertRatio = 0;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         actualPanel = mainPanel;
         mainPanel.OnButtonStartGame += MainPanel_OnButtonStartGame;

@@ -40,7 +40,8 @@ public class CardBehaviour : MonoBehaviour
 
     const float DISTANCE_EFFECT_SHOW = 50;
 
-    public GameObject followupCard = null;
+    public GameObject followupCardNo = null;
+    public GameObject followupCardYes = null;
 
     void Awake()
     {
@@ -123,7 +124,7 @@ public class CardBehaviour : MonoBehaviour
         if (swiped) { return; }
         swiped = true;
         if (onSwipeYes != null) {
-            swiped = this.onSwipeYes(cardContent != null ? cardContent.yes : new CardEffect(), true, this.followupCard);
+            swiped = this.onSwipeYes(cardContent != null ? cardContent.yes : new CardEffect(), true, this.followupCardYes);
         }
         if (swiped) {
             StartCoroutine(FinishSwipe());
@@ -134,7 +135,7 @@ public class CardBehaviour : MonoBehaviour
         if (swiped) { return; }
         swiped = true;
         if (onSwipeNo != null) {
-            swiped = this.onSwipeNo(cardContent != null ? cardContent.no : new CardEffect(), false, this.followupCard);
+            swiped = this.onSwipeNo(cardContent != null ? cardContent.no : new CardEffect(), false, this.followupCardNo);
         }
         if (swiped) {
             StartCoroutine(FinishSwipe());
@@ -152,6 +153,15 @@ public class CardBehaviour : MonoBehaviour
     }
 
     public void setFollowupCard(GameObject cardInstance) {
-        this.followupCard = cardInstance;
+        this.followupCardYes = cardInstance;
+        this.followupCardNo = cardInstance;
+    }
+
+    public void setFollowupCardYes(GameObject cardInstance) {
+      this.followupCardYes = cardInstance;
+    }
+
+    public void setFollowupCardNo(GameObject cardInstance) {
+      this.followupCardNo = cardInstance;
     }
 }

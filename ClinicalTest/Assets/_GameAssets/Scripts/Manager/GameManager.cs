@@ -46,14 +46,15 @@ public class GameManager : MonoBehaviour
 
     private int objectifCompleted = 0;
 
+    // Current Status (step, card, contract, etc)
     private int m_currentTurn = 1;
+    private GameObject currentCard;
+    private STEPS currentStep;
+    private int currentContract;
 
     private int completion = 0;
 
     [SerializeField] public GameObject cardPrefab;
-
-    private STEPS currentStep;
-    private int currentContract;
 
     private int m_tutoStep = 0;
 
@@ -140,7 +141,6 @@ public class GameManager : MonoBehaviour
 
     private void GenerateNewUniqueCard()
     {
-        GameObject cardInst;
         CardBehaviour behaviour;
 
         switch(currentStep) {
@@ -148,16 +148,16 @@ public class GameManager : MonoBehaviour
                 // should not happen
                 break;
             case STEPS.TUTO:
-                cardInst = Instantiate(tutoCard);
-                behaviour = cardInst.GetComponent<CardBehaviour>();
+                currentCard = Instantiate(tutoCard);
+                behaviour = currentCard.GetComponent<CardBehaviour>();
                 behaviour.onSwipeYes = HandleCardSwipe;
                 behaviour.onSwipeNo = HandleCardSwipe;
                 break;
             case STEPS.CONTRAT:
-                cardInst = Instantiate(contratCard);
-                cardInst.GetComponent<ContractCardBehaviour>().currentContract =
+                currentCard = Instantiate(contratCard);
+                currentCard.GetComponent<ContractCardBehaviour>().currentContract =
                     ContractManager.Instance.GetCurrentContract();
-                behaviour = cardInst.GetComponent<CardBehaviour>();
+                behaviour = currentCard.GetComponent<CardBehaviour>();
                 behaviour.onSwipeYes = HandleCardSwipe;
                 behaviour.onSwipeNo = HandleCardSwipe;
                 break;
@@ -171,20 +171,20 @@ public class GameManager : MonoBehaviour
                 EndGame();
                 break;
             case STEPS.COMPARE:
-                cardInst = Instantiate(compareCard);
-                behaviour = cardInst.GetComponent<CardBehaviour>();
+                currentCard = Instantiate(compareCard);
+                behaviour = currentCard.GetComponent<CardBehaviour>();
                 behaviour.onSwipeYes = HandleCardSwipe;
                 behaviour.onSwipeNo = HandleCardSwipe;
                 break;
             case STEPS.COMPARE_LINK:
-                cardInst = Instantiate(compareLinkCard);
-                behaviour = cardInst.GetComponent<CardBehaviour>();
+                currentCard = Instantiate(compareLinkCard);
+                behaviour = currentCard.GetComponent<CardBehaviour>();
                 behaviour.onSwipeYes = HandleCardSwipe;
                 behaviour.onSwipeNo = HandleCardSwipe;
                 break;
             case STEPS.CREDITS:
-                cardInst = Instantiate(creditsCard);
-                behaviour = cardInst.GetComponent<CardBehaviour>();
+                currentCard = Instantiate(creditsCard);
+                behaviour = currentCard.GetComponent<CardBehaviour>();
                 behaviour.onSwipeYes = HandleCardSwipe;
                 behaviour.onSwipeNo = HandleCardSwipe;
                 break;
@@ -196,9 +196,9 @@ public class GameManager : MonoBehaviour
         CardContent cardContent= DeckManager.Instance.draw(m_currentTurn);
         m_currentTurn++;
 
-        GameObject card = Instantiate(cardPrefab);
-        card.SetActive(false);
-        CardBehaviour cardBehaviour = card.GetComponent<CardBehaviour>();
+        currentCard = Instantiate(cardPrefab);
+        currentCard.SetActive(false);
+        CardBehaviour cardBehaviour = currentCard.GetComponent<CardBehaviour>();
         if (cardContent == null) {
             return;
         }
@@ -206,7 +206,7 @@ public class GameManager : MonoBehaviour
 
         cardBehaviour.onSwipeYes = HandleCardSwipe;
         cardBehaviour.onSwipeNo = HandleCardSwipe;
-        card.SetActive(true);
+        currentCard.SetActive(true);
     }
 
     private void GenerateNewFeedbackCard(CardEffect effect)
@@ -327,16 +327,18 @@ public class GameManager : MonoBehaviour
     }
 
     public void RestartGame() {
-        //TODO: Actually restart the game
         Debug.Log("restarted");
+
+        currentStep = STEPS.INTRO;
+        Destroy(currentCard);
+        this.Start();
+        UIManager.Instance.Start();
     }
 
     public void RetryContract() {
       Debug.Log("Restarting contract...");
-    
-      // TODO: Remove the card at the back...
-
       currentStep = STEPS.CONTRAT;
+      Destroy(m_endCard.GetComponent<GameObject>());
       GenerateNewUniqueCard();
     }
 }
