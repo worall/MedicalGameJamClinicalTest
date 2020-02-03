@@ -50,6 +50,10 @@ public class UIManager : MonoBehaviour
         argentAlertImage.color = new Color(1, 1, 1, opacity);
     }
 
+    public void LaunchMainPanel() {
+      AddPanel(mainPanel);
+    }
+
     public void LauncheGamePanel()
     {
         AddPanel(gamePanel);

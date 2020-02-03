@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
     {
         GameObject beginCardInst = Instantiate(beginCard);
         CardBehaviour behaviour = beginCardInst.GetComponent<CardBehaviour>();
+        ContractManager.Instance.resetContractOrder();
         behaviour.onSwipeYes = HandleCardSwipe;
         behaviour.onSwipeNo = HandleCardSwipe;
     }
@@ -327,18 +328,21 @@ public class GameManager : MonoBehaviour
     }
 
     public void RestartGame() {
-        Debug.Log("restarted");
+        Debug.Log("Restarting the game.");
+
+        Destroy(currentCard);
 
         currentStep = STEPS.INTRO;
-        Destroy(currentCard);
         this.Start();
-        UIManager.Instance.Start();
+        UIManager.Instance.LaunchMainPanel();
     }
 
     public void RetryContract() {
-      Debug.Log("Restarting contract...");
-      currentStep = STEPS.CONTRAT;
+      Debug.Log("Restarting current contract...");
+      
       Destroy(m_endCard.gameObject);
+
+      currentStep = STEPS.CONTRAT;
       GenerateNewUniqueCard();
     }
 }

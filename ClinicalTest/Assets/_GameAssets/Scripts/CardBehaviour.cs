@@ -124,22 +124,34 @@ public class CardBehaviour : MonoBehaviour
         if (swiped) { return; }
         swiped = true;
         if (onSwipeYes != null) {
+            // Prevent memory leak by destroying unused follow up card
+            this.cleanFollowUp("no");
             swiped = this.onSwipeYes(cardContent != null ? cardContent.yes : new CardEffect(), true, this.followupCardYes);
         }
         if (swiped) {
             StartCoroutine(FinishSwipe());
         }
     }
+
     public void SwipeNo()
     {
         if (swiped) { return; }
         swiped = true;
         if (onSwipeNo != null) {
+            // Prevent memory leak by destroying unused follow up card
+            this.cleanFollowUp("yes");
             swiped = this.onSwipeNo(cardContent != null ? cardContent.no : new CardEffect(), false, this.followupCardNo);
         }
         if (swiped) {
             StartCoroutine(FinishSwipe());
         }
+    }
+
+    void cleanFollowUp(string side) {
+        GameObject keep = (side == "yes") ? this.followupCardNo : this.followupCardYes ;
+        GameObject remove = (side == "yes") ? this.followupCardYes : this.followupCardNo ;
+
+        if (remove && remove != keep) Destroy(remove);
     }
 
     IEnumerator FinishSwipe()
