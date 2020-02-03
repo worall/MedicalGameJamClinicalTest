@@ -739,7 +739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9508d9af835a27944a9d7d1a256c71cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beginCard: {fileID: 4262644183074118468, guid: 307f610e14f3c06f082477adc09c696a,
+  beginCard: {fileID: 4094799985136721352, guid: 307f610e14f3c06f082477adc09c696a,
     type: 3}
   compareCard: {fileID: 4587649289527262225, guid: fb40e3e072cd065cba549e10d9c4a65d,
     type: 3}
