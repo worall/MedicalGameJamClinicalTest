@@ -14,7 +14,8 @@ enum STEPS {
     STARS,
     COMPARE,
     COMPARE_LINK,
-    CREDITS
+    CREDITS,
+    END
 }
 
 public class GameManager : MonoBehaviour
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject creditsCard;
     [SerializeField] GameObject feedbackCard;
     [SerializeField] GameObject contratCard;
+    [SerializeField] GameObject endCard;
 
     private EndCardBehaviour m_endCard;
 
@@ -189,6 +191,12 @@ public class GameManager : MonoBehaviour
                 behaviour.onSwipeYes = HandleCardSwipe;
                 behaviour.onSwipeNo = HandleCardSwipe;
                 break;
+            case STEPS.END:
+                currentCard = Instantiate(endCard);
+                behaviour = currentCard.GetComponent<CardBehaviour>();
+                behaviour.onSwipeYes = HandleCardSwipe;
+                behaviour.onSwipeNo = HandleCardSwipe;
+                break;
         }
     }
 
@@ -322,7 +330,11 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             case STEPS.CREDITS:
-                // Call whatever you like
+                currentStep = STEPS.END;
+                GenerateNewUniqueCard();
+                break;
+            case STEPS.END:
+                RestartGame();
                 break;
         }
     }

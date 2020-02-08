@@ -23,7 +23,7 @@ public class TutoCardBehaviour : MonoBehaviour
                 break;
             case 1:
                 titleText.text = "Votre objectif !";
-                descriptionText.text = "Votre objectif est de mener à bien un essai clinique ! Dans ce jeu vous vous vos patients seront les adorables \"Catipat's\" !";
+                descriptionText.text = "Votre objectif est de mener à bien un essai clinique ! Dans ce jeu vos patients seront les adorables \"Catipat's\" !";
                 break;
             case 2:
                 titleText.text = "Comment jouer ?";
