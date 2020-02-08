@@ -53,6 +53,11 @@ public class CardBehaviour : MonoBehaviour
         if (cardContent != null) {
             flavorText.text = cardContent.situation;
             titleText.text = cardContent.name != null ? cardContent.name.ToUpper() : "";
+
+            // non-breaking spaces between ! and ?
+            flavorText.text = flavorText.text.Replace(" ?", " ?").Replace(" !", " !");
+            titleText.text = titleText.text.Replace(" ?", " ?").Replace(" !", " !");
+
             Sprite sprite = Resources.Load<Sprite>("illustrations/" + this.cardContent.image);
             if (sprite != null) {
                 illustrationImage.sprite = sprite;
